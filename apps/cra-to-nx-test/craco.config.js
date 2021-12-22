@@ -4,7 +4,10 @@
   const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
   module.exports = {
     webpack: {
-      configure: (config) => {
+      configure: (config, {  paths }) => {
+        //overwrite build path
+        paths.appBuild = config.output.path = path.resolve('../../dist/apps/cra-to-nx-test');
+
         // Remove guard against importing modules outside of `src`.
         // Needed for workspace projects.
         config.resolve.plugins = config.resolve.plugins.filter(
@@ -18,7 +21,7 @@
             mainFields: ['module', 'main'],
           })
         );
-        
+
         // Replace include option for babel loader with exclude
         // so babel will handle workspace projects as well.
         config.module.rules[1].oneOf.forEach((r) => {
@@ -37,4 +40,3 @@
       },
     },
   };
-  
