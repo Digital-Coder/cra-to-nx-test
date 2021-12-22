@@ -1,0 +1,6 @@
+{
+  "root": "apps/cra-to-nx-test",
+  "sourceRoot": "apps/cra-to-nx-test/src",
+  "projectType": "application",
+  "tags": []
+}
