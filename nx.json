@@ -51,5 +51,5 @@
       }
     }
   },
-  "defaultProject": "cra-to-nx-test"
+  "defaultProject": "senf-client"
 }

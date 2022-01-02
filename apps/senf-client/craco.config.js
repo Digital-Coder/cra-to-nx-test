@@ -6,7 +6,7 @@
     webpack: {
       configure: (config, {  paths }) => {
         //overwrite build path
-        paths.appBuild = config.output.path = path.resolve('../../dist/apps/cra-to-nx-test');
+        paths.appBuild = config.output.path = path.resolve('../../dist/apps/senf-client');
 
         // Remove guard against importing modules outside of `src`.
         // Needed for workspace projects.

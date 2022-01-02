@@ -1,6 +1,6 @@
 {
-  "root": "apps/cra-to-nx-test",
-  "sourceRoot": "apps/cra-to-nx-test/src",
+  "root": "apps/senf-client",
+  "sourceRoot": "apps/senf-client/src",
   "projectType": "application",
   "tags": []
 }
