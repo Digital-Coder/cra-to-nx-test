@@ -40,7 +40,7 @@ export function App() {
         exact
         render={() => (
           <div>
-            <Link to="/">Click here to go back to root page.</Link>
+            <Link to="/">Click here to go back .</Link>
           </div>
         )}
       />
