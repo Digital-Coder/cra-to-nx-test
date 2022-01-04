@@ -39,6 +39,7 @@
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "serve": "npm start",
     "start": "craco start",
     "start:silent": "BROWSER=none PORT=3000 craco start",
     "build": "node ./update-build.js && craco build",
