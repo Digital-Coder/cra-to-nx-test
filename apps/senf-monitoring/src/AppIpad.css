@@ -1,0 +1,246 @@
+/* FOR IPAD */
+/* 
+@media screen and (max-width: 1000px) {
+    .ipadbackground {
+      position: fixed;
+      background-color: white;
+      top: 0;
+      width: 100vw;
+      height: 27vh;
+      z-index: 99;
+      box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.5);
+    }
+  
+    .QRWrapper {
+      top: 10vh;
+      width: 7em;
+      left: 5vw;
+    }
+  
+    .QRtext {
+      display: none;
+    }
+  
+    .infotext {
+      position: fixed;
+      z-index: 999;
+      top: 10vh;
+      width: 50%;
+      left: 30vw;
+      color: #414345;
+      font-size: 20pt;
+      font-family: Playfair Display;
+    }
+  
+    .footerWeb {
+      top: 23vh;
+    }
+  
+    .footercopyWeb {
+      top: 20vh;
+      right: 5vw;
+      position: fixed;
+      font-size: 12pt;
+    }
+  
+    .Gib {
+      font-size: 5vw;
+      top: 33vh;
+    }
+  
+    .FirstImage {
+      z-index: 10;
+      position: absolute;
+      margin-top: 45vh;
+      width: 70vw;
+      margin-left: 26vw;
+      left: -10vw;
+    }
+  
+    .Mountain {
+      width: 70vw;
+    }
+  
+    .SVGweb {
+      width: 70vw;
+      left: -10vw;
+      margin-left: 26vw;
+      top: 45vh;
+      display: inline-block;
+      animation: SVGweb1 4.6s;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  
+    @keyframes SVGweb1 {
+      0% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+  
+      30% {
+        clip-path: polygon(0 0, 100% 0, 100% 6%, 0 6%);
+      }
+  
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+    }
+  
+    .title1Web {
+      top: 42vw;
+      left: 15vw;
+      font-size: 20pt;
+    }
+  
+    .subTitle1Web {
+      font-size: 14pt;
+      left: 15vw;
+      top: 55vw;
+    }
+  
+    .title2Web {
+      font-size: 20pt;
+      left: 15vw;
+      top: 103vw;
+    }
+  
+    .subTitle2Web {
+      font-size: 14pt;
+      left: 15vw;
+      top: 115vw;
+    }
+  
+    .title3Web {
+      font-size: 20pt;
+      left: 15vw;
+      top: 168vw;
+    }
+  
+    .subTitle3Web {
+      font-size: 14pt;
+      left: 15vw;
+      top: 180vw;
+    }
+  }
+  
+  
+
+@media screen and (max-width: 600px) {
+    .ipadbackground {
+      position: fixed;
+      background-color: white;
+      top: 0;
+      width: 100vw;
+      height: 27vh;
+      z-index: 99;
+      box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.5);
+    }
+  
+    .QRWrapper {
+      top: 10vh;
+      width: 7em;
+      left: 5vw;
+    }
+  
+    .QRtext {
+      display: none;
+    }
+  
+    .infotext {
+      position: fixed;
+      z-index: 999;
+      top: 11vh;
+      width: 50%;
+      left: 30vw;
+      color: #414345;
+      font-size: 16pt;
+      font-family: Playfair Display;
+    }
+  
+    .footerWeb {
+      top: 24vh;
+      font-size: 10pt;
+    }
+  
+    .footercopyWeb {
+      top: 22vh;
+      font-size: 10pt;
+    }
+  
+    .Gib {
+      font-size: 8vw;
+      top: 33vh;
+    }
+  
+    .FirstImage {
+      z-index: 10;
+      position: absolute;
+      margin-top: 50vh;
+      width: 90vw;
+      margin-left: 16vw;
+      left: -10vw;
+    }
+  
+    .Mountain {
+      width: 90vw;
+    }
+  
+    .SVGweb {
+      width: 90vw;
+      left: -10vw;
+      margin-left: 16vw;
+      top: 50vh;
+      display: inline-block;
+      animation: SVGweb1 4.6s;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  
+    @keyframes SVGweb1 {
+      0% {
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+  
+      30% {
+        clip-path: polygon(0 0, 100% 0, 100% 6%, 0 6%);
+      }
+  
+      100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+      }
+    }
+  
+    .title1Web {
+      top: 49vw;
+      left: 19vw;
+      font-size: 17pt;
+    }
+  
+    .subTitle1Web {
+      font-size: 14pt;
+      left: 19vw;
+      top: 65vw;
+    }
+  
+    .title2Web {
+      font-size: 17pt;
+      left: 19vw;
+      top: 132vw;
+    }
+  
+    .subTitle2Web {
+      font-size: 14pt;
+      left: 19vw;
+      top: 147vw;
+    }
+  
+    .title3Web {
+      font-size: 17pt;
+      left: 19vw;
+      top: 212vw;
+    }
+  
+    .subTitle3Web {
+      font-size: 14pt;
+      left: 19vw;
+      top: 227vw;
+    }
+  } */
