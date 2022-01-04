@@ -1,11 +1,8 @@
 {
-
   "version": 2,
 
   "projects": {
-
-    "senf-client": "apps/senf-client"
-
+    "senf-client": "apps/senf-client",
+    "senf-monitoring": "apps/senf-monitoring"
   }
-
 }
