@@ -1,0 +1,983 @@
+@media screen and (min-width: 768px) {
+  .Mountain {
+    width: 800px;
+  }
+
+  .SVGweb {
+    z-index: 0;
+    position: absolute;
+
+    width: 800px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    left: 0;
+
+    top: 30vh;
+
+    padding-bottom: 400px;
+    display: inline-block;
+    /* animation: SVGweb 4.6s; */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  }
+
+  /* @keyframes SVGweb {
+    0% {
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+  
+    30% {
+      clip-path: polygon(0 0, 100% 0, 100% 6%, 0 6%);
+    }
+  
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+  } */
+
+  .title1Web {
+    position: absolute;
+    z-index: 99;
+    width: 800px;
+    top: 470px;
+    left: 200px;
+    color: #414345;
+    font-size: 22pt;
+    font-family: "PlayfairDisplay-Bold";
+    white-space: pre-line;
+  }
+
+  .subTitle1Web {
+    position: absolute;
+    z-index: 99;
+    width: 50%;
+    top: 570px;
+    left: 200px;
+    color: #414345;
+    font-size: 18pt;
+  }
+
+  .title2Web {
+    position: absolute;
+    z-index: 99;
+    width: 50%;
+    top: 1200px;
+    left: 200px;
+    color: #414345;
+    font-size: 22pt;
+    font-family: "PlayfairDisplay-Bold";
+    white-space: pre-line;
+  }
+
+  .subTitle2Web {
+    position: absolute;
+    z-index: 99;
+    width: 50%;
+    top: 1300px;
+    left: 200px;
+    color: #414345;
+    font-size: 18pt;
+  }
+
+  .title3Web {
+    position: absolute;
+    z-index: 99;
+    width: 50%;
+    top: 1900px;
+    left: 200px;
+    color: #414345;
+    font-size: 22pt;
+    font-family: "PlayfairDisplay-Bold";
+    white-space: pre-line;
+  }
+
+  .subTitle3Web {
+    position: absolute;
+    z-index: 99;
+    width: 50%;
+    top: 2000px;
+    left: 200px;
+    color: #414345;
+    font-size: 18pt;
+  }
+
+  /* .footerWeb {
+    color: rgb(0, 0, 0, 0.5);
+    bottom: 2vh;
+    right: 5vw;
+    position: fixed;
+    text-align: right;
+    font-size: 12pt;
+    z-index: 999;
+    font-family: Futura PT W01 Book;
+  }
+  
+  .footercopyWeb {
+    color: rgb(0, 0, 0, 0.5);
+    bottom: 6vh;
+    right: 5vw;
+    position: fixed;
+    text-align: right;
+    font-size: 12pt;
+    z-index: 999;
+    font-family: Futura PT W01 Book;
+  } */
+
+  .footer {
+    position: absolute;
+    top: 2750px;
+    width: 100%;
+    height: 1em;
+    text-align: center;
+    color: rgb(0, 0, 0, 0.5);
+    font-size: 14pt;
+    font-family: Futura PT W01 Book;
+  }
+
+  .footercopy {
+    position: absolute;
+    top: 2800px;
+    width: 100%;
+    height: 1em;
+    text-align: center;
+    color: rgb(0, 0, 0, 0.5);
+    font-size: 14pt;
+    font-family: Futura PT W01 Book;
+  }
+
+
+  .infotext {
+    pointer-events: none;
+    position: fixed;
+    z-index: 99;
+    top: 40vh;
+    width: 20%;
+    left: 5vw;
+    color: #414345;
+    font-size: 20pt;
+    font-family: PlayfairDisplay-Bold;
+  }
+
+  .QRWrapper {
+    pointer-events: none;
+    position: fixed;
+    z-index: 99;
+    top: 35vh;
+    width: 13em;
+    right: 5vw;
+  }
+
+  .QR {
+    position: relative;
+    z-index: 99;
+    top: 0vh;
+    width: 100%;
+    right: 0vw;
+  }
+
+  .QRtext {
+    position: relative;
+    z-index: 99;
+    top: 1em;
+    height: 4em;
+    right: 0vw;
+    color: #414345;
+    font-size: 14pt;
+  }
+
+
+
+ 
+
+  .buttonVerify {
+    z-index: 9;
+    color: white;
+    background-color: #414345;
+
+    position: relative;
+    margin-top: 50px;
+    left: calc(50% - 150px);
+    width: 300px;
+  }
+
+  .buttonMapdesktop {
+    width: 400px;
+    position: fixed;
+    top: 40px;
+    left: calc(0px + ((100vw - 600px) / 2) - 200px);
+    animation: FadeAnimationVeryFast 1s;
+
+  }
+
+  .buttonMapdesktop_hide {
+    display: none;
+
+  }
+
+  .buttonResetMapDesktop {
+    width: 50px;
+    position: fixed;
+    top: 40px;
+    left: calc(0px + ((100vw - 600px) / 2) + 210px);
+    animation: FadeAnimationVeryFast 1s;
+  }
+
+  @keyframes FadeAnimationVeryFast {
+    0% {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+
+    40% {
+      opacity: 0;
+      transform: scale(0.7);
+    }
+
+    50% {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+
+  .cookiesHeader {
+    font-family: Futura PT W01-Bold;
+  }
+
+  .cookiesText {
+    z-index: 9999;
+    position: relative;
+    width: auto;
+    height: auto;
+    padding: 0;
+    color: #353535;
+    text-align: center;
+    background-color: transparent;
+    font-size: 13pt;
+
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+    animation: FadeAnimation 0s;
+  }
+
+
+  .MainBackground {
+
+    width: 100vw;
+  }
+
+  .MainBackgroundHome {
+
+    width: 400px;
+    height: 100vh;
+  }
+
+  .contentWrapper {
+    margin-left: 200px;
+    width: 400px;
+    position: fixed;
+  }
+
+   .contentWrapper_insights {
+    margin-left: 200px;
+    width: 400px;
+    height:100%;
+    position: fixed;
+    overflow:scroll;
+    z-index:0;
+
+
+  }
+
+
+ 
+
+  .spinnerDiv {
+
+    position: absolute;
+  }
+
+
+  .content {
+    margin-top: 0em;
+    overflow-y: scroll;
+    position: relative;
+  }
+
+  .dialogOverlayContent {
+
+    position: relative;
+    margin-left: 200px;
+    width: calc(100vw - 400px);
+    height: auto;
+  }
+
+
+
+
+  .content {
+    margin-top: 0px;
+    padding-bottom: 100px;
+
+    overflow-x: hidden;
+  }
+
+
+  .addText {
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+  
+
+  .inlineInfoIconText {
+    padding-left: 10px;
+    color: #353535;
+  }
+
+  .profile {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+
+    z-index: 999;
+    width: 160px;
+    height: 35px;
+    left: 20px;
+    top: 80px;
+    font-size: 14pt;
+    line-height: 14pt;
+    color: #353535;
+
+    margin-bottom: 10px;
+
+  }
+
+  .profile_indented {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+
+    z-index: 999;
+    width: 160px;
+    left: 80px;
+    top: 80px;
+    font-size: 14pt;
+    line-height: 14pt;
+    color: #353535;
+
+    margin-bottom: 10px
+  }
+
+
+
+  .navBackgroundWeb-wrapper {
+    display: block;
+    z-index: 99;
+    position: fixed;
+    width: 400px;
+    height: 50px;
+    top: 0;
+    left: 200px;
+
+  }
+
+  .navBackgroundWeb_hide {
+    left: -400px;
+  }
+
+  .navBackgroundWeb-background {
+    z-index: 0;
+    position: absolute;
+    width: 100%;
+    height: 200px;
+    top: 0;
+
+    background: rgb(255, 255, 255);
+    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 218, 83, 0) 51%, rgba(255, 212, 130, 1) 81%, rgba(255, 209, 155, 1) 100%);
+    pointer-events: none;
+  }
+
+  .mapWrapper {
+    margin: 0px;
+    top: 0;
+    left: 600px;
+    position: fixed;
+  }
+
+
+  .selectLocationContainer {
+    position: fixed;
+    height: 130px;
+    width: 380px;
+    margin-left: 210px;
+    top: 40px;
+    background-color: #F8F8F8;
+    border-radius: 20px;
+    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
+    z-index: 5;
+    animation: enteranimation 0.5s
+  }
+
+
+  .postCard {
+
+    position: fixed;
+    top: 135px;
+
+    left: 0;
+    margin-left: 210px;
+    margin-right: auto;
+    height: 50vh;
+    width: 380px;
+    border-radius: 20px;
+    box-shadow: 0 0px 40px -12px rgba(0, 0, 0, 0);
+    background-color: white;
+    z-index: 2;
+    animation: enteranimation 1s;
+  }
+
+
+  @keyframes enteranimation {
+    0% {
+      opacity: 0;
+      transform: translateY(10%);
+    }
+
+    50% {
+      opacity: 0;
+      transform: translateY(10%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+
+
+
+  .PostBackground {
+    display: none;
+  }
+
+
+
+  .buttonLikeFixed {
+    left: 220px;
+
+
+  }
+
+
+
+
+  .react-geocoder input {
+    width: 300px;
+    position: fixed;
+    top: 50px;
+    border-radius: 15px;
+    border: none;
+    height: 50px;
+    left: calc(600px + ((100vw - 600px) / 2) - 150px);
+    transform: translateX(0%);
+    font-family: Futura PT W01 Book;
+    font-size: 12pt;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+
+  .react-geocoder-results {
+    position: fixed;
+    top: 110px;
+    left: calc(600px + ((100vw - 600px) / 2) - 150px);
+    z-index: 1;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 300px;
+    padding-right: 10px;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+
+  .pinLocationHeader {
+    z-index: 9999;
+    position: fixed;
+    top: 50px;
+    left: calc(600px + ((100vw - 600px) / 2) - 150px);
+    /* left:calc(100vw - 600px);
+        transform:translateX(-50%); */
+    width: 300px;
+
+    height: 50px;
+    padding-left: 15px;
+    padding-right: 5px;
+    border-radius: 15px;
+    color: #353535;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    pointer-events: none;
+
+    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
+
+  }
+
+  /* .react-geocoder-results {
+    position: fixed;
+    top: 10vh;
+    left: 2.5vw;
+    z-index: 1;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 95vw;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .react-geocoder-item {
+    border-bottom: 1px solid #d8d8d8;
+    padding: 10px;
+  } */
+
+
+  .geocoder-edit {
+    
+    position: relative;
+    font-family: Futura PT W01 Book;
+
+
+  }
+
+
+
+  .geocoder-edit input {
+    width: 95%;
+    position: relative;
+    top: 2.5%;
+    border-radius: 5px;
+    border: none;
+    height: 50px !important;
+    padding: 0;
+    left: 0%;
+    padding-left: 15px;
+
+    font-family: 'Futura PT W01 Book', sans-serif;
+    font-size: 12pt;
+    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0);
+
+    border: 1px solid #cecece;
+    margin-bottom: 5px;
+  }
+
+  .geocoder-edit .react-geocoder-results {
+    position: relative;
+    top: 10px;
+    left: 0%;
+    z-index: 1;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 95%;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+
+
+
+  .sideBar {
+    position: fixed;
+    height: 100vh;
+    width: 200px;
+    overflow-x: hidden;
+    background-color: #F8F8F8;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    transition: 0.5s;
+
+    overflow-y: scroll;
+  }
+
+  .sideBar_hide {
+    position: fixed;
+    height: 100vh;
+    width: 200px;
+    background-color: #F8F8F8;
+    top: 0;
+    left: -200px;
+    z-index: 999;
+    display: block;
+    transition: 0.5s;
+
+  }
+
+  .legendwrapper {
+
+    position: relative;
+    width: 100%;
+    left: 20px;
+    top: 70px;
+    background-color: transparent;
+    padding: 0px;
+    height: auto;
+  }
+
+  .sideBar>.legendwrapper {
+    height: auto;
+  }
+
+  .sideBar_hide>.legendwrapper {
+    height: auto;
+  }
+
+  .MuiFormControlLabel-root {
+    height: 38px !important;
+    
+  }
+
+  .MuiTypography-body1 {
+
+    font-size: 16px !important
+  }
+
+  .MuiSvgIcon-root {
+    width: 22px !important;
+    height: 22px !important
+  }
+
+
+  .Filterheader {
+    position: relative;
+    margin-top: 50px;
+    padding-right: 0;
+    top: 0;
+    height: 50px;
+    transform: rotate(0);
+    color: #414345;
+    font-size: 22pt;
+    font-family: Playfair Display;
+  }
+
+  .legend {
+    position: relative;
+    top: 0;
+    width: 90%;
+    display: flex;
+    height: 100%;
+    padding-left: 0;
+    left: 0%;
+    border-left: 0;
+    flex-direction: column !important;
+
+  }
+
+  .fullGradientWrapper {
+    margin-left: 200px;
+    width: 400px;
+    z-index: 99;
+    top: 0;
+    background-attachment: fixed;
+    background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
+    background-repeat: no-repeat;
+    background: -webkit-linear-gradient(to left, #ffd19b, #ffda53, #ffffff);
+  }
+
+  .projectDialog,
+  .accountDialog {
+    margin-left: 0px;
+    width: 400px;
+    height:100vh;
+    padding-top:70px;
+    overflow-y: scroll;
+    z-index: 90;
+    top: 0;
+    position: fixed;
+    
+  }
+
+
+  .wrapperScreamDialog {
+    margin-left: 200px;
+    margin-top: 0px;
+    width: 400px;
+    overflow-y: scroll !important;
+    z-index: 97;
+    top: 0;
+    height: 100vh;
+    position: fixed;
+    margin-top: 0vh;
+    animation: enterScreamDialogAnimation 0.7s;
+    
+  }
+
+  @keyframes enterScreamDialogAnimation {
+    0% {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+    49% {
+      transform: translateY(50%);
+      opacity: 0;
+    }
+  
+    50% {
+      transform: translateY(50%);
+      opacity: 1;
+    }
+  
+    100% {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+ 
+
+
+  .wrapperMonitoringDialog {
+    margin-top: 20px;
+    border-radius: 20px;
+    right: 20px;
+    width: 400px;
+    z-index: 99;
+    top: 0;
+
+    height: calc(100% - 40px);
+    position: fixed;
+    overflow-x: hidden;
+    background-attachment: fixed;
+
+    background: #ffffff
+  }
+
+ 
+
+  .mapWrapperDialog {
+    display: none;
+
+  }
+
+  .dialogZoomButton {
+    display: none
+  }
+
+  .dialogCard {
+
+    margin-top: 10px;
+
+  }
+
+  
+
+
+  .infoPageWrapperDesktop {
+    position: relative;
+  }
+
+  .logo2 {
+    position: absolute;
+    top: 0em;
+    left: 0vw;
+    width: 100%;
+    z-index: 99;
+    color: white;
+    padding-bottom: 10;
+    font-size: 40;
+    text-align: left;
+    line-height: 35px;
+    font-weight: 100;
+    font-family: Playfair Display;
+    clear: both;
+  }
+
+
+ 
+
+
+  .insta {
+    position: fixed;
+    width: 180px;
+    z-index: 99998;
+
+    top: calc(100vh - 50px);
+    left: 20px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+
+
+
+    /* animation: logoAnimation 2.5s; */
+    background-color: #F8F8F8;
+    transition: 0.5s;
+
+  }
+
+  .facebook {
+    position: fixed;
+    width: 180px;
+    z-index: 99999;
+
+    top: calc(100vh - 50px);
+    left: 60px;
+    padding-bottom: 50px;
+    padding-top: 10px;
+    transition: 0.5s;
+
+
+
+
+  }
+
+
+
+  @keyframes logoAnimation {
+    0% {
+      opacity: 0;
+    }
+
+    85% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .Gib {
+    font-size: 3vw;
+    color: #ffd388;
+    font-family: Playfair Display;
+    width: 50%;
+    margin-left:50%;
+    transform:translateX(-50%);
+    margin-top: 100px;
+    animation: GibAnimation 0.5s;
+  }
+
+  @keyframes GibAnimation {
+    0% {
+      opacity: 0;
+      transform: scale(0.7) translateX(-50%);
+    }
+
+    10% {
+      opacity: 0;
+      transform: scale(0.7)translateX(-50%);
+    }
+
+    60% {
+      opacity: 1;
+      transform: scale(1.1) translateX(-50%);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1) translateX(-50%);
+    }
+  }
+
+  .explanation {
+    position: fixed;
+    top: 35vh;
+    width: 200px;
+    left: 32%;
+    display: table;
+    z-index: 0;
+    font-size: 20px;
+
+  }
+
+  .explanation::before {
+    content: "*";
+    display: table-cell
+  }
+
+
+  
+
+
+
+
+  .VerifyHeader {
+
+    position: relative;
+    margin-top: 5vh;
+    width: 500px;
+    margin-left: calc(50% - 250px);
+    height: 100%;
+    color: white;
+  }
+
+  .VerifySubHeader {
+
+
+    width: 600px;
+    margin-left: calc(50% - 300px);
+    margin-top: 3vh;
+    height: 100%;
+
+  }
+
+  .Celebrate {
+    z-index: 0;
+    position: fixed;
+    width: 350px;
+
+    left: 15%;
+    bottom: 0vh;
+    opacity: 0;
+    animation: CelebrateAnimation 2s;
+  }
+
+
+
+  .CelebrateVerify {
+    z-index: 0;
+    position: fixed;
+    width: 400px;
+    left: 5vw;
+    bottom: 2vh;
+    opacity: 1;
+    animation: CelebrateVerifyAnimation 2s;
+  }
+
+  @keyframes CelebrateVerifyAnimation {
+    0% {
+      opacity: 0;
+      bottom: 0vh;
+    }
+
+    100% {
+      opacity: 1;
+      bottom: 2vh;
+    }
+  }
+}
+
+@media screen and (max-height: 768px) {
+  .insta {
+    box-shadow: rgb(0, 0, 0, 0.2) 0px -10px 20px -15px;
+
+  }
+
+}

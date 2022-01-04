@@ -1,94 +1,41 @@
+<!-- @format -->
+
+This is the React code base for the App "Senf" (https://senf.koeln/) <br/>
+Since we don't want to touch live data, we have set up this as a test environment.
+
+## About
+
+The aim of this project is to strengthen participation of citizens in urban planning & to make it more interactive and transparent. Since we see citizens as the real experts in their neighborhoods, we want to create an attractive opportunity for people to contribute their own ideas and suggestions.
+
+Ultimately, through this platform, we are attempting to establish a collaborative community-based environment in which citizens have a voice and organizations of any kind are empowered to be more participatory. Simultaneously, we see this environment as a space for people to get creative and connect in real life in order to collectively shape their own urban space.
+
+Since the beginning of 2021, we have been running this platform for the area of Cologne, Germany – and we see this expanding to any city and municipality. Btw: checkout/follow our [Instagram](https://www.instagram.com/senf.koeln/)
+
+This project was started by an amateur programmer, so please don't be too harsh about the current quality - let's level it up!
+
+## 1: Fork this repository and clone your own Fork
+
+To avoid ending up with an unmanageable amount of branches, we decided to go this way: fork the repository first and then clone your fork to your computer using terminal command `git clone` https://github.com/your-github-name/senf_client.git. When contributing, create a pull request as described in [this documentation](/docs/CREATE_A_PULL_REQUEST.md)
 
 
-# TempWorkspace
-
-This project was generated using [Nx](https://nx.dev).
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-🔎 **Smart, Fast and Extensible Build System**
-
-## Adding capabilities to your workspace
-
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
-
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
-
-Below are our core plugins:
-
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
-
-There are also many [community plugins](https://nx.dev/community) you could add.
-
-## Generate an application
-
-Run `nx g @nrwl/react:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@senf-workspace/mylib`.
-
-## Development server
-
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+## 2: Install packages
 
 
+Open `senf_client` folder in the terminal and type `npm install`.
 
-## ☁ Nx Cloud
+If you get error `npm command not found ` make sure you have [node.js](https://nodejs.org/en/)  installed on your machine.
 
-### Distributed Computation Caching & Distributed Task Execution
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+## 3: Change to .env file
 
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+Open `senf_client` folder, find a file called .env-example and rename it to .env
 
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+## 4: Run project
 
-Visit [Nx Cloud](https://nx.app/) to learn more.
+To run a project, type `npm start` in the terminal 
+
+## 5: Open it
+
+Go to [http://localhost:3000](http://localhost:3000)
+
+

@@ -3,26 +3,70 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
+    "@fullcalendar/core": "^5.10.1",
+    "@fullcalendar/list": "^5.10.1",
+    "@fullcalendar/react": "^5.10.1",
+    "@mapbox/mapbox-sdk": "^0.13.2",
+    "@material-ui/core": "^4.12.3",
+    "@material-ui/icons": "^4.11.2",
+    "@react-spring/web": "^9.3.0",
+    "@urbica/react-map-gl": "^1.14.3",
+    "@use-gesture/react": "^10.1.3",
+    "axios": "^0.24.0",
+    "browser-image-compression": "^1.0.17",
+    "dayjs": "^1.10.7",
+    "firebase": "^8.6.3",
+    "formik": "^2.2.9",
+    "i18next": "^21.4.0",
+    "intersection-observer": "^0.12.0",
+    "iplocation": "^7.2.0",
+    "linkifyjs": "^3.0.3",
+    "lodash": "^4.17.21",
+    "moment": "^2.29.1",
+    "plotly.js": "^1.58.5",
+    "public-ip": "^4.0.4",
     "react": "^17.0.2",
+    "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.2",
-    "react-scripts": "5.0.0",
-    "web-vitals": "^2.1.2"
+    "react-easy-swipe": "^0.0.22",
+    "react-i18next": "^11.13.0",
+    "react-infinite-scroller": "^1.2.4",
+    "react-lazy-images": "^1.1.0",
+    "react-mapbox-gl-geocoder": "^1.1.0",
+    "react-multi-date-picker": "^3.1.7",
+    "react-plotlyjs": "^0.4.4",
+    "react-redux": "^7.2.6",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^4.0.3",
+    "react-share": "^4.4.0",
+    "redux": "^4.1.2",
+    "redux-thunk": "^2.4.0",
+    "source-map-explorer": "^2.5.2",
+    "styled-components": "^5.3.3",
+    "universal-cookie": "^4.0.4",
+    "workbox-cacheable-response": "^6.3.0",
+    "workbox-core": "^6.3.0",
+    "workbox-expiration": "^6.3.0",
+    "workbox-precaching": "^6.3.0",
+    "workbox-routing": "^6.3.0",
+    "workbox-strategies": "^6.3.0",
+    "yup": "^0.32.11"
   },
   "scripts": {
+    "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "craco start",
-    "build": "craco build",
-    "test": "craco test",
-    "eject": "react-scripts eject",
-    "serve": "npm start"
+    "serve": "npm start",
+    "start:silent": "BROWSER=none PORT=3000 craco start",
+    "build": "node ./update-build.js && craco build",
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cypress:ci": "start-server-and-test start:silent http://localhost:3000 cy:run",
+    "cypress": "start-server-and-test start:silent http://localhost:3000 cy:open",
+    "lint": "eslint .",
+    "format": "prettier --write \"./**/*.{js,jsx,json}\" --config ./.prettierrc"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -35,5 +79,15 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {
+    "@types/react-router-dom": "^4.3.5",
+    "@welldone-software/why-did-you-render": "^6.2.1",
+    "cypress": "^8.1.0",
+    "cypress-firebase": "^2.0.0",
+    "cypress-wait-until": "^1.7.1",
+    "prettier": "^2.5.0",
+    "start-server-and-test": "^1.13.1"
+  },
+  "buildDate": 1641217740037
 }

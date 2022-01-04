@@ -1,0 +1,27 @@
+{
+    
+        "email": "senftestuser@web.de",
+        "userId": "3flKWAdkTCYV7Vfehpr7DrMO3TD2",
+        "age": "1957",
+        "handle": "thomas",
+        "createdAt": "2021-08-16T10:03:08.490Z",
+        "sex": "male",
+    
+    "likes": [
+        {
+            "sex": "male",
+            "screamId": "RpumVyIwiyQ1EuYRudnB",
+            "userHandle": "senftestuser",
+            "createdAt": "2021-09-03T08:34:42.471Z",
+            "age": "1957"
+        },
+        {
+            "createdAt": "2021-09-02T14:39:56.486Z",
+            "screamId": "Uq1TZktAWNj7NtWDfifX",
+            "sex": "male",
+            "userHandle": "senftestuser",
+            "age": "1957"
+        }
+    ],
+    "notifications": []
+}
