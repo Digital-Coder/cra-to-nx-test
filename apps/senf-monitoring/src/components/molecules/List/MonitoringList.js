@@ -51,7 +51,7 @@ const MonitoringList = ({
       sethasMoreItems(true);
     }
   }, [dropdown, dataFinalLength]);
-  const itemsPerPage = 1;
+  const itemsPerPage = 100;
   const [hasMoreItems, sethasMoreItems] = useState(true);
   const [listItems, setListItems] = useState(itemsPerPage);
 
@@ -88,7 +88,7 @@ const MonitoringList = ({
       "listItems:",
       listItems
     );
-    if ((listItems === dataFinal.length) | (dataFinalLength === 0)) {
+    if (listItems === dataFinal.length || dataFinalLength === 0) {
       sethasMoreItems(false);
     } else {
       setTimeout(() => {
