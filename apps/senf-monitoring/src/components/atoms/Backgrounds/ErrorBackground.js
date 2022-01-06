@@ -25,7 +25,7 @@ const ErrorBackground = ({ loading }) => {
     !loading &&
     errors && (
       <div className="errorBackground">
-             <Title> Ooops! </Title>
+        <Title> Ooops! </Title>
         <br />
         <span className="oopsText">{t("something_went_wrong")}</span>
       </div>
