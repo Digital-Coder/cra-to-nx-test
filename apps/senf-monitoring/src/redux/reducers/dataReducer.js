@@ -110,7 +110,7 @@ export default function (state = initialState, action) {
       };
 
     case LIKE_SCREAM:
-    case UNLIKE_SCREAM: {
+    case UNLIKE_SCREAM:
       let index = state.screams.findIndex(
         (scream) => scream.screamId === action.payload.screamId
       );
@@ -121,8 +121,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
       };
-    }
-    case DELETE_SCREAM: {
+    case DELETE_SCREAM:
       let index_delete = state.screams.findIndex(
         (scream) => scream.screamId === action.payload
       );
@@ -130,7 +129,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
       };
-    }
+
     case SET_COMMENTS:
       return {
         ...state,
@@ -143,7 +142,7 @@ export default function (state = initialState, action) {
         comment: action.payload,
       };
 
-    case DELETE_COMMENT: {
+    case DELETE_COMMENT:
       const listComments = state.scream.comments.filter(
         (comment) => comment.commentId !== action.payload
       );
@@ -151,7 +150,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
       };
-    }
+
     case POST_SCREAM:
       return {
         ...state,
@@ -201,7 +200,7 @@ export default function (state = initialState, action) {
         loading: false,
       };
 
-    case SET_TOPICS: {
+    case SET_TOPICS:
       const indexOfTopic = state.topics.indexOf(action.payload);
 
       if (action.payload === "all") {
@@ -232,7 +231,6 @@ export default function (state = initialState, action) {
           return { ...state, topics: [...removedTopicArray] };
         }
       }
-    }
     default:
       return state;
   }
