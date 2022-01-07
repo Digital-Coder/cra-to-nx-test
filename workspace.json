@@ -1,7 +1,7 @@
 {
   "version": 2,
-
   "projects": {
+    "home": "libs/home",
     "senf-client": "apps/senf-client",
     "senf-monitoring": "apps/senf-monitoring"
   }

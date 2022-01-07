@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@senf-workspace/home": ["libs/home/src/index.js"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
