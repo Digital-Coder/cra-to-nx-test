@@ -1,8 +1,8 @@
 {
   "version": 2,
+
   "projects": {
     "senf-client": "apps/senf-client",
-    "senf-monitoring": "apps/senf-monitoring",
-    "ui": "libs/ui"
+    "senf-monitoring": "apps/senf-monitoring"
   }
 }
