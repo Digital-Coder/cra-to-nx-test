@@ -31,6 +31,10 @@ module.exports = {
           delete r.include;
         }
       });
+      config.resolve.alias = {
+        react: path.resolve("./node_modules/react"),
+        "react-dom": path.resolve("./node_modules/react-dom"),
+      };
       return config;
     },
   },
