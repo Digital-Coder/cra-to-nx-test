@@ -2,7 +2,8 @@
 
 import { TextField } from "@material-ui/core";
 import React from "react";
-import Geocoder from "react-mapbox-gl-geocoder";
+//import Geocoder from "react-mapbox-gl-geocoder";
+import Geocoder from "../../../atoms/Searchbars/Geocoder";
 import { OptionsProjects } from "../../../../data/OptionsProjects";
 import { OptionsTopics } from "../../../../data/OptionsTopics";
 import { CustomIconButton } from "../../../atoms/CustomButtons/CustomButton";
@@ -58,7 +59,7 @@ const EditModalMainFields = ({
           handleDropdown={handleDropdownProject}
         />
       </div>
-
+      {/*
       <Geocoder
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
         onSelected={onSelected}
@@ -70,7 +71,8 @@ const EditModalMainFields = ({
         className="geocoder-edit"
         inputComponent={MyInput}
         updateInputOnSelect
-      ></Geocoder>
+      ></Geocoder> */}
+      <Geocoder scream={scream} />
 
       <TextField
         id="title"
