@@ -1,6 +1,5 @@
 /** @format */
 
-
 /* playfair-display-regular - latin */
 @font-face {
   font-family: "Playfair Display";
@@ -10,25 +9,30 @@
   src: url("fonts/playfair-display-v19-latin-regular.eot");
   /* IE9 Compat Modes */
   src: local(""),
-    url("fonts/playfair-display-v19-latin-regular.eot?#iefix") format("embedded-opentype"),
-    /* IE6-IE8 */
-    url("fonts/playfair-display-v19-latin-regular.woff2") format("woff2"),
+    url("fonts/playfair-display-v19-latin-regular.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */ url("fonts/playfair-display-v19-latin-regular.woff2")
+      format("woff2"),
     /* Super Modern Browsers */
-    url("fonts/playfair-display-v19-latin-regular.woff") format("woff"),
-    /* Modern Browsers */
-    url("fonts/playfair-display-v19-latin-regular.ttf") format("truetype"),
+      url("fonts/playfair-display-v19-latin-regular.woff") format("woff"),
+    /* Modern Browsers */ url("fonts/playfair-display-v19-latin-regular.ttf")
+      format("truetype"),
     /* Safari, Android, iOS */
-    url("fonts/playfair-display-v19-latin-regular.svg#PlayfairDisplay") format("svg");
+      url("fonts/playfair-display-v19-latin-regular.svg#PlayfairDisplay")
+      format("svg");
   /* Legacy iOS */
 }
 
 @font-face {
   font-family: "PlayfairDisplay-Bold";
-  src: url("fonts/playfair-display-bold/PlayfairDisplay-Bold.ttf") format("truetype"),
+  src: url("fonts/playfair-display-bold/PlayfairDisplay-Bold.ttf")
+      format("truetype"),
     /* Safari, Android, iOS */
-    url("fonts/playfair-display-bold/PlayfairDisplay-Bold.woff") format("woff"),
+      url("fonts/playfair-display-bold/PlayfairDisplay-Bold.woff")
+      format("woff"),
     /* Modern Browsers */
-    url("fonts/playfair-display-bold/PlayfairDisplay-Bold.woff2") format("woff2");
+      url("fonts/playfair-display-bold/PlayfairDisplay-Bold.woff2")
+      format("woff2");
   /* Modern Browsers */
   font-weight: normal;
   font-style: normal;
@@ -36,18 +40,24 @@
 
 @font-face {
   font-family: "Futura PT W01-Bold";
-  src: url("fonts/1059692/1a34942e-33ed-43bb-b229-7460d55b49f7.woff2") format("woff2"),
-    url("fonts/1059692/baecea54-cfd3-4578-8717-abf89eba62b6.woff") format("woff"),
-    url("fonts/1059692/baecea54-cfd3-4578-8717-abf89eba62b6.ttf") format("truetype");
+  src: url("fonts/1059692/1a34942e-33ed-43bb-b229-7460d55b49f7.woff2")
+      format("woff2"),
+    url("fonts/1059692/baecea54-cfd3-4578-8717-abf89eba62b6.woff")
+      format("woff"),
+    url("fonts/1059692/baecea54-cfd3-4578-8717-abf89eba62b6.ttf")
+      format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Futura PT W01 Book";
-  src: url("fonts/1059698/aafdd021-88d4-41d8-8e15-fe91f83e4b17.woff2") format("woff2"),
-    url("fonts/1059698/81d44d4b-ac07-4ad4-8cdd-4df771a3c1c3.woff") format("woff"),
-    url("fonts/1059698/81d44d4b-ac07-4ad4-8cdd-4df771a3c1c3.ttf") format("truetype");
+  src: url("fonts/1059698/aafdd021-88d4-41d8-8e15-fe91f83e4b17.woff2")
+      format("woff2"),
+    url("fonts/1059698/81d44d4b-ac07-4ad4-8cdd-4df771a3c1c3.woff")
+      format("woff"),
+    url("fonts/1059698/81d44d4b-ac07-4ad4-8cdd-4df771a3c1c3.ttf")
+      format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -56,8 +66,8 @@
   font-family: "Playfair Display-SemiBold";
 
   src: local(""),
-    /* Modern Browsers */
-    url("fonts/PlayfairDisplay-SemiBold.ttf") format("truetype");
+    /* Modern Browsers */ url("fonts/PlayfairDisplay-SemiBold.ttf")
+      format("truetype");
 }
 
 html {
@@ -71,33 +81,28 @@ body {
   /* overflow: scroll; */
   overscroll-behavior-y: contain;
 
- 
-font-size: 18,666666666666664px !important;
-    line-height: 22,666666666666664px !important;
-
+  font-size: 18, 666666666666664px !important;
+  line-height: 22, 666666666666664px !important;
 
   background-attachment: fixed;
   /* background-color:#fed957; */
 
   background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
   background-repeat: no-repeat;
-  
+
   top: 0;
   width: 100%;
-
 
   -ms-overflow-style: none;
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
 
-
   height: 100%;
   position: fixed;
   /* prevent overscroll bounce*/
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -117,7 +122,6 @@ div::-webkit-scrollbar {
   display: none;
   /* for Chrome, Safari, and Opera */
 }
-
 
 a {
   text-decoration: none;
@@ -140,13 +144,10 @@ a {
   cursor: pointer;
 }
 
-
 .modal_title {
-
   text-align: center;
   font-family: PlayfairDisplay-Bold;
   font-size: 22px;
-
 }
 
 .textFields {
@@ -156,7 +157,6 @@ a {
 
 .textField {
   width: 100%;
-
 }
 
 .buttons {
@@ -170,7 +170,7 @@ a {
 
 .rmdp-arrow {
   border: solid #353535 !important;
-  border-width: 0 2px 2px 0 !important
+  border-width: 0 2px 2px 0 !important;
 }
 
 .rmdp-arrow-container:hover {
@@ -180,7 +180,7 @@ a {
 
 .rmdp-day.rmdp-today span {
   background-color: rgb(53, 53, 53, 0.1) !important;
-  color: black !important
+  color: black !important;
 }
 
 .rmdp-day.rmdp-selected span:not(.highlight) {
@@ -189,17 +189,14 @@ a {
 
 .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:hover {
   background-color: rgb(53, 53, 53, 0.2) !important;
-
 }
 
 .rmdp-day:not(.rmdp-disabled):not(.rmdp-day-hidden) span:active {
   background-color: #353535 !important;
-
 }
 
 .rmdp-panel-body li {
   background-color: rgb(53, 53, 53, 0.9) !important;
-
 }
 
 .rmdp-panel-body li.rmdp-focused {
@@ -207,14 +204,9 @@ a {
 }
 
 .rmdp-panel-body span {
-
   width: 100%;
   text-align: left;
 }
-
-
-
-
 
 .cookiesHeader {
   font-family: Futura PT W01-Bold;
@@ -243,7 +235,6 @@ a {
   width: 50vw;
   bottom: 50px;
 }
-
 
 .CookieNote {
   position: fixed;
@@ -289,8 +280,6 @@ a {
   left: 0;
 }
 
-
-
 .bodytext {
   white-space: pre-line;
   position: relative;
@@ -319,24 +308,15 @@ a {
   );
 }  */
 
-
-
-
-
-
-
-
-
 button {
   display: inline-block;
   border: none;
   z-index: 9999;
-
-
 }
 
 button:active {
-  background: #35353500 radial-gradient(circle, transparent 1%, #3535350a 1%) center/15000%;
+  background: #35353500 radial-gradient(circle, transparent 1%, #3535350a 1%)
+    center/15000%;
   background-color: #35353500;
   background-size: 100%;
 }
@@ -346,12 +326,10 @@ button:focus {
 }
 
 button:disabled {
-  opacity: 0.6
+  opacity: 0.6;
 }
 
 .buttonRound {
-
-
   width: 50px;
   height: 50px;
   color: black;
@@ -376,22 +354,15 @@ button:disabled {
   box-shadow: rgb(38, 57, 77, 0.7) 0px 20px 30px -15px;
 }
 
-
-
-
-
-
 .buttonSignWrapper {
-
   position: fixed;
   z-index: 9999;
   width: 100%;
   max-width: 600px;
-  bottom: 3em
+  bottom: 3em;
 }
 
 .buttonSignWrapperAndroid {
-
   position: relative;
   z-index: 9999;
   width: 100%;
@@ -401,17 +372,15 @@ button:disabled {
 
 .buttonSign {
   width: 80%;
-  margin-left: 10%
+  margin-left: 10%;
 }
-
-
 
 .buttonSelectLocation {
   background-color: #fed957;
   width: 46.25%;
   margin-left: 2.5%;
   z-index: 9999;
-  color: #353535
+  color: #353535;
 }
 
 .buttonSelectLocation_hide {
@@ -444,16 +413,11 @@ button:disabled {
   box-shadow: rgb(38, 57, 77, 0) 0px 20px 30px -15px;
   opacity: 0.2;
   pointer-events: none;
-
 }
 
 .buttonEdit {
   position: relative;
- 
-
 }
-
-
 
 .buttonVerify {
   color: white;
@@ -463,12 +427,7 @@ button:disabled {
   width: 50vw;
   left: 25vw;
   top: 5vh;
-
-
-
-
 }
-
 
 .buttonLikeFixed {
   z-index: 9999;
@@ -476,12 +435,7 @@ button:disabled {
   left: 3%;
   bottom: 5px;
   width: 55px;
-
 }
-
-
-
-
 
 .formControl {
   width: auto;
@@ -495,20 +449,13 @@ button:disabled {
   width: 127px;
   font-family: Futura PT W01 Book !important;
   font-size: 16pt !important;
-
 }
-
-
-
-
 
 .contentWrapper {
   width: 100vw;
   height: 100%;
 
   overflow: hidden;
-  
-
 }
 
 .contentWrapper_insights {
@@ -517,10 +464,8 @@ button:disabled {
 
   overflow: hidden;
   position: fixed;
-  overflow:scroll;
-  z-index:0;
-
-
+  overflow: scroll;
+  z-index: 0;
 }
 
 .facebook {
@@ -531,7 +476,6 @@ button:disabled {
   top: 20px;
   height: 35px;
   font-size: 0;
-
 }
 
 .insta {
@@ -542,20 +486,12 @@ button:disabled {
   top: 20px;
   height: 35px;
   font-size: 0;
-
 }
-
-
-
 
 .PostRulesHeader {
   font-family: Playfair Display;
   font-size: 24pt;
 }
-
-
-
-
 
 .Maploader {
   position: fixed;
@@ -575,7 +511,7 @@ button:disabled {
 
   background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
   background-repeat: no-repeat;
-  
+
   top: 0;
   height: 100vh;
   width: 100%;
@@ -588,7 +524,7 @@ button:disabled {
 
   background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
   background-repeat: no-repeat;
-  
+
   top: 0;
   height: 100vh;
   width: 100%;
@@ -601,13 +537,11 @@ button:disabled {
   background-attachment: fixed;
   background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
   background-repeat: no-repeat;
-  
+
   height: 100vh;
   width: 100vw;
   top: 0;
-
 }
-
 
 .Navigation-title {
   font-family: Futura PT W01-Bold;
@@ -621,7 +555,6 @@ button:disabled {
   align-items: center;
   justify-content: center;
   height: 80px;
-
 }
 
 .dialoggradient {
@@ -630,16 +563,15 @@ button:disabled {
   height: 13vh;
   width: 100vw;
   background-attachment: fixed;
-  background: -webkit-gradient(linear,
-      0% 0%,
-      0% 100%,
-      from(rgba(255, 255, 255, 0)),
-      to(#ffda53));
+  background: -webkit-gradient(
+    linear,
+    0% 0%,
+    0% 100%,
+    from(rgba(255, 255, 255, 0)),
+    to(#ffda53)
+  );
   background-repeat: no-repeat;
 }
-
-
-
 
 .backContainer {
   z-index: 12;
@@ -648,10 +580,12 @@ button:disabled {
   height: 40vh;
   width: 100vw;
   background: rgb(0, 0, 0);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 61%, rgba(0, 0, 0, 0.5) 100%);
-
-
-
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.5) 61%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
 }
 
 .PostBackground {
@@ -661,21 +595,21 @@ button:disabled {
   height: 80vh;
   width: 100vw;
   background: rgb(255, 218, 83);
-  background: linear-gradient(0deg, rgba(255, 218, 83, 1) 0%, rgba(255, 209, 155, 1) 65%, rgba(255, 209, 155, 0) 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 218, 83, 1) 0%,
+    rgba(255, 209, 155, 1) 65%,
+    rgba(255, 209, 155, 0) 100%
+  );
 }
 
-
-
 .selectLocationContainer {
-
   height: 130px;
   width: 95%;
   margin-left: 2.5%;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   border-radius: 20px;
   box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
-
-
 }
 
 .postCard {
@@ -696,8 +630,6 @@ button:disabled {
   border-radius: 20px;
   box-shadow: 0 0px 40px -12px rgba(0, 0, 0, 0);
   background-color: white;
-
-  
 }
 
 .postCardAndroid {
@@ -719,8 +651,6 @@ button:disabled {
   background-color: white;
 }
 
-
-
 .topicSelectContainer {
   background-color: #f8f8f8;
   width: 90%;
@@ -736,7 +666,7 @@ button:disabled {
   bottom: 0;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-  font-size:20px;
+  font-size: 20px;
 }
 
 .projectSelectContainer {
@@ -767,12 +697,10 @@ button:disabled {
   padding-right: 10px;
   height: 40px;
 
-
   font-family: Futura PT W01 Book !important;
   font-size: 12pt !important;
-
 }
-.selectCustom{
+.selectCustom {
   width: 65%;
   right: 0;
   border: 0px solid #414345;
@@ -780,7 +708,6 @@ button:disabled {
   padding-left: 10px;
   padding-right: 10px;
   height: 40px;
-
 
   font-family: Futura PT W01 Book !important;
   font-size: 12pt !important;
@@ -793,12 +720,9 @@ button:disabled {
 } */
 
 .react-geocoder {
-  
   position: fixed;
   font-family: Futura PT W01 Book;
-  z-index:9
-
-
+  z-index: 9;
 }
 
 select:focus {
@@ -820,7 +744,7 @@ input:focus {
   left: 70px;
   padding-left: 15px;
 
-  font-family: 'Futura PT W01 Book', sans-serif;
+  font-family: "Futura PT W01 Book", sans-serif;
   font-size: 12pt;
   box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0);
 }
@@ -848,8 +772,6 @@ input:focus {
   border-bottom: 1px solid white;
   padding: 10px;
 }
-
-
 
 .mapboxgl-ctrl {
   opacity: 0;
@@ -879,10 +801,7 @@ input:focus {
   pointer-events: none;
 
   box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
-
 }
-
-
 
 .white {
   position: fixed;
@@ -905,24 +824,8 @@ input:focus {
   width: 100%;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .sideBar {
-  display: none
+  display: none;
 }
 
 .legendwrapper {
@@ -935,7 +838,7 @@ input:focus {
   background-color: white;
   padding: 20px;
   padding-bottom: 30px;
-  margin:10px;
+  margin: 10px;
 }
 
 .legend {
@@ -953,26 +856,26 @@ input:focus {
   border: 1px solid black;
   border-radius: 100%;
 
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1) 40%, rgba(255, 255, 255, 0) 50%)
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.1) 40%,
+    rgba(255, 255, 255, 0) 50%
+  );
 }
 
-
-.MuiFormControlLabel-root{
-height:31px !important;
-    flex: none !important;
-
+.MuiFormControlLabel-root {
+  height: 31px !important;
+  flex: none !important;
 }
-.MuiTypography-body1{
-
-font-size:15px !important
+.MuiTypography-body1 {
+  font-size: 15px !important;
 }
 
-.MuiSvgIcon-root{
-  width:16px !important;
-  height:16px !important
+.MuiSvgIcon-root {
+  width: 16px !important;
+  height: 16px !important;
 }
-
-
 
 .footer {
   position: absolute;
@@ -1018,8 +921,6 @@ font-size:15px !important
   font-family: Futura PT W01 Book;
 }
 
-
-
 .footerIntro {
   position: fixed;
   bottom: 0em;
@@ -1046,24 +947,18 @@ font-size:15px !important
   background-attachment: fixed;
   background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
   background-repeat: no-repeat;
-  
-
-  
 }
 
-.projectDialog ,
+.projectDialog,
 .accountDialog {
   width: 100vw;
   height: 100%;
-  margin-top:0vh;
+  margin-top: 0vh;
   z-index: 90;
   top: 0;
-  position:fixed;
-  pointer-events:none;
-
+  position: fixed;
+  pointer-events: none;
 }
-
-
 
 .dialogCard {
   z-index: 99;
@@ -1090,8 +985,6 @@ font-size:15px !important
   background-color: white;
   box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.4);
 }
-
-
 
 .wrapperMenu {
   width: 100%;
@@ -1131,14 +1024,13 @@ font-size:15px !important
   position: fixed;
 }
 
-
 .mapStylePost {
   z-index: 9;
   position: fixed;
   top: 0vh;
   left: 0vw;
   width: 100vw;
-  height: 80vh
+  height: 80vh;
 }
 
 .filterScreamMapWrapper {
@@ -1153,29 +1045,18 @@ font-size:15px !important
 .pin {
   position: absolute;
   width: 100px;
-   margin-top: -125px; 
+  margin-top: -125px;
   margin-left: -50px;
-background-color: #353535;
-  transform: rotate(0) ;
+  background-color: #353535;
+  transform: rotate(0);
   transform-origin: bottom center;
 }
-
-
 
 .content {
   position: relative;
   margin-top: 0px;
   padding-bottom: 70vw;
-
-
 }
-
-
-
-
-
-
-
 
 @keyframes cardanimation {
   0% {
@@ -1196,10 +1077,7 @@ background-color: #353535;
   z-index: 99;
   padding-bottom: 10;
   text-align: center;
-
 }
-
-
 
 @keyframes FadeAnimationFast {
   0% {
@@ -1247,7 +1125,7 @@ background-color: #353535;
   z-index: 0;
   background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
   background-repeat: no-repeat;
-  
+
   height: 2050px;
   width: 100vw;
   animation: StartBackground 2.7s;
@@ -1318,9 +1196,6 @@ background-color: #353535;
   }
 }
 
-
-
-
 .VerifyHeader {
   position: relative;
   z-index: "9999";
@@ -1328,7 +1203,6 @@ background-color: #353535;
   margin-top: 5vh;
   margin-left: 10vw;
   height: 100%;
-
 }
 
 .VerifySubHeader {
@@ -1481,12 +1355,6 @@ background-color: #353535;
   font-size: 14pt;
 }
 
-
-
-
-
-
-
 .FirstImage {
   z-index: 999;
   position: absolute;
@@ -1494,19 +1362,8 @@ background-color: #353535;
   width: 800px;
   margin-left: 50%;
   transform: translateX(-50%);
-  left: 0
+  left: 0;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 @media screen and (max-width: 321px) {
   .subTitle1 {
@@ -1526,32 +1383,31 @@ background-color: #353535;
   }
 }
 
-
 @media screen and (max-height: 550px) {
   .dialoggradient {
     margin-top: 73vh;
   }
 }
 
-.switchDevice{
+.switchDevice {
   display: block;
-    z-index: 99999;
-    position: fixed;
-    background-attachment: fixed;
-    background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
-    background-repeat: no-repeat;
-    
-    top: 0;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 35pt;
-    color: #353535;
-    text-align: center;
-    font-family: "Playfair Display", serif;
+  z-index: 99999;
+  position: fixed;
+  background-attachment: fixed;
+  background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
+  background-repeat: no-repeat;
+
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 35pt;
+  color: #353535;
+  text-align: center;
+  font-family: "Playfair Display", serif;
 }
 
 .landscapeNote {
@@ -1566,7 +1422,7 @@ background-color: #353535;
     background-attachment: fixed;
     background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
     background-repeat: no-repeat;
-    
+
     top: 0;
     height: 100vh;
     width: 100vw;
@@ -1581,8 +1437,6 @@ background-color: #353535;
   }
 }
 
-
-
 .tabletLandscapeNote {
   display: none;
 }
@@ -1595,7 +1449,7 @@ background-color: #353535;
     background-attachment: fixed;
     background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
     background-repeat: no-repeat;
-    
+
     top: 0;
     height: 100vh;
     width: 100vw;
@@ -1614,19 +1468,13 @@ background-color: #353535;
   position: relative;
   margin-top: 0px;
   padding-bottom: 70vw;
-
-
 }
 
 @media screen and (min-width: 768px) {
-
   .projectIdeascontent {
     padding-bottom: 0;
-
   }
-
 }
-
 
 .projectHeader {
   position: relative;
@@ -1640,7 +1488,6 @@ background-color: #353535;
   animation: enteranimation 1.5s;
   z-index: 99;
 }
-
 
 .hey-user {
   font-family: PlayfairDisplay-Bold;
@@ -1657,7 +1504,6 @@ background-color: #353535;
 }
 
 .accountCard {
-
   z-index: 99;
   position: relative;
 
@@ -1672,7 +1518,6 @@ background-color: #353535;
   background-color: white;
   box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0);
 }
-
 
 .screamcardTitle {
   clear: both;
@@ -1708,21 +1553,15 @@ background-color: #353535;
   font-size: 12pt;
 
   box-shadow: rgb(38, 57, 77, 0) 0px 20px 30px -15px;
-
 }
-
 
 @media screen and (max-width: 330px) {
   .screamcardTitle {
-
     font-size: 18px;
   }
-
-
 }
 
 .monitoringFormControl {
-
   right: 0;
   border: 1px solid #414345;
   border-radius: 10px;
@@ -1734,11 +1573,9 @@ background-color: #353535;
   max-width: auto;
   font-family: Futura PT W01 Book !important;
   font-size: 14pt !important;
-
 }
 
 .monitoringFormControlSmall {
-
   right: 0;
   border: 1px solid #414345;
   border-radius: 10px;
@@ -1764,16 +1601,19 @@ background-color: #353535;
   /* box-shadow: rgb(38 57 77 / 70%) 0px 20px 30px 5px; */
   display: flex;
   justify-content: flex-end;
-  background: linear-gradient(180deg, rgba(253, 240, 194, 0) 0%, rgba(254, 247, 224, 1) 70%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(253, 240, 194, 0) 0%,
+    rgba(254, 247, 224, 1) 70%,
+    rgba(255, 255, 255, 1) 100%
+  );
   align-items: center;
 }
-
 
 .monitoringCardWrapper {
   width: calc(100% - 10px);
   margin-left: 10px;
 }
-
 
 .monitoringCard {
   font-family: Futura PT W01 Book;
@@ -1782,9 +1622,6 @@ background-color: #353535;
   width: 100%;
   height: 55px;
   display: flex;
-
-
-
 
   position: relative;
   max-width: 100%;
@@ -1800,9 +1637,7 @@ background-color: #353535;
   background-color: white;
 }
 
-
 .monitoringScreamExpand {
-
   position: absolute;
   bottom: 0;
   left: calc(50% - 20px);
@@ -1818,8 +1653,12 @@ background-color: #353535;
 .monitoringCard:hover .hoverIcon {
   display: block;
   background: #f8f8f8;
-  background:
-    linear-gradient(270deg, #f8f8f8 0%, #f8f8f8 72%, rgba(255, 255, 255, 0) 100%)
+  background: linear-gradient(
+    270deg,
+    #f8f8f8 0%,
+    #f8f8f8 72%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 .monitoringCard:hover {
@@ -1833,8 +1672,6 @@ background-color: #353535;
   box-shadow: 0 8px 40px -12px rgb(0 0 0 / 50%);
 }
 
-
-
 .rules-link {
   position: absolute;
   top: 25px;
@@ -1842,21 +1679,10 @@ background-color: #353535;
   text-decoration: underline;
 }
 
-
-
-
-
-
-
 .geocoder-edit {
-  
   position: relative;
   font-family: Futura PT W01 Book;
-
-
 }
-
-
 
 .geocoder-edit input {
   width: 95%;
@@ -1869,7 +1695,7 @@ background-color: #353535;
   left: 0%;
   padding-left: 15px;
 
-  font-family: 'Futura PT W01 Book', sans-serif;
+  font-family: "Futura PT W01 Book", sans-serif;
   font-size: 12pt;
   box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0);
 
@@ -1888,14 +1714,12 @@ background-color: #353535;
   width: 95%;
   box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
 }
-.mapboxgl-ctrl-top-right{
- 
-  width:70px;
-  height:70px;
-  top:10px;
-  right:10px
+.mapboxgl-ctrl-top-right {
+  width: 70px;
+  height: 70px;
+  top: 10px;
+  right: 10px;
 }
-
 
 .keyindicatorswrapper {
   width: 95%;
@@ -1921,7 +1745,6 @@ background-color: #353535;
 }
 
 .insights-card {
-
   top: 0em;
   width: 100%;
   height: auto;
@@ -1933,7 +1756,6 @@ background-color: #353535;
   padding-bottom: 1em;
   background-color: white;
 }
-
 
 .insights-card-title {
   width: 100%;
@@ -1953,7 +1775,6 @@ background-color: #353535;
   text-align: center;
   font-family: Futura PT W01 Book;
   margin-left: 50%;
-
 }
 
 .insights-plot-clickblocker {
@@ -1969,23 +1790,20 @@ background-color: #353535;
   position: relative;
 }
 
-
 .explanation {
   position: absolute;
   width: 150px;
   top: 155px;
   left: 50px;
-  display:table
-  
+  display: table;
 }
 
 .explanation::before {
   content: "*";
-  display:table-cell
+  display: table-cell;
 }
 
-.no-ideas-yet{
-   
+.no-ideas-yet {
   position: relative;
   font-size: 15pt;
   color: #414345;
@@ -1993,39 +1811,31 @@ background-color: #353535;
   margin-left: 10%;
   text-align: center;
   z-index: 10;
-} 
-
-
-
-.projectCardsWrapper{
-
-  /* margin-top: 10px; */
-  width: calc(100vw );
-  margin-left: 20px;
-  transform: scale(0.8);
-
-
-}.projectDialogCard{
-
-z-index: 99;
-position: relative;
-
-display: flex;
-margin-top: 110px;
-margin-left: 2.5%;
-width: 95%;
-min-width: 95%;
-border-radius: 20px;
-height: auto;
-
-background-color: white;
-box-shadow: 0 8px 40px -12px rgba(0,0,0,0);
 }
 
+.projectCardsWrapper {
+  /* margin-top: 10px; */
+  width: calc(100vw);
+  margin-left: 20px;
+  transform: scale(0.8);
+}
+.projectDialogCard {
+  z-index: 99;
+  position: relative;
 
-.imgWrapper{
+  display: flex;
+  margin-top: 110px;
+  margin-left: 2.5%;
+  width: 95%;
+  min-width: 95%;
+  border-radius: 20px;
+  height: auto;
 
+  background-color: white;
+  box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0);
+}
 
+.imgWrapper {
   position: relative;
   width: 100px;
   height: 100px;
@@ -2034,41 +1844,34 @@ box-shadow: 0 8px 40px -12px rgba(0,0,0,0);
   left: calc(50% - 50px);
   margin-top: 10px;
 
-
   display: flex;
   position: relative;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
   overflow: hidden;
-
-
-
 }
 
-.project-dialog-owner{
-  
-margin-top: 20px;
-margin-bottom: 10px;
-font-family: Futura PT W01 Book;
-color: #353535;
-text-align: center;
+.project-dialog-owner {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: Futura PT W01 Book;
+  color: #353535;
+  text-align: center;
+}
 
-} 
+.project-dialog-title {
+  font-size: 18px;
+  font-family: PlayfairDisplay-Bold;
+  /* font-family: Futura PT W01-Bold; */
 
-.project-dialog-title{
-font-size: 18px;
-font-family: PlayfairDisplay-Bold;
-/* font-family: Futura PT W01-Bold; */
+  color: #353535;
+  text-align: center;
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 10px;
 
-color: #353535;
-text-align: center;
-width: 60%;
-margin-left: 20%;
-margin-top:10px;
-
-margin-bottom: 20px;
-
+  margin-bottom: 20px;
 }
 
 /*
@@ -2083,8 +1886,8 @@ margin-bottom: 20px;
   margin-top: 0px;
   margin-bottom:25px;
   color: #353535;
-  
-  
+
+
   height: 1.7em;
   font-family: Futura PT W01-Bold;
 
@@ -2105,14 +1908,13 @@ margin-bottom: 20px;
   /* background-color: rgb(255,255,255,0.6); */
 
   border-radius: 20px;
- overflow: hidden;
+  overflow: hidden;
   /* background: transparent;
   box-shadow:  9px 9px 18px #f6d254,
                -9px -9px 18px #ffe05a; */
 }
 
-
-.leftWrapper{
+.leftWrapper {
   position: relative;
   width: 120px;
   height: 120px;
@@ -2125,16 +1927,13 @@ margin-bottom: 20px;
   justify-content: flex-start;
   text-align: center;
   overflow: hidden;
-
 }
-.leftWrapper img{
+.leftWrapper img {
   width: 100%;
   margin-left: 0%;
 }
 
-.rightWrapper{
-  
- 
+.rightWrapper {
   margin-left: 10px;
   height: 120px;
   width: 60%;
@@ -2142,45 +1941,36 @@ margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
- 
- 
-
 }
 
-.title{
+.title {
   font-size: 18px;
   font-family: PlayfairDisplay-Bold;
-   font-family: Futura PT W01-Bold; 
+  font-family: Futura PT W01-Bold;
   color: #353535;
-
 }
-.owner{
-  
+.owner {
   font-family: Futura PT W01 Book;
-  color: #353535
-} 
-
-.date{
-  margin-top:10px;
-  font-family: Futura PT W01 Book;
-  color: #353535
+  color: #353535;
 }
 
+.date {
+  margin-top: 10px;
+  font-family: Futura PT W01 Book;
+  color: #353535;
+}
 
-
-.ideaCount{
+.ideaCount {
   display: flex;
   position: relative;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
   font-family: Futura PT W01 Book;
-  color:#353535;
+  color: #353535;
   margin-top: 10px;
   margin-left: -10px;
-  
 }
-
 
 @keyframes enteranimation {
   0% {
@@ -2199,22 +1989,22 @@ margin-bottom: 20px;
   }
 }
 
-
 .drag {
-
   overscroll-behavior: contain;
   width: 100%;
   height: 100%;
-  background: rgb(254,217,87);
-background: linear-gradient(180deg, rgba(254,217,87,1) 0%, rgba(255,218,83,1) 50%, rgba(255,255,255,1) 100%);
-border-radius: 20px;
+  background: rgb(254, 217, 87);
+  background: linear-gradient(
+    180deg,
+    rgba(254, 217, 87, 1) 0%,
+    rgba(255, 218, 83, 1) 50%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  border-radius: 20px;
   position: absolute;
-  z-index:995;
-    /* animation: dragEnterAnimation 2s   */
-
- 
+  z-index: 995;
+  /* animation: dragEnterAnimation 2s   */
 }
-
 
 @keyframes dragEnterAnimation {
   0% {
@@ -2226,53 +2016,40 @@ border-radius: 20px;
   }
 
   100% {
-    transform: translateY(calc(100% - 120px))
+    transform: translateY(calc(100% - 120px));
   }
 }
 
-
-
-
 .wrapperScreamDialog {
   width: 100vw;
-  margin-top:0vh;
-  margin-left:0px;
-  z-index:97;
+  margin-top: 0vh;
+  margin-left: 0px;
+  z-index: 97;
   top: 30px;
-  position:absolute;
+  position: absolute;
   overflow-y: hidden;
   overflow-x: hidden;
   overscroll-behavior: contain;
   min-height: 100%;
- 
 }
-
-
-
 
 .screamDialogDrag {
   width: 100%;
   height: 120%;
   position: fixed;
-  z-index:96;
- top:0;
+  z-index: 96;
+  top: 0;
   overflow: scroll;
   overscroll-behavior: contain;
-  animation: enterScreamDialogAnimation 1s  
+  animation: enterScreamDialogAnimation 1s;
 }
-
-
 
 @keyframes enterScreamDialogAnimation {
   0% {
     transform: translateY(80%);
   }
 
- 
-
   100% {
-    transform: translateY(42%)
+    transform: translateY(42%);
   }
 }
-
-
