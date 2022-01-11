@@ -2,7 +2,6 @@
 
 import { TextField } from "@material-ui/core";
 import React from "react";
-//import Geocoder from "react-mapbox-gl-geocoder";
 import Geocoder from "../../../atoms/Searchbars/Geocoder";
 import { OptionsProjects } from "../../../../data/OptionsProjects";
 import { OptionsTopics } from "../../../../data/OptionsTopics";
@@ -12,8 +11,7 @@ import CustomSelect from "../../../atoms/Selects/CustomSelect";
 const EditModalMainFields = ({
   project,
   handleDropdownProject,
-  onSelected,
-  viewport,
+
   scream,
   title,
   body,
@@ -31,13 +29,6 @@ const EditModalMainFields = ({
   selectedDays,
   setCalendarOpen,
 }) => {
-  const queryParams = {
-    bbox: [6.7, 50.8, 7.2, 51],
-  };
-
-  const MyInput = (props) => (
-    <input {...props} placeholder={scream.locationHeader} id="geocoder" />
-  );
   return (
     <div className="textFields">
       <div
@@ -59,19 +50,7 @@ const EditModalMainFields = ({
           handleDropdown={handleDropdownProject}
         />
       </div>
-      {/*
-      <Geocoder
-        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_ACCESS_TOKEN}
-        onSelected={onSelected}
-        {...viewport}
-        hideOnSelect={true}
-        limit={3}
-        queryParams={queryParams}
-        id="geocoder-edit"
-        className="geocoder-edit"
-        inputComponent={MyInput}
-        updateInputOnSelect
-      ></Geocoder> */}
+
       <Geocoder scream={scream} />
 
       <TextField
