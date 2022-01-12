@@ -4,6 +4,8 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
+    "install:client": "cd apps/senf-client && npm ci",
+    "install:monitoring": "cd apps/senf-monitoring && npm ci",
     "start:client": "nx run senf-client:serve",
     "start:monitoring": "nx run senf-monitoring:serve",
     "build:client": "nx run senf-client:build ",
