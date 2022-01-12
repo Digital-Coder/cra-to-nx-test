@@ -25,12 +25,14 @@ module.exports = {
 
       // Replace include option for babel loader with exclude
       // so babel will handle workspace projects as well.
-      config.module.rules[1].oneOf.forEach((r) => {
+      config.module.rules[0].oneOf.forEach((r) => {
         if (r.loader && r.loader.indexOf("babel") !== -1) {
           r.exclude = /node_modules/;
           delete r.include;
         }
       });
+
+      // import only 1 react per application to prevent react hooks error
       config.resolve.alias = {
         react: path.resolve("./node_modules/react"),
         "react-dom": path.resolve("./node_modules/react-dom"),
