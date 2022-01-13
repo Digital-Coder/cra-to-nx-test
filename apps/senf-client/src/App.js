@@ -165,6 +165,7 @@ let vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty("--vh", `${vh}px`);
 
 const App = () => {
+  console.log("log for netlify testing purposes");
   const { t } = useTranslation();
 
   const [isAuthed, setIsAuthed] = useState(false);

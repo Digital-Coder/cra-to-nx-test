@@ -14,6 +14,7 @@
     "lint": "nx workspace-lint && nx lint",
     "e2e": "nx e2e",
     "affected:apps": "nx affected:apps",
+    "affected:apps:plain": "nx affected:apps --base=porting-senf --head={}--plain",
     "affected:libs": "nx affected:libs",
     "affected:build": "nx affected:build",
     "affected:e2e": "nx affected:e2e",
