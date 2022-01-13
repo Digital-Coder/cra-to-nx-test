@@ -41,7 +41,7 @@ import detectLocation from "./util/detectLocation";
 
 import "./util/i18n";
 detectLocation(); // detect location and set i18n language
-console.log("deploy only monitor");
+
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
   firebase
