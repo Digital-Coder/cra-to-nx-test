@@ -28,8 +28,6 @@ function projectChanged(projectName, lastDeployedCommit) {
   //if netlify app name is the same as affected app name, return true
   const foundChangedProject =
     filteredArray.findIndex((project) => project === projectName) > -1;
-
-  console.log("Found git changes in these projects: " + affectedProjects);
 }
 
 /* function projectChanged(){
