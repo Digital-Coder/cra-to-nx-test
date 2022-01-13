@@ -17,7 +17,7 @@ module.exports = {
 
 function projectChanged(projectName, lastDeployedCommit) {
   const execSync = require("child_process").execSync;
-  const getAffected = `nx affected:apps --base=porting-senf --head=${lastDeployedCommit} --plain`;
+  const getAffected = `nx affected:apps --base=main --head=${lastDeployedCommit} --plain`;
   const npmOutput = execSync(getAffected, { encoding: "utf8" });
   console.log(npmOutput.toString() + " npm output");
   //filter out new lines \n
