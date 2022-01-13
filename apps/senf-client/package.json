@@ -53,7 +53,7 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "analyze": "source-map-explorer 'build/static/js/*.js'",
+    "analyze": "source-map-explorer '../../dist/apps/senf-client/static/js/*.js'",
     "start": "craco start",
     "serve": "npm start",
     "start:silent": "BROWSER=none PORT=3000 craco start",
