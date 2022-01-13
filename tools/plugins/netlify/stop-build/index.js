@@ -24,10 +24,10 @@ function projectChanged(projectName, lastDeployedCommit) {
   const filteredArray = npmOutput.split(/\r\n|\r|\n/);
   console.log(filteredArray, "filtered   npm output array");
   //convert project names to array
-  //const affectedProjects = filteredArray[4].split(" ");
+  const affectedProjects = filteredArray[0].split(" ");
   //if netlify app name is the same as affected app name, return true
   const foundChangedProject =
-    filteredArray.findIndex((project) => project === projectName) > -1;
+    affectedProjects.findIndex((project) => project === projectName) > -1;
 }
 
 /* function projectChanged(){
