@@ -2,11 +2,7 @@ import styled from "styled-components";
 const StyledUi = styled.div`
   color: pink;
 `;
-export function Ui(props) {
-  return (
-    <StyledUi>
-      <h1>Welcome to Ui!</h1>
-    </StyledUi>
-  );
+export function Button() {
+  return <StyledUi>button</StyledUi>;
 }
-export default Ui;
+export default Button;
