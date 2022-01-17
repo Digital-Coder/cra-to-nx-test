@@ -1,11 +1,11 @@
-import Ui from "./ui";
+import Button from "./ui";
 
 export default {
-  component: Ui,
-  title: "Ui",
+  component: Button,
+  title: "Button",
 };
 
-const Template = (args) => <Ui {...args} />;
+const Template = (args) => <Button {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {};
