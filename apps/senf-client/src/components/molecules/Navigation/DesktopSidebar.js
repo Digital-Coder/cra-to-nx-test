@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { useDispatch, useSelector } from "react-redux";
 
+import { Home } from "@senf-workspace/home";
 import {
   openAccountFunc,
   getMyScreams,
@@ -121,6 +122,7 @@ const DesktopSidebar = ({ order, handleClick, setChangeLocationModalOpen }) => {
           }}
         ></div>
         <TopicFilter column />
+        <Home />
         <div
           style={{
             position: "relative",
