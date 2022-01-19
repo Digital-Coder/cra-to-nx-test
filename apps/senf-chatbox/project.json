@@ -1,0 +1,6 @@
+{
+  "root": "apps/senf-chatbox",
+  "sourceRoot": "apps/senf-chatbox/src",
+  "projectType": "application",
+  "tags": []
+}
