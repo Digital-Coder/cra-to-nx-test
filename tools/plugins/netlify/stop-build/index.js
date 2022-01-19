@@ -19,7 +19,7 @@ function projectChanged(projectName, lastDeployedCommit) {
   const execSync = require("child_process").execSync;
   const getAffected = `nx affected:apps --base=${lastDeployedCommit} --head=HEAD --plain`;
   const npmOutput = execSync(getAffected, { encoding: "utf8" });
-  console.log(npmOutput.toString() + " npm output");
+  console.log(npmOutput.toString() + "  build stop script npm output");
   //filter out new lines \n
   const filteredArray = npmOutput.split(/\r\n|\r|\n/);
 
