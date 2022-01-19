@@ -4,7 +4,7 @@
     "home": "libs/home",
     "senf-client": "apps/senf-client",
     "senf-monitoring": "apps/senf-monitoring",
-    "testing-react": "apps/testing-react",
+
     "ui": "libs/ui"
   }
 }
