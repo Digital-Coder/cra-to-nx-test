@@ -4,6 +4,7 @@ import React from "react";
 import styled, { css, keyframes } from "styled-components";
 import CloseIcon from "../../../images/icons/close.png";
 import ArrowLeftIcon from "../../../images/icons/arrow-left.png";
+import ArrowRightIcon from "../../../images/icons/arrow-right.png";
 import CircularArrowIcon from "../../../images/icons/circular-arrow.png";
 import ShareIcon from "../../../images/icons/share.png";
 import MenuIcon from "../../../images/icons/menu.png";
@@ -13,6 +14,9 @@ import ChatIconIcon from "../../../images/icons/chat.png";
 import WeblinkIcon from "../../../images/icons/world-wide-web-on-grid.png";
 import ContactIcon from "../../../images/icons/mail.png";
 import DatePickerIcon from "../../../images/icons/datepicker.png";
+import CheckIcon from "../../../images/icons/check.png";
+import TrashIcon from "../../../images/icons/trash.png";
+
 const enterAnimation = keyframes`
     0% {
       opacity: 0;
@@ -39,9 +43,7 @@ const WideButton = styled.button`
   border-radius: 30px;
   text-transform: none;
   white-space: nowrap;
-  font-size: 14pt;
   height: 50px;
-  font-family: Futura PT W01 Book;
   box-shadow: rgb(38, 57, 77, 0.7) 0px 20px 30px -15px;
   padding-left: 30px;
   padding-right: 30px;
@@ -110,6 +112,8 @@ export const CustomButton = ({
 const Icons = {
   Close: CloseIcon,
   ArrowLeft: ArrowLeftIcon,
+  ArrowRight: ArrowRightIcon,
+
   CircularArrow: CircularArrowIcon,
   Share: ShareIcon,
   Menu: MenuIcon,
@@ -119,6 +123,8 @@ const Icons = {
   Weblink: WeblinkIcon,
   Contact: ContactIcon,
   DatePicker: DatePickerIcon,
+  Check: CheckIcon,
+  Trash: TrashIcon,
 };
 
 const enterAnimationRound = keyframes`
@@ -154,6 +160,7 @@ const IconButton = styled.button`
   background-color: ${(props) =>
     props.backgroundColor ? props.backgroundColor : "white"};
   display: flex;
+  flex: none;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -208,7 +215,7 @@ export const CustomIconButton = ({
       backgroundColor={backgroundColor}
     >
       {children}
-      <img src={Icon} width={iconWidth ? iconWidth : "50%"} alt="icon" />
+      <img src={Icon} width={iconWidth ? iconWidth : "20px"} alt="icon" />
     </IconButton>
   );
 };

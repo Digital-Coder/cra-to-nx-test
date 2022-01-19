@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 
 const MainAnimation = styled.div`
+  pointer-events: all;
   opacity: 1;
   animation: cardanimation 0.8s ease-in-out;
   height: ${(props) => props.height && props.height};

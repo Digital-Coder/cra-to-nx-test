@@ -36,7 +36,8 @@ import {
   CustomIconButton,
 } from "../../atoms/CustomButtons/CustomButton";
 import ExpandButton from "../../atoms/CustomButtons/ExpandButton";
-import { SideBarTabs } from "../../../styles/GlobalStyle";
+import { SideBarTabs, StyledText } from "../../../styles/GlobalStyle";
+import Footer from "../../molecules/Footer/Footer";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -73,7 +74,7 @@ const InlineInformationPageDesktop = () => {
   return (
     !isMobileCustom && (
       <Fragment>
-        <SideBarTabs>
+        <SideBarTabs fontWeight={openInfoPage && "900"}>
           <ExpandButton handleButtonClick={handleOpen} />
           <img src={Info} width="35" alt="EndImage" />
           <span className="inlineInfoIconText"> {t("info")}</span>
@@ -160,21 +161,7 @@ const InlineInformationPageDesktop = () => {
                   handleButtonClick={handleButtonContactClick}
                 />
 
-                <span className="footer">
-                  <Link to="/impressum">
-                    <span className="impressum"> {t("imprint")}</span>
-                  </Link>
-                  <Link to="/datenschutz">
-                    <span className="datenschutz">
-                      {" "}
-                      | {t("dataPrivacy")} |{" "}
-                    </span>
-                  </Link>
-                  <Link to="/agb">
-                    <span className="agb"> {t("termsAndConditions")} </span>
-                  </Link>
-                </span>
-                <span className="footercopy">{t("infopage_illustrator")}</span>
+                <Footer color="#353535" position="absolute" top="2750px" />
               </div>
             </DialogContent>
           </Dialog>

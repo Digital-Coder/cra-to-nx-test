@@ -4,11 +4,44 @@ import { Dialog, DialogContent } from "@material-ui/core";
 import React from "react";
 import { Trans, useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import styled from "styled-components";
 import { setCookies } from "../../../redux/actions/cookiesActions";
 import { setInfoPageClosed } from "../../../redux/actions/UiActions";
+import { StyledH2, StyledText } from "../../../styles/GlobalStyle";
 import { isMobileCustom } from "../../../util/customDeviceDetect";
 import { CustomButton } from "../../atoms/CustomButtons/CustomButton";
+import Footer from "../../molecules/Footer/Footer";
+
+const Wrapper = styled.div`
+  z-index: 9995;
+  position: fixed;
+  width: 95vw;
+  height: 20em;
+  padding: 2.5vw;
+  color: white;
+  text-align: center;
+  background-color: #414345;
+
+  margin-left: 0vw;
+  bottom: 0em;
+  left: 0;
+
+  @media (min-width: 768px) {
+    z-index: 9999;
+    position: relative;
+    width: auto;
+    height: auto;
+    padding: 0;
+    color: #353535;
+    text-align: center;
+    background-color: transparent;
+    font-size: 13pt;
+
+    top: 0;
+    left: 0;
+    border-radius: 20px;
+  }
+`;
 
 const Cookiebanner = () => {
   const cookie_settings = useSelector((state) => state.data.cookie_settings);
@@ -34,43 +67,37 @@ const Cookiebanner = () => {
     cookie_settings !== "minimum" &&
     isMobileCustom ? (
     <React.Fragment>
-      <div className="cookiesText">
-        {" "}
-        <span className="cookiesHeader">{t("cookiebanner_title")}</span>
+      <Wrapper>
+        <StyledH2 fontWeight="900" textAlign="center">
+          {t("cookiebanner_title")}
+        </StyledH2>
         <br />
-        <Trans i18nKey="cookiebanner_text">
-          Für die Bereitstellung einiger Funktionen und die Verbesserung dieses
-          Services brauchen wir Cookies. Falls du wirklich nur die technisch
-          notwendigsten Cookies akzeptieren willst, klicke{" "}
-          <span className="Terms" onClick={() => handleCookies("minimum")}>
-            hier
-          </span>
-          &nbsp;oder konfiguriere deine{" "}
-          <span className="Terms" onClick={handleOpenCookiePreferences}>
-            Cookie-Einstellungen
-          </span>
-          .
-        </Trans>
-      </div>
+        <StyledText color="white" textAlign="center">
+          <Trans i18nKey="cookiebanner_text">
+            Für die Bereitstellung einiger Funktionen und die Verbesserung
+            dieses Services brauchen wir Cookies. Falls du wirklich nur die
+            technisch notwendigsten Cookies akzeptieren willst, klicke{" "}
+            <span className="Terms" onClick={() => handleCookies("minimum")}>
+              hier
+            </span>
+            &nbsp;oder konfiguriere deine{" "}
+            <span className="Terms" onClick={handleOpenCookiePreferences}>
+              Cookie-Einstellungen
+            </span>
+            .
+          </Trans>
+        </StyledText>
+      </Wrapper>
       <CustomButton
         text={t("accept")}
         backgroundColor="white"
         textColor="#353535"
         position="fixed"
         bottom="50px"
+        zIndex="9999"
         handleButtonClick={() => handleCookies("all")}
       />
-      <span className="footerIntro">
-        <Link to="/impressum" className="footerIntroText">
-          <span className="impressumIntro"> {t("imprint")} </span>
-        </Link>
-        <Link to="/datenschutz" className="footerIntroText">
-          <span className="datenschutzInto"> | {t("dataPrivacy")} |</span>
-        </Link>
-        <Link to="/agb" className="footerIntroText">
-          <span> {t("termsAndConditions")} </span>
-        </Link>
-      </span>{" "}
+      <Footer color="#c9c9c9" bottom="0px" />
     </React.Fragment>
   ) : (
     cookie_settings !== "all" &&
@@ -87,10 +114,12 @@ const Cookiebanner = () => {
             style: { borderRadius: "20px" },
           }}
         >
-          <DialogContent style={{ height: "200px" }}>
-            <div className="cookiesText">
+          <DialogContent style={{ height: "250px" }}>
+            <Wrapper>
               {" "}
-              <span className="cookiesHeader">{t("cookiebanner_title")}</span>
+              <StyledH2 fontWeight="900" textAlign="center">
+                {t("cookiebanner_title")}
+              </StyledH2>
               <br />
               <Trans i18nKey="cookiebanner_text">
                 Für die Bereitstellung einiger Funktionen und die Verbesserung
@@ -113,7 +142,7 @@ const Cookiebanner = () => {
                 </span>
                 .
               </Trans>
-            </div>
+            </Wrapper>
 
             <CustomButton
               text={t("accept")}
@@ -121,6 +150,7 @@ const Cookiebanner = () => {
               textColor="white"
               position="relative"
               top="30px"
+              zIndex="9999"
               handleButtonClick={() => handleCookies("all")}
             />
           </DialogContent>

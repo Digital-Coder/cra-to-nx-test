@@ -25,10 +25,11 @@ const LikeButton = ({ screamId }) => {
   const likeButton = !user.authenticated ? (
     <CustomIconButton
       name="Handsnoclap"
-      iconWidth="80%"
+      iconWidth="25px"
       position="relative"
       margin="0"
-      left="calc(50% - 25px)"
+      left="0"
+      top="-3px"
       shadow={false}
       backgroundColor={"transparent"}
       handleButtonClick={() => console.log("not logged in")}
@@ -38,10 +39,11 @@ const LikeButton = ({ screamId }) => {
   ) : likedScream() ? (
     <CustomIconButton
       name="HandsFull"
-      iconWidth="80%"
+      iconWidth="25px"
       position="relative"
       margin="0"
-      left="calc(50% - 25px)"
+      left="0"
+      top="-3px"
       shadow={false}
       backgroundColor={"transparent"}
       handleButtonClick={() => dispatch(unlikeScream(screamId, user))}
@@ -49,10 +51,11 @@ const LikeButton = ({ screamId }) => {
   ) : (
     <CustomIconButton
       name="Handsnoclap"
-      iconWidth="80%"
+      iconWidth="25px"
       position="relative"
       margin="0"
-      left="calc(50% - 25px)"
+      left="0"
+      top="-3px"
       shadow={false}
       backgroundColor={"transparent"}
       handleButtonClick={() => dispatch(likeScream(screamId, user))}

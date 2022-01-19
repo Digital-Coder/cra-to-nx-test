@@ -53,7 +53,7 @@
     top: 570px;
     left: 200px;
     color: #414345;
-    font-size: 18pt;
+    font-size: 20px;
   }
 
   .title2Web {
@@ -75,7 +75,7 @@
     top: 1300px;
     left: 200px;
     color: #414345;
-    font-size: 18pt;
+    font-size: 20px;
   }
 
   .title3Web {
@@ -97,53 +97,8 @@
     top: 2000px;
     left: 200px;
     color: #414345;
-    font-size: 18pt;
+    font-size: 20px;
   }
-
-  /* .footerWeb {
-    color: rgb(0, 0, 0, 0.5);
-    bottom: 2vh;
-    right: 5vw;
-    position: fixed;
-    text-align: right;
-    font-size: 12pt;
-    z-index: 999;
-    font-family: Futura PT W01 Book;
-  }
-  
-  .footercopyWeb {
-    color: rgb(0, 0, 0, 0.5);
-    bottom: 6vh;
-    right: 5vw;
-    position: fixed;
-    text-align: right;
-    font-size: 12pt;
-    z-index: 999;
-    font-family: Futura PT W01 Book;
-  } */
-
-  .footer {
-    position: absolute;
-    top: 2750px;
-    width: 100%;
-    height: 1em;
-    text-align: center;
-    color: rgb(0, 0, 0, 0.5);
-    font-size: 14pt;
-    font-family: Futura PT W01 Book;
-  }
-
-  .footercopy {
-    position: absolute;
-    top: 2800px;
-    width: 100%;
-    height: 1em;
-    text-align: center;
-    color: rgb(0, 0, 0, 0.5);
-    font-size: 14pt;
-    font-family: Futura PT W01 Book;
-  }
-
 
   .infotext {
     pointer-events: none;
@@ -184,10 +139,6 @@
     font-size: 14pt;
   }
 
-
-
- 
-
   .buttonVerify {
     z-index: 9;
     color: white;
@@ -205,12 +156,10 @@
     top: 40px;
     left: calc(0px + ((100vw - 600px) / 2) - 200px);
     animation: FadeAnimationVeryFast 1s;
-
   }
 
   .buttonMapdesktop_hide {
     display: none;
-
   }
 
   .buttonResetMapDesktop {
@@ -243,36 +192,11 @@
     }
   }
 
-
-  .cookiesHeader {
-    font-family: Futura PT W01-Bold;
-  }
-
-  .cookiesText {
-    z-index: 9999;
-    position: relative;
-    width: auto;
-    height: auto;
-    padding: 0;
-    color: #353535;
-    text-align: center;
-    background-color: transparent;
-    font-size: 13pt;
-
-    top: 0;
-    left: 0;
-    border-radius: 20px;
-    animation: FadeAnimation 0s;
-  }
-
-
   .MainBackground {
-
     width: 100vw;
   }
 
   .MainBackgroundHome {
-
     width: 400px;
     height: 100vh;
   }
@@ -283,25 +207,18 @@
     position: fixed;
   }
 
-   .contentWrapper_insights {
+  .contentWrapper_insights {
     margin-left: 200px;
     width: 400px;
-    height:100%;
+    height: 100%;
     position: fixed;
-    overflow:scroll;
-    z-index:0;
-
-
+    overflow: scroll;
+    z-index: 0;
   }
-
-
- 
 
   .spinnerDiv {
-
     position: absolute;
   }
-
 
   .content {
     margin-top: 0em;
@@ -310,15 +227,11 @@
   }
 
   .dialogOverlayContent {
-
     position: relative;
     margin-left: 200px;
     width: calc(100vw - 400px);
     height: auto;
   }
-
-
-
 
   .content {
     margin-top: 0px;
@@ -327,16 +240,12 @@
     overflow-x: hidden;
   }
 
-
   .addText {
     padding-left: 10px;
     padding-right: 5px;
     margin-left: auto;
     margin-right: auto;
   }
-
-
-  
 
   .inlineInfoIconText {
     padding-left: 10px;
@@ -362,7 +271,6 @@
     color: #353535;
 
     margin-bottom: 10px;
-
   }
 
   .profile_indented {
@@ -382,10 +290,8 @@
     line-height: 14pt;
     color: #353535;
 
-    margin-bottom: 10px
+    margin-bottom: 10px;
   }
-
-
 
   .navBackgroundWeb-wrapper {
     display: block;
@@ -395,7 +301,6 @@
     height: 50px;
     top: 0;
     left: 200px;
-
   }
 
   .navBackgroundWeb_hide {
@@ -410,49 +315,15 @@
     top: 0;
 
     background: rgb(255, 255, 255);
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(255, 218, 83, 0) 51%, rgba(255, 212, 130, 1) 81%, rgba(255, 209, 155, 1) 100%);
+    background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 218, 83, 0) 51%,
+      rgba(255, 212, 130, 1) 81%,
+      rgba(255, 209, 155, 1) 100%
+    );
     pointer-events: none;
   }
-
-  .mapWrapper {
-    margin: 0px;
-    top: 0;
-    left: 600px;
-    position: fixed;
-  }
-
-
-  .selectLocationContainer {
-    position: fixed;
-    height: 130px;
-    width: 380px;
-    margin-left: 210px;
-    top: 40px;
-    background-color: #F8F8F8;
-    border-radius: 20px;
-    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
-    z-index: 5;
-    animation: enteranimation 0.5s
-  }
-
-
-  .postCard {
-
-    position: fixed;
-    top: 135px;
-
-    left: 0;
-    margin-left: 210px;
-    margin-right: auto;
-    height: 50vh;
-    width: 380px;
-    border-radius: 20px;
-    box-shadow: 0 0px 40px -12px rgba(0, 0, 0, 0);
-    background-color: white;
-    z-index: 2;
-    animation: enteranimation 1s;
-  }
-
 
   @keyframes enteranimation {
     0% {
@@ -471,136 +342,13 @@
     }
   }
 
-
-
   .PostBackground {
     display: none;
   }
 
-
-
   .buttonLikeFixed {
     left: 220px;
-
-
   }
-
-
-
-
-  .react-geocoder input {
-    width: 300px;
-    position: fixed;
-    top: 50px;
-    border-radius: 15px;
-    border: none;
-    height: 50px;
-    left: calc(600px + ((100vw - 600px) / 2) - 150px);
-    transform: translateX(0%);
-    font-family: Futura PT W01 Book;
-    font-size: 12pt;
-    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
-  }
-
-  .react-geocoder-results {
-    position: fixed;
-    top: 110px;
-    left: calc(600px + ((100vw - 600px) / 2) - 150px);
-    z-index: 1;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 300px;
-    padding-right: 10px;
-    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
-  }
-
-  .pinLocationHeader {
-    z-index: 9999;
-    position: fixed;
-    top: 50px;
-    left: calc(600px + ((100vw - 600px) / 2) - 150px);
-    /* left:calc(100vw - 600px);
-        transform:translateX(-50%); */
-    width: 300px;
-
-    height: 50px;
-    padding-left: 15px;
-    padding-right: 5px;
-    border-radius: 15px;
-    color: #353535;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    pointer-events: none;
-
-    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0.5);
-
-  }
-
-  /* .react-geocoder-results {
-    position: fixed;
-    top: 10vh;
-    left: 2.5vw;
-    z-index: 1;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 95vw;
-    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .react-geocoder-item {
-    border-bottom: 1px solid #d8d8d8;
-    padding: 10px;
-  } */
-
-
-  .geocoder-edit {
-    
-    position: relative;
-    font-family: Futura PT W01 Book;
-
-
-  }
-
-
-
-  .geocoder-edit input {
-    width: 95%;
-    position: relative;
-    top: 2.5%;
-    border-radius: 5px;
-    border: none;
-    height: 50px !important;
-    padding: 0;
-    left: 0%;
-    padding-left: 15px;
-
-    font-family: 'Futura PT W01 Book', sans-serif;
-    font-size: 12pt;
-    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0);
-
-    border: 1px solid #cecece;
-    margin-bottom: 5px;
-  }
-
-  .geocoder-edit .react-geocoder-results {
-    position: relative;
-    top: 10px;
-    left: 0%;
-    z-index: 1;
-    background-color: white;
-    border: 1px solid white;
-    border-radius: 5px;
-    width: 95%;
-    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
-  }
-
 
 
   .sideBar {
@@ -608,7 +356,7 @@
     height: 100vh;
     width: 200px;
     overflow-x: hidden;
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
     top: 0;
     left: 0;
     z-index: 1;
@@ -622,17 +370,15 @@
     position: fixed;
     height: 100vh;
     width: 200px;
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
     top: 0;
     left: -200px;
     z-index: 999;
     display: block;
     transition: 0.5s;
-
   }
 
   .legendwrapper {
-
     position: relative;
     width: 100%;
     left: 20px;
@@ -642,29 +388,26 @@
     height: auto;
   }
 
-  .sideBar>.legendwrapper {
+  .sideBar > .legendwrapper {
     height: auto;
   }
 
-  .sideBar_hide>.legendwrapper {
+  .sideBar_hide > .legendwrapper {
     height: auto;
   }
 
   .MuiFormControlLabel-root {
     height: 38px !important;
-    
   }
 
   .MuiTypography-body1 {
-
-    font-size: 16px !important
+    font-size: 16px !important;
   }
 
   .MuiSvgIcon-root {
     width: 22px !important;
-    height: 22px !important
+    height: 22px !important;
   }
-
 
   .Filterheader {
     position: relative;
@@ -688,7 +431,6 @@
     left: 0%;
     border-left: 0;
     flex-direction: column !important;
-
   }
 
   .fullGradientWrapper {
@@ -706,15 +448,13 @@
   .accountDialog {
     margin-left: 0px;
     width: 400px;
-    height:100vh;
-    padding-top:70px;
+    height: 100vh;
+    padding-top: 70px;
     overflow-y: scroll;
     z-index: 90;
     top: 0;
     position: fixed;
-    
   }
-
 
   .wrapperScreamDialog {
     margin-left: 200px;
@@ -727,7 +467,6 @@
     position: fixed;
     margin-top: 0vh;
     animation: enterScreamDialogAnimation 0.7s;
-    
   }
 
   @keyframes enterScreamDialogAnimation {
@@ -739,19 +478,17 @@
       transform: translateY(50%);
       opacity: 0;
     }
-  
+
     50% {
       transform: translateY(50%);
       opacity: 1;
     }
-  
+
     100% {
       transform: translateY(0%);
       opacity: 1;
     }
   }
- 
-
 
   .wrapperMonitoringDialog {
     margin-top: 20px;
@@ -766,28 +503,16 @@
     overflow-x: hidden;
     background-attachment: fixed;
 
-    background: #ffffff
+    background: #ffffff;
   }
-
- 
 
   .mapWrapperDialog {
     display: none;
-
   }
 
   .dialogZoomButton {
-    display: none
+    display: none;
   }
-
-  .dialogCard {
-
-    margin-top: 10px;
-
-  }
-
-  
-
 
   .infoPageWrapperDesktop {
     position: relative;
@@ -809,10 +534,6 @@
     clear: both;
   }
 
-
- 
-
-
   .insta {
     position: fixed;
     width: 180px;
@@ -823,12 +544,9 @@
     padding-bottom: 50px;
     padding-top: 10px;
 
-
-
     /* animation: logoAnimation 2.5s; */
-    background-color: #F8F8F8;
+    background-color: #f8f8f8;
     transition: 0.5s;
-
   }
 
   .facebook {
@@ -841,13 +559,7 @@
     padding-bottom: 50px;
     padding-top: 10px;
     transition: 0.5s;
-
-
-
-
   }
-
-
 
   @keyframes logoAnimation {
     0% {
@@ -868,8 +580,8 @@
     color: #ffd388;
     font-family: Playfair Display;
     width: 50%;
-    margin-left:50%;
-    transform:translateX(-50%);
+    margin-left: 50%;
+    transform: translateX(-50%);
     margin-top: 100px;
     animation: GibAnimation 0.5s;
   }
@@ -882,7 +594,7 @@
 
     10% {
       opacity: 0;
-      transform: scale(0.7)translateX(-50%);
+      transform: scale(0.7) translateX(-50%);
     }
 
     60% {
@@ -904,22 +616,14 @@
     display: table;
     z-index: 0;
     font-size: 20px;
-
   }
 
   .explanation::before {
     content: "*";
-    display: table-cell
+    display: table-cell;
   }
 
-
-  
-
-
-
-
   .VerifyHeader {
-
     position: relative;
     margin-top: 5vh;
     width: 500px;
@@ -929,13 +633,10 @@
   }
 
   .VerifySubHeader {
-
-
     width: 600px;
     margin-left: calc(50% - 300px);
     margin-top: 3vh;
     height: 100%;
-
   }
 
   .Celebrate {
@@ -948,8 +649,6 @@
     opacity: 0;
     animation: CelebrateAnimation 2s;
   }
-
-
 
   .CelebrateVerify {
     z-index: 0;
@@ -977,7 +676,5 @@
 @media screen and (max-height: 768px) {
   .insta {
     box-shadow: rgb(0, 0, 0, 0.2) 0px -10px 20px -15px;
-
   }
-
 }

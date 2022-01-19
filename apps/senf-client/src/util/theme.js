@@ -24,7 +24,7 @@ export default {
   typography: {
     useNextVariants: true,
     fontWeight: "300",
-    fontFamily: "Futura PT W01 Book",
+    fontFamily: "'Nunito', sans-serif",
   },
   form: {
     textAlign: "center",

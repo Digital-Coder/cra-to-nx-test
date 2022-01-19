@@ -9,6 +9,7 @@ import EditModal from "./EditModal";
 import ExpandButton from "../../atoms/CustomButtons/ExpandButton";
 import MainModal from "../../atoms/Layout/MainModal";
 import AdminEditModal from "./AdminEditModal";
+import { StyledH3 } from "../../../styles/GlobalStyle";
 
 const ButtonWrapper = styled.div`
   width: 100%;
@@ -93,12 +94,12 @@ const MenuModal = ({ setMenuOpen, screamId, userHandle }) => {
             <React.Fragment>
               <ButtonWrapper>
                 <ExpandButton handleButtonClick={() => setAdminEditOpen(true)}>
-                  Idee bearbeiten (Admin)
+                  <StyledH3> Idee bearbeiten (Admin)</StyledH3>
                 </ExpandButton>
               </ButtonWrapper>
               <ButtonWrapper>
                 <ExpandButton handleButtonClick={deleteTheScream}>
-                  Idee löschen (Admin)
+                  <StyledH3> Idee löschen (Admin)</StyledH3>
                 </ExpandButton>
               </ButtonWrapper>
             </React.Fragment>
@@ -107,12 +108,12 @@ const MenuModal = ({ setMenuOpen, screamId, userHandle }) => {
             <React.Fragment>
               <ButtonWrapper>
                 <ExpandButton handleButtonClick={() => setEditOpen(true)}>
-                  Idee bearbeiten
+                  <StyledH3> Idee bearbeiten </StyledH3>
                 </ExpandButton>
               </ButtonWrapper>
               <ButtonWrapper>
                 <ExpandButton handleButtonClick={deleteTheScream}>
-                  Idee löschen
+                  <StyledH3> Idee löschen</StyledH3>
                 </ExpandButton>
               </ButtonWrapper>
             </React.Fragment>
@@ -125,12 +126,14 @@ const MenuModal = ({ setMenuOpen, screamId, userHandle }) => {
                 : true
             }
           >
-            <ExpandButton handleButtonClick={reportScream}>Melden</ExpandButton>
+            <ExpandButton handleButtonClick={reportScream}>
+              <StyledH3>Melden</StyledH3>
+            </ExpandButton>
           </ButtonWrapper>
           <Line />
           <ButtonWrapper>
             <ExpandButton handleButtonClick={() => setMenuOpen(false)}>
-              Abbrechen
+              <StyledH3> Abbrechen</StyledH3>
             </ExpandButton>
           </ButtonWrapper>
         </MainModal>

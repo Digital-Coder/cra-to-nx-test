@@ -2,6 +2,8 @@
 import React from "react";
 import styled, { css, keyframes } from "styled-components";
 import { CircularProgress } from "@material-ui/core";
+import ContactIcon from "../../../images/icons/mail.png";
+import WeblinkIcon from "../../../images/icons/weblink.png";
 
 const enterAnimation = keyframes`
        0% {
@@ -19,21 +21,47 @@ const enterAnimation = keyframes`
 }
     `;
 
+const plopAnimation = keyframes`
+  0% {
+      opacity: 0;
+      transform: scale(0.7) translateX(-50%);
+    }
+  
+    80% {
+      opacity: 0;
+      transform: scale(0.7) translateX(-50%);
+    }
+  
+    90% {
+      opacity: 1;
+      transform: scale(1.1) translateX(-50%);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scale(1) translateX(-50%);
+    }
+`;
+
 const WideButton = styled.button`
   border-radius: 30px;
   text-transform: none;
   white-space: nowrap;
-  font-size: 14pt;
-  height: ${(props) => (props.smallSubmitButton ? "40px" : "50px")};
-  font-family: Futura PT W01 Book;
-  box-shadow: rgb(38, 57, 77, 0.7) 0px 20px 30px -15px;
-  padding-left: ${(props) => (props.smallSubmitButton ? "12px" : "30px")};
-  padding-right: ${(props) => (props.smallSubmitButton ? "12px" : "30px")};
+  height: ${(props) => (props.smallSubmitButton ? "35px" : "50px")};
+  font-size: ${(props) => props.smallSubmitButton && "15px"};
+  box-shadow: ${(props) =>
+    props.shadow === false ? "" : "rgb(38, 57, 77, 0.7) 0px 20px 30px -15px;"};
+
+  backdrop-filter: ${(props) => props.backdropFilter && "blur(10px)"};
+
+  padding-left: ${(props) => (props.smallSubmitButton ? "15px" : "30px")};
+  padding-right: ${(props) => (props.smallSubmitButton ? "15px" : "30px")};
   min-width: ${(props) => (props.smallSubmitButton ? "70px" : "180px")};
   display: flex;
   justify-content: center;
   align-items: center;
-  transform: translateX(-50%);
+  transform: ${(props) =>
+    props.transformX ? props.transformX : "translateX(-50%)"};
   cursor: pointer;
 
   margin-left: ${(props) => (props.marginLeft ? props.marginLeft : "50%")};
@@ -47,10 +75,14 @@ const WideButton = styled.button`
   position: ${(props) => props.position};
   z-index: ${(props) => props.zIndex};
   animation: ${(props) =>
-    props.animation &&
-    css`
-      ${enterAnimation} 2s
-    `};
+    props.animation === true
+      ? css`
+          ${enterAnimation} 2s
+        `
+      : props.animation === "plop" &&
+        css`
+          ${plopAnimation} 2s
+        `};
 `;
 
 const LoaderWrapper = styled.span`
@@ -62,6 +94,10 @@ const LoaderWrapper = styled.span`
   height: 100%;
 `;
 
+const Icons = {
+  Contact: ContactIcon,
+  Weblink: WeblinkIcon,
+};
 export const SubmitButton = ({
   text,
   backgroundColor,
@@ -70,16 +106,25 @@ export const SubmitButton = ({
   bottom,
   top,
   marginLeft,
+  transformX,
   left,
   zIndex,
   animation,
   loading,
   disabled,
+  shadow,
+  backdropFilter,
 
   handleButtonClick,
   smallSubmitButton,
   keySubmitRef,
+
+  iconRight,
+  name,
+  iconWidth,
 }) => {
+  const Icon = Icons[name];
+
   return (
     <WideButton
       type="submit"
@@ -90,14 +135,26 @@ export const SubmitButton = ({
       left={left}
       top={top}
       marginLeft={marginLeft}
+      transformX={transformX}
       zIndex={zIndex}
       animation={animation}
       disabled={disabled}
       onClick={handleButtonClick}
       smallSubmitButton={smallSubmitButton}
       ref={keySubmitRef}
+      shadow={shadow}
+      backdropFilter={backdropFilter}
     >
       {text}
+      {iconRight && (
+        <img
+          src={Icon}
+          width={iconWidth ? iconWidth : "20px"}
+          alt="icon"
+          style={{ paddingLeft: "10px" }}
+        />
+      )}
+
       {loading && (
         <LoaderWrapper>
           <CircularProgress size={30} />{" "}

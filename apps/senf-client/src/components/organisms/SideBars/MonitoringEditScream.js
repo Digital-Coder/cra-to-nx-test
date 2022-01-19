@@ -311,7 +311,6 @@ const MonitoringEditScream = ({
               width: "300px",
               margin: "10px",
               marginLeft: "20px",
-              fontFamily: "Futura PT W01-Bold",
               fontSize: "20px",
             }}
           >

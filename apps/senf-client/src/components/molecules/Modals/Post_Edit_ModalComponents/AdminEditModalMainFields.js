@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import CustomSelect from "../../../atoms/Selects/CustomSelect";
 import { TextField } from "@material-ui/core";
 import { OptionsStatus } from "../../../../data/OptionsStatus";
+import { StyledA, StyledH3 } from "../../../../styles/GlobalStyle";
 
 const AdminEditModalMainFields = ({ status, setStatus, notes, setNotes }) => {
   const scream_user = useSelector((state) => state.data.scream_user);
@@ -18,21 +19,17 @@ const AdminEditModalMainFields = ({ status, setStatus, notes, setNotes }) => {
           justifyContent: "space-between",
           alignItems: "center",
 
-          fontFamily: "Futura PT W01-Bold",
           marginTop: "20px",
         }}
       >
-        Email:
+        <StyledH3> Email:</StyledH3>
         {scream_user && (
-          <a
+          <StyledA
             href={"mailto:" + scream_user.email}
-            style={{
-              fontFamily: "Futura PT W01 Book",
-              textDecoration: "underline",
-            }}
+            textDecoration="underline"
           >
             {scream_user.email}
-          </a>
+          </StyledA>
         )}
       </div>{" "}
       <div
@@ -41,10 +38,9 @@ const AdminEditModalMainFields = ({ status, setStatus, notes, setNotes }) => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          fontFamily: "Futura PT W01-Bold",
         }}
       >
-        <span> Status:</span>
+        <StyledH3>Status:</StyledH3>
 
         <CustomSelect
           name={"status"}

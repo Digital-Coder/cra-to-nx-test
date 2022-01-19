@@ -32,12 +32,14 @@ const Wrapper = styled.div`
     rgba(255, 218, 83, 1) 41%,
     rgba(255, 255, 255, 1) 100%
   ); */
-  background-attachment: fixed;
+  background-color: #fed957;
+  /* background-attachment: fixed;
   background-image: linear-gradient(to bottom, #ffd19b, #ffda53, #ffffff);
   background-repeat: no-repeat;
-  background: -webkit-linear-gradient(to left, #ffd19b, #ffda53, #ffffff);
+  background: -webkit-linear-gradient(to left, #ffd19b, #ffda53, #ffffff); */
   animation: mainDialogAnimation 0.2s;
   opacity: 1;
+  overflow-y: scroll;
 
   @keyframes mainDialogAnimation {
     0% {
@@ -59,7 +61,7 @@ const Wrapper = styled.div`
 
 const InnerWrapper = styled.div`
   width: 100%;
-  max-width: 600px;
+  height: 100%;
   z-index: 10;
 `;
 const Background = styled.div`

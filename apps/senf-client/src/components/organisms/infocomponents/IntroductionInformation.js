@@ -26,6 +26,8 @@ import { Link } from "react-router-dom";
 //DETECT DEVICE
 import { isMobileCustom } from "../../../util/customDeviceDetect";
 import { CustomButton } from "../../atoms/CustomButtons/CustomButton";
+import Footer from "../../molecules/Footer/Footer";
+import { StyledText } from "../../../styles/GlobalStyle";
 
 const styles = {
   wrapper: {
@@ -220,18 +222,8 @@ const IntroductionInformation = ({ classes }) => {
               handleButtonClick={handleButtonContactClick}
             />
 
-            <span className="footerStart">
-              <Link to="/impressum">
-                <span className="impressum"> {t("imprint")}</span>
-              </Link>
-              <Link to="/datenschutz">
-                <span className="datenschutz"> | {t("dataPrivacy")} | </span>
-              </Link>
-              <Link to="/agb">
-                <span className="agb"> {t("termsAndConditions")} </span>
-              </Link>
-            </span>
-            <span className="footercopyStart">{t("infopage_illustrator")}</span>
+            <Footer color="#353535" position="absolute" top="1800px" />
+
           </Grid>
         </Grid>
       </div>

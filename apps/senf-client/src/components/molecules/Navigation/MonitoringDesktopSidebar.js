@@ -10,14 +10,11 @@ import Facebook from "../../../images/icons/socialmedia/facebook.png";
 
 import Arrow from "../../../images/icons/arrow_yellow.png";
 
-import TopicFilter from "../Filters/TopicFilter";
+import TagsFilter from "../Filters/TagsFilter";
 import ExpandButton from "../../atoms/CustomButtons/ExpandButton";
 
 export class MonitoringDesktopSidebar extends Component {
   render() {
-    
-    
-
     return (
       <div className="sideBar">
         <Logo>
@@ -53,7 +50,7 @@ export class MonitoringDesktopSidebar extends Component {
           }}
         ></div>
 
-        <TopicFilter/>
+        <TagsFilter />
 
         <div
           style={{

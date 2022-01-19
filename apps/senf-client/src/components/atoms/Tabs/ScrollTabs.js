@@ -44,8 +44,7 @@ const Tab = styled.div`
   animation: ${enterAnimation} ${(props) => props.i * 0.8}s;
   font-size: 18px;
   color: rgb(87, 87, 87);
-  font-family: ${(props) =>
-    props.active ? "Futura PT W01-Bold" : "Futura PT W01 Book;"};
+  opacity: ${(props) => (props.active ? "1" : "0.6")};
 `;
 
 const TabGradientStart = styled.div`

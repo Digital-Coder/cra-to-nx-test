@@ -88,8 +88,8 @@ const OpenButtonDesktop = styled.button`
   width: 160px;
   height: 40px;
   padding: 0;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
   position: relative;
   left: 20px;
   transform: none;
@@ -106,9 +106,7 @@ const OpenButtonDesktop = styled.button`
   top: 85px;
   margin-top: 0;
   margin-bottom: 20px;
-  font-size: 12pt;
   color: white;
-  font-family: Futura PT W01 Book;
   animation: none;
 
   box-shadow: rgb(0, 0, 0, 0) 0px 20px 20px -15px;
@@ -140,30 +138,9 @@ const styles = {
     zIndex: "9999",
   },
 
-  content: {
-    padding: 25,
-    objectFit: "cover",
-    overflow: "scroll",
-    width: "100%",
-  },
-
   textField: {
     marginTop: "0px",
     width: "100%",
-  },
-
-  locationOuter: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    color: "rgb(255, 205, 6)",
-    height: "10px",
-    alignItems: "center",
-  },
-  locationHeader: {
-    color: "rgb(255, 205, 6)",
-    float: "left",
-    paddingRight: "1%",
   },
 
   Authlink: {
@@ -215,7 +192,7 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
   const [geoData, setGeoData] = useState("");
   const [checkIfCalendar, setCheckIfCalendar] = useState(false);
 
-  const [address, setAddress] = useState("Ohne Ortsangabe");
+  const [address, setAddress] = useState(null);
   const [neighborhood, setNeighborhood] = useState("Ohne Ortsangabe");
   const [fulladdress, setFulladdress] = useState("Ohne Ortsangabe");
 
@@ -230,7 +207,6 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const [topic, setTopic] = useState("");
-  // const [project, setProject] = useState("");
 
   const [weblinkOpen, setWeblinkOpen] = useState(false);
   const [weblink, setWeblink] = useState(null);
@@ -246,38 +222,41 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
 
   const handleOpen = (event) => {
     event.preventDefault();
-    const projectSelected = project ? project.id : "";
+    const projectSelected = project?.projectRoomId
+      ? project?.projectRoomId
+      : "";
 
-    setOpen(true);
     setProjectSeleted(projectSelected);
 
     // setAllMainStates({ ...allMainStates, loading: false });
 
-    projectsData.forEach((element) => {
-      if (projectSelected === element.project) {
-        const viewport = {
-          zoom: element.zoom,
-          latitude: element.centerLat,
-          longitude: element.centerLong,
-          transitionDuration: 1000,
-        };
-        setViewport(viewport);
-
-        setGeoData(element.geoData);
-        setCheckIfCalendar(element.calendar);
+    projectsData.forEach(
+      ({ projectRoomId, zoom, centerLat, centerLong, geoData, calendar }) => {
+        if (projectSelected === projectRoomId) {
+          const viewport = {
+            zoom: zoom,
+            latitude: centerLat,
+            longitude: centerLong,
+            transitionDuration: 1000,
+          };
+          setViewport(viewport);
+          setGeoData(geoData);
+          setCheckIfCalendar(calendar);
+        }
+        if (projectSelected === "") {
+          const viewport = {
+            zoom: mapViewport.zoom,
+            latitude: mapViewport.latitude,
+            longitude: mapViewport.longitude,
+            transitionDuration: 1000,
+          };
+          setViewport(viewport);
+          setGeoData("");
+        }
       }
-      if (projectSelected === "") {
-        const viewport = {
-          zoom: mapViewport.zoom,
-          latitude: mapViewport.latitude,
-          longitude: mapViewport.longitude,
-          transitionDuration: 1000,
-        };
-        setViewport(viewport);
+    );
 
-        setGeoData("");
-      }
-    });
+    setOpen(true);
   };
 
   const handleClose = () => {
@@ -293,9 +272,10 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
   const handleDropdownProject = (value) => {
     // event.preventDefault();
     setProjectSeleted(value);
+    console.log(value);
 
     projectsData.forEach((element) => {
-      if (value === element.project) {
+      if (value === element.projectRoomId) {
         const viewport = {
           zoom: element.zoom,
           latitude: element.centerLat,
@@ -449,14 +429,13 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
   };
 
   const handleLocationDecided = () => {
-    if (locationDecided === false) {
+    if (address) {
       setAllMainStates({
         ...allMainStates,
         locationDecided: true,
         MapHeight: "30vh",
       });
     }
-
     if (locationDecided === true) {
       setAllMainStates({
         ...allMainStates,
@@ -499,8 +478,13 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
     <Fragment>
       {!isMobileCustom ? (
         <OpenButtonDesktop onClick={handleOpen}>
-          <img src={AddIcon} width="25" alt="AddIcon" />
-          <span className="addText">{t("postScream_newIdea")}</span>
+          <img
+            src={AddIcon}
+            width="25"
+            alt="AddIcon"
+            style={{ paddingRight: "10px" }}
+          />
+          {t("postScream_newIdea")}
         </OpenButtonDesktop>
       ) : (
         !loading && (
@@ -524,6 +508,13 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
         BackdropProps={{ classes: { root: classes.root } }}
         PaperProps={{ classes: { root: classes.paper } }}
       >
+        <CustomIconButton
+          name="Close"
+          position="fixed"
+          margin={document.body.clientWidth > 768 ? "40px" : "10px"}
+          handleButtonClick={handleClose}
+          zIndex="1"
+        />
         {!user.authenticated && (
           <div
             className={
@@ -642,15 +633,6 @@ const PostScream = ({ classes, loadingProjects, projectsData }) => {
           setContactOpen={setContactOpen}
           setCalendarOpen={setCalendarOpen}
           checkIfCalendar={checkIfCalendar}
-        />
-        <CustomIconButton
-          name="Close"
-          position="fixed"
-          margin={
-            document.body.clientWidth > 768 ? "40px" : "18px 0px 0px 13px"
-          }
-          handleButtonClick={handleClose}
-          zIndex="1"
         />
       </Dialog>
     </Fragment>

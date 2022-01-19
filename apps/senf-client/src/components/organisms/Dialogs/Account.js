@@ -7,18 +7,23 @@ import styled from "styled-components";
 import { closeAccountFunc } from "../../../redux/actions/accountActions";
 
 //Components
-import IdeaList from "../IdeaList/IdeaList";
-import AccountHeader from "../../molecules/Headers/AccountHeader";
+import SwipeList from "../SwipeLists/SwipeList";
+import Header from "../../molecules/Headers/Header";
 import AccountSettings from "../../molecules/DialogInlineComponents/AccountSettings";
 import MainAnimations from "../../atoms/Backgrounds/MainAnimations";
-import {
-  BackgroundDesktop,
-  BackgroundMobile,
-} from "../../atoms/Backgrounds/GradientBackgrounds";
+import { Background } from "../../atoms/Backgrounds/GradientBackgrounds";
 import { handleTopicSelectorRedux } from "../../../redux/actions/UiActions";
 
 import _ from "lodash";
+import { AccountTabData } from "../../../data/AccountTabData";
+import { SubmitButton } from "../../atoms/CustomButtons/SubmitButton";
+import { useTranslation } from "react-i18next";
 
+const Wrapper = styled.div`
+  @media (min-width: 768px) {
+    padding-top: 70px;
+  }
+`;
 const Break = styled.div`
   position: relative;
   height: 110px;
@@ -29,7 +34,19 @@ const Break = styled.div`
   }
 `;
 
+const MapHider = styled.div`
+  width: calc(100% - 600px);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 600px;
+  background-color: #000;
+  opacity: 0.6;
+  z-index: 9;
+`;
+
 const Account = ({ dataFinalMap }) => {
+  const { t } = useTranslation();
   const loadingMyScreams = useSelector((state) => state.data.loadingMyScreams);
   const mapViewport = useSelector((state) => state.data.mapViewport);
   const mapBounds = useSelector((state) => state.data.mapBounds);
@@ -87,30 +104,28 @@ const Account = ({ dataFinalMap }) => {
       )
     : [];
 
-  const dataFinalLength = dataFinal.length;
-
   return (
     <React.Fragment>
-      <AccountHeader
-        loading={false}
+      <Header
+        type="account"
+        loading={loadingMyScreams}
         order={order}
         handleClose={handleClose}
         handleClick={handleClick}
       />
+      {!isMobileCustom && order === 0 && <MapHider />}
 
-      <div className="accountDialog">
-        {isMobileCustom && order !== 1 ? (
-          <BackgroundMobile />
-        ) : !isMobileCustom ? (
-          <BackgroundDesktop />
-        ) : null}
+      <Wrapper>
+        {!isMobileCustom || (isMobileCustom && order !== 1 && <Background />)}
         {order === 1 && (
-          <IdeaList
+          <SwipeList
+            swipeListType="ideas"
             type="myIdeas"
+            tabLabels={AccountTabData.map((item) => item.text).slice(0, 1)}
             loading={loadingMyScreams}
             order={order}
             dataFinal={dataFinal}
-            dataFinalLength={dataFinalLength}
+            dataFinalLength={dataFinal.length}
             viewport={mapViewport}
             handleDropdown={handleDropdown}
             dropdown={dropdown}
@@ -120,7 +135,7 @@ const Account = ({ dataFinalMap }) => {
           />
         )}
 
-        {order === 2 && (
+        {order === 0 && (
           <div
             style={{
               overflow: "scroll",
@@ -128,6 +143,17 @@ const Account = ({ dataFinalMap }) => {
               pointerEvents: "all",
             }}
           >
+            <SubmitButton
+              text={t("showIdeas")}
+              zIndex="9"
+              backgroundColor={isMobileCustom ? "#353535" : "white"}
+              textColor={isMobileCustom ? "white" : "#353535"}
+              position="fixed"
+              bottom={isMobileCustom ? "10px" : "50%"}
+              left={isMobileCustom ? "0" : "calc(600px + ((100% - 600px)/2)) "}
+              marginLeft={isMobileCustom ? "50%" : "0"}
+              handleButtonClick={() => handleClick(1)}
+            />
             <Break />
             <MainAnimations
               transition="0.5s"
@@ -139,7 +165,7 @@ const Account = ({ dataFinalMap }) => {
             </MainAnimations>
           </div>
         )}
-      </div>
+      </Wrapper>
     </React.Fragment>
   );
 };

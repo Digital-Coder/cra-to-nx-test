@@ -10,6 +10,7 @@ import { useTranslation } from "react-i18next";
 import createPlotlyComponent from "react-plotlyjs";
 //See the list of possible plotly bundles at https://github.com/plotly/plotly.js/blob/master/dist/README.md#partial-bundles or roll your own
 import Plotly from "plotly.js/dist/plotly-cartesian.min";
+import GraphsWrapper from "./GraphsWrapper";
 const PlotlyComponent = createPlotlyComponent(Plotly);
 
 // let PlotlyComponent
@@ -211,13 +212,13 @@ const Thema = ({ screams }) => {
 
   let layout = {
     barmode: "relative",
-    font: { color: "#414345", family: "Futura PT W01 Book", size: 14 },
     //   autosize: true,
     height: 300,
     hovermode: false,
     legend: { title: { text: "Thema" }, tracegroupgap: 0 },
     margin: { b: 40, l: 125, r: 0, t: 20 },
-
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
     //   margin: { t: 60 },
     template: "...",
     //   shapes: [
@@ -303,12 +304,11 @@ const Thema = ({ screams }) => {
       </div>
     );
   return (
-    <div className="insights-card">
-      <div className="insights-card-title">{t("topics")}</div>
-      <div className="insights-card-subtitle">{t("topics_explained")}</div>
-      <div className="insights-plot-clickblocker"></div>
-      {plot}
-    </div>
+    <GraphsWrapper
+      title={t("topics")}
+      subTitle={t("topics_explained")}
+      plot={plot}
+    />
   );
 };
 

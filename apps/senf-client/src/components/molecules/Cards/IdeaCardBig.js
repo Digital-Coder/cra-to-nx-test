@@ -8,7 +8,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { Typography } from "@material-ui/core";
 import LikeButton from "../../atoms/CustomButtons/LikeButton";
 import dayjs from "dayjs";
-import { openProjectFunc } from "../../../redux/actions/projectActions";
+import { openProjectRoomFunc } from "../../../redux/actions/projectActions";
 
 // Icons
 import CalendarIcon from "../../../images/icons/calendar.png";
@@ -17,27 +17,61 @@ import LocationIcon from "../../../images/icons/location.png";
 
 import WeblinkIcon from "../../../images/icons/weblink.png";
 import contactIcon from "../../../images/icons/mail.png";
+import ProjectRoomIcon from "../../../images/icons/projectRoomIcon.png";
 
 import {
-  LikeButtonWrapper,
-  CommentButtonWrapper,
-  Engagement,
+  CardTitle,
+  ColorDot,
+  DistrictHeader,
+  EngagementWrapper,
+  ProjectOpenButton,
 } from "./styles/sharedStyles";
 import CommentButton from "../../atoms/CustomButtons/CommentButton";
+import {
+  StyledH2,
+  StyledSmallText,
+  StyledText,
+} from "../../../styles/GlobalStyle";
+import { SubmitButton } from "../../atoms/CustomButtons/SubmitButton";
 
+const Card = styled.div`
+  z-index: 99;
+  position: relative;
+  display: flex;
+  margin-top: 2vh;
+  margin-left: 2.5%;
+  width: 95%;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0);
+  padding-bottom: ${(props) => props.project && "50px"};
+
+  @media (min-width: 768px) {
+    margin-top: 10px;
+  }
+`;
 const Content = styled.div`
   width: 95%;
   padding: 15px;
   object-fit: cover;
 `;
 
+const BodyText = styled.p`
+  white-space: none;
+  position: relative;
+  width: 100%;
+
+  overflow: hidden;
+  max-height: 4.8em;
+  margin-top: 0;
+`;
+
 const Button = styled.button`
   border-radius: 20px;
   text-transform: none;
-  font-size: 12pt;
+  font-size: 14px;
   background-color: white;
   height: 40px;
-  font-family: Futura PT W01 Book;
   box-shadow: none;
   padding-right: 15px;
   padding-left: 15px;
@@ -57,96 +91,11 @@ const styles = {
     width: "90%",
     objectFit: "cover",
   },
-  user: {
-    position: "relative",
-    float: "left",
-    color: "#353535",
-    fontSize: "12pt",
-    height: "16px",
-    pointerEvents: "none",
-  },
-  date: {
-    position: "relative",
-    color: "#353535",
-    fontSize: "12pt",
-    pointerEvents: "none",
-  },
 
   content: {
     width: "95%",
     padding: 15,
     objectFit: "cover",
-  },
-
-  line: {
-    position: "absolute",
-    left: "85%",
-    top: "0%",
-    width: "1px",
-    backgroundColor: "#d5dadd",
-    height: "100%",
-    pointerEvents: "none",
-  },
-
-  horrizontalLine: {
-    position: "relative",
-    left: "-15px",
-
-    height: "1px",
-    backgroundColor: "#d5dadd",
-    width: "calc(85% + 25px)",
-    marginTop: "20px",
-    marginBottom: "10px",
-    pointerEvents: "none",
-  },
-
-  likeButton: {
-    zIndex: 10,
-    position: "relative",
-    left: "0%",
-    // width: "15vw",
-    // height: "15vw",
-    top: "10%",
-  },
-  likeButtonWrapper: {
-    zIndex: 10,
-    position: "absolute",
-    left: "85%",
-    // width: "15vw",
-    top: "50px",
-    textAlign: "center",
-  },
-  commentButtonWrapper: {
-    top: "170px",
-    position: "absolute",
-    left: "85%",
-  },
-
-  title: {
-    position: "relative",
-    width: "83%",
-    color: "rgb(87, 87, 87)",
-    paddingTop: 5,
-    paddingBottom: 5,
-    fontSize: 20,
-
-    fontFamily: "Playfair Display",
-    fontWeight: "900",
-    clear: "both",
-    pointerEvents: "none",
-  },
-  bodytext: {
-    width: "80%",
-    fontSize: "19px !important",
-    whiteSpace: "pre-line",
-    pointerEvents: "none",
-  },
-  engagement: {
-    paddingRight: 10,
-    width: "100%",
-    textAlign: "center",
-    fontSize: 14,
-    color: "black",
   },
 
   locationOuter: {
@@ -182,22 +131,10 @@ const styles = {
     width: "100%",
     pointerEvents: "none",
   },
-
-  vertline: {
-    width: "4px",
-    position: "relative",
-    backgroundColor: "#414345",
-    height: "10px",
-    marginLeft: "-2px",
-    left: "50%",
-    zIndex: "0",
-  },
 };
 
 const IdeaCardBig = ({ classes, setClicked }) => {
   const dispatch = useDispatch();
-
-  const authenticated = useSelector((state) => state.user.authenticated);
 
   const {
     screamId,
@@ -231,7 +168,7 @@ const IdeaCardBig = ({ classes, setClicked }) => {
   };
 
   const openTheProject = (project) => {
-    dispatch(openProjectFunc(project));
+    dispatch(openProjectRoomFunc(project, true));
   };
 
   const openLink = (convertedLink) => {
@@ -243,22 +180,12 @@ const IdeaCardBig = ({ classes, setClicked }) => {
 
   const projectsDataFinal = [];
   if (projects) {
-    projects.forEach((element) => {
-      if (project === element.project) {
-        projectsDataFinal.push(element.title);
+    projects.forEach(({ projectRoomId, title }) => {
+      if (project === projectRoomId) {
+        projectsDataFinal.push(title);
       }
     });
   }
-
-  const projectTitle = project ? (
-    // && project === this.props.projects.project
-    <button
-      className="screamcardProjectContainer buttonWide "
-      onClick={() => openTheProject(project)}
-    >
-      {projectsDataFinal}
-    </button>
-  ) : null;
 
   let selectedDates = [];
   const selectedUnixArray = selectedUnix;
@@ -292,39 +219,67 @@ const IdeaCardBig = ({ classes, setClicked }) => {
   }
 
   return (
-    <div
-      className="dialogCard"
-      style={project ? { paddingBottom: "50px", zIndex: 9999 } : {}}
-    >
+    <Card project={project ? true : false}>
       <Content>
+        <ColorDot color={color} />
+        <DistrictHeader color={color}>
+          <h4>{Stadtteil}</h4>
+        </DistrictHeader>
+        <EngagementWrapper>
+          <LikeButton screamId={screamId} />
+          <h4>{likeCount} </h4>
+
+          <CommentButton handleButtonClick={() => handleClick()} />
+          <h4>{commentCount}</h4>
+        </EngagementWrapper>
+        <CardTitle>
+          <StyledH2 fontWeight="900">{title}</StyledH2>
+        </CardTitle>
+        <BodyText>
+          <StyledText>{body} </StyledText>
+        </BodyText>
+
         <div
           style={{
-            width: "15px",
-            position: "relative",
-            height: "15px",
-            margintop: "5px",
-            borderRadius: "100%",
-            border: "0.5px white solid",
-            backgroundColor: color,
-            opacity: "1",
-            float: "left",
+            display: "flex",
+            flexDirection: "row",
+            flexWrap: "wrap",
           }}
-        />{" "}
-        <div className={classes.district}>
-          <div className={classes.districtHeader}> {Stadtteil} </div>
+        >
+          {weblink && (
+            <SubmitButton
+              text={weblinkTitle}
+              zIndex="999"
+              backgroundColor="#fed957"
+              textColor="#353535"
+              onClick={() => openLink(convertedLink)}
+              shadow={false}
+              smallSubmitButton={true}
+              iconRight={true}
+              name="Weblink"
+              marginLeft="0"
+              transformX="none"
+              iconWidth="16px"
+            />
+          )}
+          {contact && (
+            <SubmitButton
+              text={contactTitle}
+              zIndex="999"
+              backgroundColor="#fed957"
+              textColor="#353535"
+              onClick={() => openMail(contact)}
+              shadow={false}
+              smallSubmitButton={true}
+              iconRight={true}
+              name="Contact"
+              marginLeft="10px"
+              transformX="none"
+              iconWidth="22px"
+            />
+          )}
         </div>
-        <div className={classes.title}>{title} </div>
-        <Typography className={classes.bodytext}>{body}</Typography>
-        <div className={classes.line} />
-        <LikeButtonWrapper ideaCardBig={true}>
-          <LikeButton screamId={screamId} />
-          <Engagement>{likeCount} </Engagement>
-        </LikeButtonWrapper>
-        <CommentButtonWrapper ideaCardBig={true}>
-          <CommentButton handleButtonClick={() => handleClick()} />
-          <Engagement>{commentCount}</Engagement>
-        </CommentButtonWrapper>
-        <div className={classes.horrizontalLine}></div>
+
         <div className={classes.header}>
           {selectedUnixArray !== undefined && selectedUnixArray !== null && (
             <div className={classes.selectedDatesOuter}>
@@ -347,7 +302,7 @@ const IdeaCardBig = ({ classes, setClicked }) => {
               alt="locationIcon"
             />
 
-            <div className={classes.locationHeader}> {locationHeader} </div>
+            <StyledSmallText> {locationHeader} </StyledSmallText>
           </div>
 
           <div
@@ -364,58 +319,30 @@ const IdeaCardBig = ({ classes, setClicked }) => {
               alt="CreatorIcon"
             />
 
-            <Typography
-              // component={Link}
-              // to={`/users/${userHandle}`}
-              className={classes.user}
-            >
+            <StyledSmallText>
               {userHandle}
               &nbsp;am&nbsp;
-            </Typography>
-            <Typography className={classes.date}>
+            </StyledSmallText>
+            <StyledSmallText>
               {dayjs(createdAt).format("DD.MM.YYYY")}
-            </Typography>
+            </StyledSmallText>
           </div>
 
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-            }}
-          >
-            {weblink && (
-              <Button onClick={() => openLink(convertedLink)}>
-                {weblinkTitle}
-                <img
-                  src={WeblinkIcon}
-                  style={{
-                    paddingLeft: "9px",
-                    marginTop: "-2px",
-                  }}
-                  width="15"
-                  alt="WeblinkIcon"
-                />
-              </Button>
-            )}
+          {project && (
+            <ProjectOpenButton onClick={() => openTheProject(project)}>
+              <img
+                src={ProjectRoomIcon}
+                width="20px"
+                style={{ paddingRight: "10px", alignSelf: "center" }}
+                alt="ProjectRoomIcon"
+              />
 
-            {contact && (
-              <Button onClick={() => openMail(contact)}>
-                {contactTitle}
-                <img
-                  src={contactIcon}
-                  style={{ paddingLeft: "9px" }}
-                  width="22"
-                  alt="WeblinkIcon"
-                />
-              </Button>
-            )}
-          </div>
-
-          {projectTitle}
+              {projectsDataFinal}
+            </ProjectOpenButton>
+          )}
         </div>
       </Content>
-    </div>
+    </Card>
   );
 };
 

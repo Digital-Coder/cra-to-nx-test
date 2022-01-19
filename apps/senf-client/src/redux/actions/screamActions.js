@@ -4,7 +4,7 @@ import firebase from "firebase/app";
 import "firebase/firestore";
 import moment from "moment";
 import { clearErrors } from "./errorsActions";
-import { openProjectFunc } from "./projectActions";
+import { loadProjectRoomData, openProjectRoomFunc } from "./projectActions";
 import {
   SET_SCREAMS,
   LOADING_DATA,
@@ -41,7 +41,7 @@ export const getScreams = (mapViewport) => async (dispatch) => {
           lat: doc.data().lat,
           long: doc.data().long,
           title: doc.data().title,
-          body: doc.data().body.substr(0, 120),
+          body: doc.data().body.substr(0, 150),
           createdAt: doc.data().createdAt,
           commentCount: doc.data().commentCount,
           likeCount: doc.data().likeCount,
@@ -243,22 +243,14 @@ export const postScream = (newScream, user, history) => async (dispatch) => {
         });
         setTimeout(() => {
           dispatch(reloadScreams());
-        }, 100);
-
-        setTimeout(() => {
-          const project =
-            window.location.pathname.indexOf("_") > 0
-              ? window.location.pathname.substring(1)
-              : "";
-
-          if (project.indexOf("_") > 0) {
-            dispatch(openProjectFunc(project));
-          } else {
-            history.push(`/${resScream.screamId}`);
-            const screamId = resScream.screamId;
-            dispatch(openScreamFunc(screamId));
+          if (newScream.project) {
+            dispatch(loadProjectRoomData(newScream.project));
           }
-        }, 20);
+
+          history.push(`/${resScream.screamId}`);
+          const screamId = resScream.screamId;
+          dispatch(openScreamFunc(screamId));
+        }, 100);
       });
   }
 };

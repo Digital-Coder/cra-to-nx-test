@@ -11,11 +11,12 @@ import createPlotlyComponent from "react-plotlyjs";
 //See the list of possible plotly bundles at https://github.com/plotly/plotly.js/blob/master/dist/README.md#partial-bundles or roll your own
 import Plotly from "plotly.js/dist/plotly-cartesian.min";
 import { Agegroupdata } from "./Agegroup/Agegroupdata";
-import TopicFilter from "../Filters/TopicFilter";
+import TagsFilter from "../Filters/TagsFilter";
 import styled from "styled-components";
+import GraphsWrapper from "./GraphsWrapper";
 const PlotlyComponent = createPlotlyComponent(Plotly);
 
-const TopicFilterWrapper = styled.div`
+const FilterWrapper = styled.div`
   width: 100%;
   max-width: 500px;
   margin-bottom: 50px;
@@ -187,11 +188,12 @@ const AgegroupGraph = ({ classes, screams, likes }) => {
       },
     ],
     barmode: "relative",
-    font: { color: "#414345", family: "Futura PT W01 Book", size: 14 },
     autosize: true,
     height: 300,
     hovermode: false,
     margin: { b: 40, l: 45, r: 0, t: 20 },
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
     shapes: [
       {
         line: { color: "white", width: 2 },
@@ -307,12 +309,7 @@ const AgegroupGraph = ({ classes, screams, likes }) => {
 
   const plot =
     screams && PlotlyComponent !== undefined ? (
-      <PlotlyComponent
-        className={classes.plot}
-        data={data}
-        layout={layout}
-        config={config}
-      />
+      <PlotlyComponent data={data} layout={layout} config={config} />
     ) : (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <CircularProgress size={50} thickness={2} />
@@ -320,17 +317,11 @@ const AgegroupGraph = ({ classes, screams, likes }) => {
     );
 
   return (
-    <div className={classes.card}>
-      <div className={classes.title}>{t("agegroups")}</div>
-      <div className={classes.subtitle}>{t("agegroups_explained")}</div>
-      <TopicFilterWrapper>
-        <TopicFilter inline={true} />
-      </TopicFilterWrapper>
-
-      <div className={classes.clickblocker}></div>
-
-      {plot}
-    </div>
+    <GraphsWrapper
+      title={t("agegroups")}
+      subTitle={t("agegroups_explained")}
+      plot={plot}
+    />
   );
 };
 

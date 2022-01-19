@@ -9,20 +9,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import createPlotlyComponent from "react-plotlyjs";
 //See the list of possible plotly bundles at https://github.com/plotly/plotly.js/blob/master/dist/README.md#partial-bundles or roll your own
 import Plotly from "plotly.js/dist/plotly-cartesian.min";
-import TopicFilter from "../Filters/TopicFilter";
+import TagsFilter from "../Filters/TagsFilter";
 import styled from "styled-components";
+import GraphsWrapper from "./GraphsWrapper";
 
 const PlotlyComponent = createPlotlyComponent(Plotly);
-
-const TopicFilterWrapper = styled.div`
-  width: 100%;
-  max-width: 500px;
-  margin-bottom: 50px;
-  position: relative;
-  top: -40px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-`;
 
 //  let PlotlyComponent
 // import(/* webpackChunkName: "Districts-Graph plotly" */'plotly.js/dist/plotly-cartesian.min').then(plotly=>{
@@ -290,10 +281,11 @@ const DistrictsGraph = ({ classes, screams }) => {
         showarrow: true,
       },
     ],
-    barmode: "relative",
-    font: { color: "#414345", family: "Futura PT W01 Book", size: 14 },
-    //   autosize: true,
+    barmode: "relative", //   autosize: true,
     height: plotheight,
+    paper_bgcolor: "rgba(0,0,0,0)",
+    plot_bgcolor: "rgba(0,0,0,0)",
+
     hovermode: false,
     margin: { b: 40, l: 110, r: 0, t: 30 },
     shapes: [
@@ -349,27 +341,18 @@ const DistrictsGraph = ({ classes, screams }) => {
   };
   const plot =
     screams && PlotlyComponent !== undefined ? (
-      <PlotlyComponent
-        className={classes.plot}
-        data={data}
-        layout={layout}
-        config={config}
-      />
+      <PlotlyComponent data={data} layout={layout} config={config} />
     ) : (
       <div style={{ display: "flex", justifyContent: "center" }}>
         <CircularProgress size={50} thickness={2} />
       </div>
     );
   return (
-    <div className={classes.card}>
-      <div className={classes.title}>{t("districts")}</div>
-      <div className={classes.subtitle}>{t("districts_explained")}</div>
-      <TopicFilterWrapper>
-        <TopicFilter inline={true} />
-      </TopicFilterWrapper>
-      <div className={classes.clickblocker}></div>
-      {plot}
-    </div>
+    <GraphsWrapper
+      title={t("districts")}
+      subTitle={t("districts_explained")}
+      plot={plot}
+    />
   );
 };
 

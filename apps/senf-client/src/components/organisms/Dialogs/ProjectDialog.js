@@ -4,7 +4,7 @@ import React, { useState, useEffect, memo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { isMobileCustom } from "../../../util/customDeviceDetect";
 // Redux stuff
-import { closeProject } from "../../../redux/actions/projectActions";
+import { openProjectRoomFunc } from "../../../redux/actions/projectActions";
 import { clearErrors } from "../../../redux/actions/errorsActions";
 import {
   setMapBounds,
@@ -14,18 +14,24 @@ import {
 //Components
 import CalendarComponent from "../../atoms/calendar/CalendarComponent";
 
-import IdeaList from "../IdeaList/IdeaList";
-import ProjectHeader from "../../molecules/Headers/ProjectHeader";
+import SwipeList from "../SwipeLists/SwipeList";
+import Header from "../../molecules/Headers/Header";
 import ProjectInfo from "../../molecules/DialogInlineComponents/ProjectInfo";
 import styled from "styled-components";
-import MainAnimations from "../../atoms/Backgrounds/MainAnimations";
-import {
-  BackgroundDesktop,
-  BackgroundMobile,
-} from "../../atoms/Backgrounds/GradientBackgrounds";
+import { Background } from "../../atoms/Backgrounds/GradientBackgrounds";
 import { handleTopicSelectorRedux } from "../../../redux/actions/UiActions";
 
 import _ from "lodash";
+import { SubmitButton } from "../../atoms/CustomButtons/SubmitButton";
+import { useTranslation } from "react-i18next";
+import PostScream from "../PostIdea/PostScream";
+import { ProjectRoomTabData } from "../../../data/ProjectRoomTabData";
+
+const Wrapper = styled.div`
+  @media (min-width: 768px) {
+    padding-top: 70px;
+  }
+`;
 
 const Break = styled.div`
   position: relative;
@@ -37,48 +43,50 @@ const Break = styled.div`
   }
 `;
 
-const ProjectDialog = ({ projectsData, loadingProjects }) => {
-  const [open, setOpen] = useState(false);
+const MapHider = styled.div`
+  width: calc(100% - 600px);
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 600px;
+  background-color: #000;
+  opacity: 0.6;
+  z-index: 9;
+`;
 
-  const [oldPath, setOldPath] = useState("");
-  const [newPath, setNewPath] = useState("");
+const ProjectDialog = ({
+  viewport,
+  projectsData,
+  loadingProjects,
+  dataFinalMap,
+}) => {
+  const { t } = useTranslation();
   const [path, setPath] = useState("");
-  const [order, setOrder] = useState(1);
+  const [order, setOrder] = useState(0);
   const [dropdown, setDropdown] = useState("newest");
 
-  const openProject = useSelector((state) => state.UI.openProject);
+  const openProjectRoom = useSelector((state) => state.UI.openProjectRoom);
+
   const project = useSelector((state) => state.data.project);
+  const projects = useSelector((state) => state.data.projects);
+
   const dispatch = useDispatch();
-  const loading = useSelector((state) => state.UI.loading);
+  const loading = useSelector((state) => state.data.loading);
   const mapBounds = useSelector((state) => state.data.mapBounds);
 
-  const mapLoaded = useSelector((state) => state.data.mapLoaded);
   const initialMapViewport = useSelector(
     (state) => state.data.initialMapViewport
   );
   const selectedTopics = useSelector((state) => state.data.topics);
 
-  const {
-    title,
-    owner,
-    imgUrl,
-    description,
-    startDate,
-    endDate,
-    geoData,
-    weblink,
-    contact,
-    calendar,
-  } = project;
-
   useEffect(() => {
     dispatch(handleTopicSelectorRedux("all"));
     setPath(window.location.pathname);
-  }, [openProject]);
+  }, [openProjectRoom]);
 
   const handleClose = useCallback(() => {
     console.log(initialMapViewport);
-    dispatch(closeProject());
+    dispatch(openProjectRoomFunc(null, false));
     dispatch(clearErrors());
     dispatch(setMapViewport(initialMapViewport));
   }, [dispatch, initialMapViewport]);
@@ -87,7 +95,7 @@ const ProjectDialog = ({ projectsData, loadingProjects }) => {
     (order) => {
       setOrder(order);
 
-      if (order === 2) {
+      if (order === 0) {
         window.scrollTo({
           top: 0,
           left: 0,
@@ -104,7 +112,7 @@ const ProjectDialog = ({ projectsData, loadingProjects }) => {
     setDropdown(value);
   };
 
-  const dataRar = project.screams;
+  const dataRar = project?.screams;
 
   const [searchTerm, setSearchTerm] = useState("");
   const screamsSearched = dataRar?.filter((val) => {
@@ -136,96 +144,121 @@ const ProjectDialog = ({ projectsData, loadingProjects }) => {
       status === "None"
   );
 
-  const dataFinalLength = dataFinal.length;
+  const TabSlicer = project?.calendar ? 3 : 1;
 
   return (
-    openProject && (
-      <React.Fragment>
-        <ProjectHeader
-          imgUrl={imgUrl}
-          title={title}
-          loading={loading}
-          calendar={calendar}
-          order={order}
-          path={path}
+    <React.Fragment>
+      <Header
+        imgUrl={project?.imgUrl}
+        title={project?.title}
+        owner={project?.owner}
+        loading={loading}
+        calendar={project?.calendar}
+        order={order}
+        path={path}
+        handleClose={handleClose}
+        handleClick={handleClick}
+      />
+
+      {isMobileCustom && (order === 1 || order === 3) && (
+        <PostScream
+          loadingProjects={loadingProjects}
+          projectsData={projects}
           project={project}
-          handleClose={handleClose}
-          handleClick={handleClick}
         />
+      )}
+      {!isMobileCustom && order === 0 && <MapHider />}
+      <Wrapper>
+        {!isMobileCustom || (isMobileCustom && order === 0 && <Background />)}
 
-        <div className="projectDialog">
-          {isMobileCustom && order !== 1 ? (
-            <BackgroundMobile />
-          ) : !isMobileCustom ? (
-            <BackgroundDesktop />
-          ) : null}
-          {order === 1 && (
-            <IdeaList
-              type="projectIdeas"
-              loading={loading}
-              order={order}
-              dataFinal={dataFinal}
-              dataFinalLength={dataFinalLength}
-              geoData={geoData}
-              handleDropdown={handleDropdown}
-              projectsData={projectsData}
-              loadingProjects={loadingProjects}
-              project={project}
-              dropdown={dropdown}
-              setSearchTerm={setSearchTerm}
-              searchTerm={searchTerm}
+        {(order === 1 || order === 3) && (
+          <SwipeList
+            swipeListType={order === 1 ? "ideas" : "projectRoomOverview"}
+            type="projectIdeas"
+            tabLabels={ProjectRoomTabData.map((item) => item.text).slice(
+              0,
+              TabSlicer
+            )}
+            loading={loading}
+            order={order}
+            dataFinal={dataFinal}
+            geoData={project?.geoData}
+            viewport={viewport}
+            handleDropdown={handleDropdown}
+            dropdown={dropdown}
+            projectsData={projectsData}
+            loadingProjects={loadingProjects}
+            dataFinalMap={dataFinalMap}
+            setSearchTerm={setSearchTerm}
+            searchTerm={searchTerm}
+            handleClick={handleClick}
+          />
+        )}
+        {order === 0 && (
+          <div
+            style={{
+              overflow: "scroll",
+              height: "100vh",
+              pointerEvents: "all",
+            }}
+          >
+            <SubmitButton
+              text={t("showIdeas")}
+              zIndex="9"
+              backgroundColor={"#353535"}
+              textColor={"white"}
+              position="fixed"
+              bottom={"10px"}
+              left={"0"}
+              marginLeft={isMobileCustom ? "50%" : "400px"}
+              handleButtonClick={() => handleClick(1)}
             />
-          )}
-          {order === 2 && (
-            <div
-              style={{
-                overflow: "scroll",
-                height: "100vh",
-                pointerEvents: "all",
-              }}
+
+            {!isMobileCustom && (
+              <SubmitButton
+                text={t("showIdeas")}
+                zIndex="9"
+                backgroundColor={"white"}
+                textColor={"#353535"}
+                position="fixed"
+                bottom={"50%"}
+                left={"calc(600px + ((100% - 600px)/2)) "}
+                marginLeft={isMobileCustom ? "50%" : "0"}
+                handleButtonClick={() => handleClick(1)}
+              />
+            )}
+
+            <ProjectInfo
+              description={project?.description}
+              weblink={project?.weblink}
+              contact={project?.contact}
+              startDate={project?.startDate}
+              endDate={project?.endDate}
+              owner={project?.owner}
+            />
+          </div>
+        )}
+        {/* {order === 2 && (
+          <React.Fragment>
+            <Break />
+
+            <MainAnimations
+              transition="0.5s"
+              display="block"
+              paddingBottom="2em"
+              height="100%"
+              position={document.body.clientWidth > 768 && "fixed"}
+              top={document.body.clientWidth > 768 && "100px"}
             >
-              <Break />
-
-              <MainAnimations
-                transition="0.5s"
-                display="block"
-                paddingBottom="2em"
-                height="100%"
-              >
-                <ProjectInfo
-                  description={description}
-                  weblink={weblink}
-                  contact={contact}
-                  startDate={startDate}
-                  endDate={endDate}
-                  owner={owner}
-                />
-                <br />
-              </MainAnimations>
-            </div>
-          )}
-          {order === 3 && (
-            <React.Fragment>
-              <Break />
-
-              <MainAnimations
-                transition="0.5s"
-                display="block"
-                paddingBottom="2em"
-                height="100%"
-                position={document.body.clientWidth > 768 && "fixed"}
-                top={document.body.clientWidth > 768 && "100px"}
-              >
-                <CalendarComponent
-                  projectScreams={project.screams}
-                  handleClick={handleClick}
-                ></CalendarComponent>
-              </MainAnimations>
-            </React.Fragment>
-          )}
-        </div>
-      </React.Fragment>
-    )
+              <CalendarComponent
+                projectScreams={project?.screams}
+                handleClick={handleClick}
+              />
+            </MainAnimations>
+          </React.Fragment>
+        )} */}
+      </Wrapper>
+    </React.Fragment>
   );
 };
 

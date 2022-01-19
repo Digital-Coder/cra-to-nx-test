@@ -42,7 +42,7 @@ const Weblink = ({
   handleSaveWeblink,
 }) => {
   return (
-    <MainModal handleButtonClick={() => setWeblinkOpen(false)} zIndex={999}>
+    <MainModal handleButtonClick={() => setWeblinkOpen(false)} zIndex={99999}>
       <h3 className="modal_title">Link hinzufügen</h3>
       <div className="textFields">
         <TextField

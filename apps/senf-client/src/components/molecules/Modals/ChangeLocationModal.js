@@ -131,7 +131,7 @@ const ChangeLocationModal = ({ setChangeLocationModalOpen }) => {
     <MainModal handleButtonClick={() => setChangeLocationModalOpen(false)}>
       <InnerTopWrapper>
         <InnerTopLeftWrapper>
-          <h1>Wähle deinen Standort </h1>
+          <h1>Wähle deine Stadt </h1>
         </InnerTopLeftWrapper>
         <LocationButton onClick={handleLocationCurrent}>
           <img src={Geolocate} width="50" alt="Geolocate" />

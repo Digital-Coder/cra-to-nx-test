@@ -18,7 +18,7 @@ const detectLocation = async () => {
       // console.log(loc.country.name + 'is the location');
       if (!cookies.get("language")) {
         //console.log("no preference");
-        if (loc.country.name === "Germany") {
+        if (loc.country.name === "Germany" || navigator.language === "de-DE") {
           //console.log('finally DEU');
           cookies.set("language", "de", {
             maxAge: 60 * 60 * 24 * 90,

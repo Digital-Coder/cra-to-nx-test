@@ -18,7 +18,7 @@ export function OptionsProjects() {
       return 0;
     })
     .map((project) => ({
-      name: project.project,
+      name: project.projectRoomId,
       label: project.title,
       img: project.imgUrl,
     }));

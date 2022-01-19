@@ -13,7 +13,19 @@ import {
 //SHAREICONS
 import { EmailIcon, FacebookIcon, WhatsappIcon } from "react-share";
 import MainModal from "../../atoms/Layout/MainModal";
+import { StyledH2 } from "../../../styles/GlobalStyle";
+import styled from "styled-components";
 
+const Title = styled.div`
+  width: 100%;
+  text-align: center;
+  margin-left: 0;
+  left: 0;
+  z-index: 999;
+  position: relative;
+  top: 1em;
+  margin-bottom: 0.5em;
+`;
 const styles = {
   functions: {
     zIndex: "999",
@@ -46,23 +58,9 @@ const styles = {
 const ShareModal = ({ classes, path, setShareOpen }) => {
   return (
     <MainModal handleButtonClick={() => setShareOpen(false)}>
-      <p
-        style={{
-          fontFamily: "Futura PT W01-Bold",
-          fontSize: "15pt",
-          color: "#414345",
-          width: "100%",
-          textAlign: "center",
-          marginLeft: "0",
-          left: 0,
-          zIndex: "999",
-          position: "relative",
-          top: "1em",
-          marginBottom: "0.5em",
-        }}
-      >
-        Teile den Link per
-      </p>
+      <Title>
+        <StyledH2 fontWeight="900">Teile den Link per</StyledH2>
+      </Title>
 
       <div className={classes.functions}>
         <WhatsappShareButton url={path} className={classes.shareButtons}>

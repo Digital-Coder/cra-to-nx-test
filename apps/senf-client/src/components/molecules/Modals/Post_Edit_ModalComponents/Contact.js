@@ -40,7 +40,7 @@ const Contact = ({
   handleSaveContact,
 }) => {
   return (
-    <MainModal handleButtonClick={() => setContactOpen(false)} zIndex={999}>
+    <MainModal handleButtonClick={() => setContactOpen(false)} zIndex={999999}>
       <h3 className="modal_title">Kontaktdaten öffentlich zeigen</h3>
       <div className="textFields">
         <TextField

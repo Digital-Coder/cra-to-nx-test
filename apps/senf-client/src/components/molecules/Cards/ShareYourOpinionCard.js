@@ -7,6 +7,7 @@ import styled from "styled-components";
 import LoginRegistration from "../../organisms/Auth/LoginRegistration";
 import { CustomButton } from "../../atoms/CustomButtons/CustomButton";
 import CommentForm from "../../atoms/Forms/CommentForm";
+import { StyledH2 } from "../../../styles/GlobalStyle";
 
 const Card = styled.div`
   display: flex;
@@ -25,11 +26,6 @@ const InnerWrapper = styled.div`
   text-align: center;
   margin-left: 2.5%;
   padding-bottom: 25px;
-
-  font-family: Futura PT W01 Book;
-  line-height: 1.8;
-  font-size: 14pt;
-  color: #414345;
 `;
 
 const ShareYourOpinionCard = ({ screamId, clicked }) => {
@@ -39,11 +35,11 @@ const ShareYourOpinionCard = ({ screamId, clicked }) => {
     <Card>
       <InnerWrapper>
         {!authenticated && (
-          <span>
+          <StyledH2 fontWeight="900">
             {t("dialogScream_what_do_you_think")} <br />
-          </span>
+          </StyledH2>
         )}
-        <span>{t("dialogScream_opinion")}</span>
+        <StyledH2 fontWeight="900">{t("dialogScream_opinion")}</StyledH2>
 
         {!authenticated ? (
           <CustomButton

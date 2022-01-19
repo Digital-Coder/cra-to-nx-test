@@ -33,16 +33,17 @@ const styles = {
   },
 
   paper: {
-    //backgroundColor: "rgb(0,0,0,0.5)",
+    backgroundColor: "#f8f8f8",
     boxShadow: "none",
     overflow: "hidden",
-    padding: "0",
     height: "auto",
+    padding: "0",
     top: "8em",
     borderRadius: "10px",
   },
 
   paperWeb: {
+    backgroundColor: "#f8f8f8",
     borderRadius: "20px",
     width: "1000px",
     height: "auto",

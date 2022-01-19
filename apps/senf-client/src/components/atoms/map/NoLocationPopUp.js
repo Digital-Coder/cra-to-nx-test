@@ -12,6 +12,7 @@ import { CustomButton } from "../CustomButtons/CustomButton";
 import { isMobileCustom } from "../../../util/customDeviceDetect";
 import { setSwipePositionUp } from "../../../redux/actions/UiActions";
 import { closeScream } from "../../../redux/actions/screamActions";
+import { StyledH2 } from "../../../styles/GlobalStyle";
 
 const NoLocationPopUp = ({ dataNoLocation }) => {
   const { t } = useTranslation();
@@ -94,16 +95,17 @@ const NoLocationPopUp = ({ dataNoLocation }) => {
                 style={{ position: "absolute", top: "10px", left: "10px" }}
                 onClick={() => setOpenNoLocation(false)}
               />
-              <p
+              <StyledH2
+                fontWeight="900"
                 style={{
-                  fontFamily: "Futura PT W01-Bold",
-                  fontSize: "12pt",
                   paddingRight: "2px",
                   paddingLeft: "2px",
+                  marginTop: "10px",
+                  marginBottom: "30px",
                 }}
               >
                 {t("withoutLocation")}
-              </p>
+              </StyledH2>
               <CustomButton
                 text={
                   <Trans

@@ -5,6 +5,7 @@ import React from "react";
 import Geocoder from "react-mapbox-gl-geocoder";
 import { OptionsProjects } from "../../../../data/OptionsProjects";
 import { OptionsTopics } from "../../../../data/OptionsTopics";
+import { StyledH3 } from "../../../../styles/GlobalStyle";
 import { CustomIconButton } from "../../../atoms/CustomButtons/CustomButton";
 import CustomSelect from "../../../atoms/Selects/CustomSelect";
 
@@ -35,7 +36,12 @@ const EditModalMainFields = ({
   };
 
   const MyInput = (props) => (
-    <input {...props} placeholder={scream.locationHeader} id="geocoder" />
+    <input
+      {...props}
+      placeholder={scream.locationHeader}
+      id="geocoder"
+      autocomplete="off"
+    />
   );
   return (
     <div className="textFields">
@@ -45,11 +51,9 @@ const EditModalMainFields = ({
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-
-          fontFamily: "Futura PT W01-Bold",
         }}
       >
-        <span> An: </span>
+        <StyledH3>An: </StyledH3>
         <CustomSelect
           name={"project"}
           value={project}
@@ -70,7 +74,7 @@ const EditModalMainFields = ({
         className="geocoder-edit"
         inputComponent={MyInput}
         updateInputOnSelect
-      ></Geocoder>
+      />
 
       <TextField
         id="title"
@@ -114,7 +118,7 @@ const EditModalMainFields = ({
           alignItems: "center",
         }}
       >
-        <span> Thema:</span>
+        <StyledH3> Thema:</StyledH3>
 
         <CustomSelect
           name={"topic"}

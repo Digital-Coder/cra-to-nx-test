@@ -22,8 +22,7 @@ import {
 } from "../../redux/actions/screamActions";
 import {
   getProjects,
-  openProjectFunc,
-  closeProject,
+  openProjectRoomFunc,
 } from "../../redux/actions/projectActions";
 
 import {
@@ -37,55 +36,93 @@ import { handleTopicSelectorRedux } from "../../redux/actions/UiActions";
 import InsightsPage from "../organisms/SubPages/InsightsPage";
 import DesktopSidebar from "../molecules/Navigation/DesktopSidebar";
 import Topbar from "../molecules/Navigation/Topbar";
-import MapDesktop from "../atoms/map/MapDesktop";
-import IdeaList from "../organisms/IdeaList/IdeaList";
-import ProjectsPage from "../organisms/SubPages/ProjectsPage";
-import ScreamDialog from "../organisms/Dialogs/ScreamDialog";
+import Map from "../atoms/map/Map";
+import SwipeList from "../organisms/SwipeLists/SwipeList";
+import IdeaDialog from "../organisms/Dialogs/IdeaDialog";
 import ProjectDialog from "../organisms/Dialogs/ProjectDialog";
 import ThanksForTheVote from "../atoms/Backgrounds/ThanksForTheVote";
 import Account from "../organisms/Dialogs/Account";
 import Loader from "../atoms/Backgrounds/Loader";
 import { closeAccountFunc } from "../../redux/actions/accountActions";
 import ErrorBackground from "../atoms/Backgrounds/ErrorBackground";
-import MapMobile from "../atoms/map/MapMobile";
-import TopicFilter from "../molecules/Filters/TopicFilter";
+import TagsFilter from "../molecules/Filters/TagsFilter";
 import PostScream from "../organisms/PostIdea/PostScream";
 import ChangeLocationModal from "../molecules/Modals/ChangeLocationModal";
 import { usePrevious } from "../../hooks/usePrevious";
+import {
+  getOrganizations,
+  openOrganizationFunc,
+} from "../../redux/actions/organizationActions";
+import CreateMainComponent from "../organisms/Create_Organisation_Projectrooms/CreateMainComponent";
+import OrganizationDialog from "../organisms/Dialogs/OrganizationDialog";
+import OrganizationsPage from "../organisms/SubPages/OrganizationsPage";
+import styled from "styled-components";
+import { MenuData } from "../../data/MenuData";
 
+const MainColumnWrapper = styled.div`
+  width: 100vw;
+  height: 100%;
+  margin-top: 0vh;
+  z-index: 90;
+  top: 0;
+  position: fixed;
+  pointer-events: none;
+
+  @media (min-width: 768px) {
+    margin-left: 200px;
+    /* width: 400px; */
+    height: 100vh;
+    overflow-y: scroll;
+    z-index: 90;
+    top: 0;
+    position: fixed;
+    overflow-x: visible;
+  }
+`;
 const Main = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const { screamId } = useParams();
+  const { screamId, projectRoomId, organizationId } = useParams();
   const { cookie_settings } = useSelector((state) => state.data);
-
-  const [zoomBreak, setZoomBreak] = useState(0.6);
-
   const history = useHistory();
   const openInfoPage = useSelector((state) => state.UI.openInfoPage);
   const openScream = useSelector((state) => state.UI.openScream);
-  const openProject = useSelector((state) => state.UI.openProject);
+  const openProjectRoom = useSelector((state) => state.UI.openProjectRoom);
   const openAccount = useSelector((state) => state.UI.openAccount);
-
+  const openOrganization = useSelector((state) => state.UI.openOrganization);
+  const openCreateOrganization = useSelector(
+    (state) => state.UI.openCreateOrganization
+  );
+  const openCreateProjectRoom = useSelector(
+    (state) => state.UI.openCreateProjectRoom
+  );
   const voted = useSelector((state) => state.UI.voted);
-
   const screams = useSelector((state) => state.data.screams);
   const myScreams = useSelector((state) => state.data.myScreams);
 
   const loading = useSelector((state) => state.data.loading);
   const loadingProjects = useSelector((state) => state.data.loadingProjects);
+  const loadingOrganizations = useSelector(
+    (state) => state.data.loadingOrganizations
+  );
+
   const loadingIdea = useSelector((state) => state.data.loadingIdea);
 
   const projects = useSelector((state) => state.data.projects);
   const project = useSelector((state) => state.data.project);
+
+  const organizations = useSelector((state) => state.data.organizations);
+
   const mapBounds = useSelector((state) => state.data.mapBounds);
 
   const mapViewport = useSelector((state) => state.data.mapViewport);
   const selectedTopics = useSelector((state) => state.data.topics);
+  const selectedOrganizationTypes = useSelector(
+    (state) => state.data.organizationTypes
+  );
 
   const [order, setOrder] = useState(1);
-  const [screamIdParam, setScreamIdParam] = useState(null);
-
+  const swipePosition = useSelector((state) => state.UI.swipePosition);
   const [dropdown, setDropdown] = useState("newest");
   const [changeLocationModalOpen, setChangeLocationModalOpen] = useState(false);
 
@@ -114,12 +151,12 @@ const Main = () => {
       };
       dispatch(setInitialMapBounds(bounds));
       dispatch(setMapBounds(bounds));
-      console.log("setMapBounds in Main", bounds);
     }
   }, [mapLoaded, initialMapViewport]);
 
   useEffect(() => {
     if (
+      openProjectRoom &&
       project &&
       project.centerLong !== undefined &&
       mapViewport.latitude !== 0 &&
@@ -138,7 +175,7 @@ const Main = () => {
         dispatch(setMapViewport(projectViewport));
       }, 500);
     }
-  }, [openProject]);
+  }, [project]);
 
   const prevLat = usePrevious({ lat });
 
@@ -167,11 +204,6 @@ const Main = () => {
   }, [lat, long, loadingIdea, openScream]);
 
   useEffect(() => {
-    // if (navigator.userAgent.includes("Instagram") && isAndroid) {
-    //   alert(
-    //     "Bitte schau dir Senf.koeln in deinem Standardbrowser an, falls dir die Seite beschädigt angezeigt wird"
-    //   );
-    // }
     if (
       cookie_settings !== "all" &&
       cookie_settings !== "minimum" &&
@@ -181,50 +213,54 @@ const Main = () => {
       history.push("/intro");
     } else {
       if (mapViewport && mapViewport.latitude !== 0) {
-        dispatch(getScreams(mapViewport)).then(() => {
-          dispatch(getProjects(mapViewport));
+        dispatch(getOrganizations(mapViewport));
+        dispatch(getProjects(mapViewport));
+        dispatch(getScreams(mapViewport));
 
-          if (window.location.pathname === "/projects") {
-            handleClick(2);
-          }
-        });
+        if (window.location.pathname === "/projectRooms") {
+          setOrder(2);
+        } else if (window.location.pathname === "/organizations") {
+          setOrder(3);
+        } else if (window.location.pathname === "/insights") {
+          setOrder(4);
+        } else if (screamId) {
+          setOrder(1);
+          dispatch(openScreamFunc(screamId));
+        } else if (projectRoomId) {
+          setOrder(2);
+          dispatch(openProjectRoomFunc(projectRoomId, true));
+        } else if (organizationId) {
+          setOrder(3);
+          dispatch(openOrganizationFunc(true, organizationId));
+        }
       }
     }
   }, [initialMapViewport]);
 
-  useEffect(() => {
-    if (screamId) {
-      if (screamId.indexOf("_") > 0) {
-        dispatch(openProjectFunc(screamId));
-      } else {
-        dispatch(openScreamFunc(screamId));
-      }
-      setScreamIdParam(screamId);
-    }
-  }, []);
-
   const handleClick = useCallback(
     (order) => {
       setOrder(order);
-
-      setScreamIdParam(null);
-
+      setSearchTerm("");
+      setDropdown("newest");
       dispatch(closeScream());
-      dispatch(closeProject());
-      dispatch(closeAccountFunc());
+      dispatch(openProjectRoomFunc(null, false));
+      dispatch(openOrganizationFunc(null, false));
 
+      dispatch(closeAccountFunc());
       dispatch(handleTopicSelectorRedux("all"));
 
-      if (order === 2) {
-        window.history.pushState(null, null, "/projects");
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth",
-        });
+      if (order === 1) {
+        window.history.pushState(null, null, "/");
       }
-
+      if (order === 2) {
+        window.history.pushState(null, null, "/projectRooms");
+      }
       if (order === 3) {
+        window.history.pushState(null, null, "/organizations");
+      }
+      if (order === 4) {
+        window.history.pushState(null, null, "/insights");
+
         window.scrollTo({
           top: 0,
           left: 0,
@@ -239,54 +275,36 @@ const Main = () => {
     setDropdown(value);
   }, []);
 
-  useEffect(() => {
-    if (openScream) {
-      setTimeout(() => {
-        if (mapViewport.zoom > 15) {
-          setZoomBreak(2);
-        } else if (mapViewport.zoom > 11.5) {
-          setZoomBreak(1);
-        } else {
-          setZoomBreak(0.6);
-        }
-      }, 1000);
-    }
-  }, [openScream, mapViewport]);
-
   const _onViewportChange = useCallback(
     (viewport) => {
       dispatch(setMapViewport(viewport));
-      if (viewport.zoom > 15) {
-        setZoomBreak(2);
-      } else if (viewport.zoom > 11.5) {
-        setZoomBreak(1);
-      } else {
-        setZoomBreak(0.6);
-      }
 
-      if (isMobileCustom) {
-        const map = mapRef.current.getMap();
-        var canvas = map.getCanvas(),
-          w = canvas.width,
-          h = canvas.height,
-          NW = map.unproject([0, 0]).toArray(),
-          SE = map.unproject([w, h]).toArray();
-        var boundsRar = [NW, SE];
+      // if (isMobileCustom) {
+      //   const map = mapRef.current.getMap();
+      //   var canvas = map.getCanvas(),
+      //     w = canvas.width,
+      //     h = canvas.height,
+      //     NW = map.unproject([0, 0]).toArray(),
+      //     SE = map.unproject([w, h]).toArray();
+      //   var boundsRar = [NW, SE];
 
-        const bounds = {
-          latitude1: boundsRar[0][1],
-          latitude2: boundsRar[1][1],
-          longitude2: boundsRar[0][0],
-          longitude3: boundsRar[1][0],
-        };
+      //   const bounds = {
+      //     latitude1: boundsRar[0][1],
+      //     latitude2: boundsRar[1][1],
+      //     longitude2: boundsRar[0][0],
+      //     longitude3: boundsRar[1][0],
+      //   };
 
-        dispatch(setMapBounds(bounds));
-      }
+      //   dispatch(setMapBounds(bounds));
+      // }
     },
     [dispatch]
   );
 
   const [searchTerm, setSearchTerm] = useState("");
+
+  //IDEAS
+
   const screamsSearched = useMemo(
     () =>
       screams?.filter((val) => {
@@ -305,28 +323,13 @@ const Main = () => {
     [screams, searchTerm]
   );
 
-  // const sortedScreams =
-  //   dropdown === "newest"
-  //     ? screamsSearched?.sort(function (a, b) {
-  //         if (a.createdAt > b.createdAt) {
-  //           return -1;
-  //         }
-  //         return 0;
-  //       })
-  //     : screamsSearched?.sort(function (a, b) {
-  //         if (a.likeCount > b.likeCount) {
-  //           return -1;
-  //         }
-  //         return 0;
-  //       });
-
-  const dataFinal = useMemo(() => {
-    const sortedScreams =
+  const dataFinalIdeas = useMemo(() => {
+    const sortedIdeas =
       dropdown === "newest"
         ? _.orderBy(screamsSearched, "createdAt", "desc")
         : _.orderBy(screamsSearched, "likeCount", "desc");
 
-    return sortedScreams.filter(
+    return sortedIdeas.filter(
       ({ lat, long, Thema, status }) =>
         selectedTopics.includes(Thema) &&
         lat <= mapBounds?.latitude1 &&
@@ -345,12 +348,10 @@ const Main = () => {
     screamsSearched,
   ]);
 
-  const dataFinalLength = dataFinal.length;
-
   const dataFinalMap = useMemo(
     () =>
-      openProject
-        ? project?.screams.filter(
+      openProjectRoom
+        ? project?.screams?.filter(
             ({ Thema, status }) =>
               selectedTopics.includes(Thema) && status === "None"
           )
@@ -363,116 +364,210 @@ const Main = () => {
             ({ Thema, status }) =>
               selectedTopics.includes(Thema) && status === "None"
           ),
-    [myScreams, openProject, project?.screams, screamsSearched, selectedTopics]
+    [
+      myScreams,
+      openProjectRoom,
+      project?.screams,
+      screamsSearched,
+      selectedTopics,
+    ]
+  );
+
+  //PROJECTROOMS
+
+  // const projectRoomsWithOrganizationType = [];
+
+  // organizations.forEach(({ organizationId, organizationType }) => {
+  //   console.log(projects);
+  //   if (projects.organizationId === organizationId) {
+  //     projectRoomsWithOrganizationType.push(
+  //       projectRoomId.includes(organizationId),
+  //       organizationType
+  //     );
+  //   }
+  // });
+
+  const projectRoomsSearched = useMemo(
+    () =>
+      projects?.filter((val) => {
+        if (searchTerm === "") {
+          return val;
+        } else if (
+          val.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          val.description.toLowerCase().includes(searchTerm.toLowerCase())
+        ) {
+          return val;
+        }
+      }),
+    [projects, searchTerm]
+  );
+
+  const sortedProjectRooms =
+    dropdown === "newest"
+      ? _.orderBy(projectRoomsSearched, "createdAt", "desc")
+      : dropdown === "aToZ"
+      ? _.orderBy(
+          projectRoomsSearched,
+          [(pr) => pr.title.toLowerCase()],
+          ["asc"]
+        )
+      : _.orderBy(
+          projectRoomsSearched,
+          [(pr) => pr.title.toLowerCase()],
+          ["desc"]
+        );
+
+  const dataFinalProjectRooms = useMemo(() => {
+    return sortedProjectRooms.filter(({ organizationType }) =>
+      selectedOrganizationTypes.includes(organizationType)
+    );
+  }, [selectedOrganizationTypes, dropdown, projectRoomsSearched]);
+
+  const dataFinalMapProjects = projects?.filter(
+    ({ status, organizationType }) =>
+      status === "active" &&
+      selectedOrganizationTypes.includes(organizationType)
   );
 
   return (
     <React.Fragment>
       {loading && isMobileCustom && <Loader />}
+
+      {isMobileCustom ? (
+        <Topbar loading={loading} handleClick={handleClick} order={order} />
+      ) : (
+        <DesktopSidebar
+          handleClick={handleClick}
+          order={order}
+          setChangeLocationModalOpen={setChangeLocationModalOpen}
+        />
+      )}
+      <Map
+        order={order}
+        dataFinal={dataFinalMap}
+        loading={loading}
+        loadingProjects={loadingProjects}
+        _onViewportChange={_onViewportChange}
+        openProjectRoom={openProjectRoom}
+        geoData={project && openProjectRoom && project.geoData}
+        mapRef={mapRef}
+        projects={dataFinalMapProjects}
+      />
+
+      {!loading &&
+        !loadingProjects &&
+        isMobileCustom &&
+        !openScream &&
+        (order === 1 || order === 2 || openProjectRoom || openAccount) && (
+          <TagsFilter
+            loading={loading}
+            type={
+              order === 1 || openProjectRoom || openAccount
+                ? "topics"
+                : "organizationType"
+            }
+          />
+        )}
+      {!loading &&
+        !loadingProjects &&
+        isMobileCustom &&
+        !openScream &&
+        !openAccount &&
+        order === 1 && (
+          <PostScream
+            loadingProjects={loadingProjects}
+            projectsData={dataFinalProjectRooms}
+            project={dataFinalProjectRooms}
+          />
+        )}
+
+      {!openInfoPage && (
+        <MainColumnWrapper>
+          {(loading || loadingIdea) && !isMobileCustom && (
+            <Loader left="200px" width="400px" />
+          )}
+
+          {!openProjectRoom &&
+            !openAccount &&
+            !loadingProjects &&
+            !loading &&
+            (order === 1 || order === 2) && (
+              <SwipeList
+                swipeListType={order === 1 ? "ideas" : "projectRoomOverview"}
+                type="standalone"
+                tabLabels={MenuData.map((item) => item.text).slice(0, 2)}
+                loading={order === 1 ? loading : loadingProjects}
+                order={order}
+                dataFinal={order === 1 ? dataFinalIdeas : dataFinalProjectRooms}
+                dataFinalMap={dataFinalMap}
+                viewport={mapViewport}
+                handleDropdown={handleDropdown}
+                projectsData={dataFinalProjectRooms}
+                dropdown={dropdown}
+                setSearchTerm={setSearchTerm}
+                searchTerm={searchTerm}
+                handleClick={handleClick}
+              />
+            )}
+
+          {openProjectRoom && (
+            <ProjectDialog
+              loading={loading}
+              handleClick={handleClick}
+              loadingProjects={loadingProjects}
+              projectsData={dataFinalProjectRooms}
+            />
+          )}
+          {openOrganization && (
+            <OrganizationDialog
+              loading={loading}
+              openOrganization={openOrganization}
+              dataFinalMap={dataFinalMap}
+              handleClick={handleClick}
+              loadingProjects={false}
+              // loadingOrganizations={loadingOrganizations}
+              projectsData={dataFinalProjectRooms}
+            />
+          )}
+
+          {openAccount && <Account dataFinalMap={dataFinalMap} />}
+
+          {!openInfoPage && openScream && <IdeaDialog />}
+        </MainColumnWrapper>
+      )}
+
+      {!openInfoPage &&
+        !openProjectRoom &&
+        !openAccount &&
+        !openOrganization &&
+        order === 3 && <OrganizationsPage handleClick={handleClick} />}
+
+      {!openInfoPage &&
+        !openProjectRoom &&
+        !openAccount &&
+        !openOrganization &&
+        order === 4 && <InsightsPage handleClick={handleClick} />}
+
       <ErrorBackground loading={loading} />
 
       {voted && <ThanksForTheVote />}
-
       {changeLocationModalOpen && (
         <ChangeLocationModal
           setChangeLocationModalOpen={setChangeLocationModalOpen}
         />
       )}
 
-      <Topbar loading={loading} handleClick={handleClick} order={order} />
-      <DesktopSidebar
-        handleClick={handleClick}
-        order={order}
-        setChangeLocationModalOpen={setChangeLocationModalOpen}
-      ></DesktopSidebar>
-      {!isMobileCustom && (
-        <MapDesktop
-          loading={loading}
-          loadingProjects={loadingProjects}
-          dataFinal={dataFinalMap}
-          _onViewportChange={_onViewportChange}
-          zoomBreak={zoomBreak}
-          id="mapDesktop"
-          openProject={openProject}
-          geoData={project && openProject && project.geoData}
-          mapRef={mapRef}
-        ></MapDesktop>
-      )}
-
-      <div
-        style={
-          isMobileCustom &&
-          (order === 1 || openProject || openScream || openAccount)
-            ? { visibility: "visible" }
-            : { visibility: "hidden" }
-        }
-      >
-        <MapMobile
-          dataFinal={dataFinalMap}
-          _onViewportChange={_onViewportChange}
-          zoomBreak={zoomBreak}
-          openProject={openProject}
-          geoData={project && openProject && project.geoData}
-          mapRef={mapRef}
+      {(openCreateProjectRoom || openCreateOrganization) && (
+        <CreateMainComponent
+          type={
+            openCreateProjectRoom
+              ? "projectRoom"
+              : openCreateOrganization
+              ? "organization"
+              : null
+          }
         />
-      </div>
-      {!loading &&
-        !loadingProjects &&
-        isMobileCustom &&
-        (order === 1 || openProject || openScream || openAccount) && (
-          <React.Fragment>
-            <PostScream
-              loadingProjects={loadingProjects}
-              projectsData={projects}
-              project={project}
-            />
-            <TopicFilter loading={loading} />
-          </React.Fragment>
-        )}
-      {!openInfoPage && (
-        <div className="contentWrapper">
-          {loading && !isMobileCustom && <Loader />}
-          <div className="MainBackgroundHome" />
-
-          {!openProject && !openAccount && (
-            <IdeaList
-              type="allIdeas"
-              loading={loading}
-              order={order}
-              dataFinal={dataFinal}
-              dataFinalLength={dataFinalLength}
-              handleDropdown={handleDropdown}
-              projectsData={projects}
-              dropdown={dropdown}
-              setSearchTerm={setSearchTerm}
-              searchTerm={searchTerm}
-            />
-          )}
-
-          {openProject && (
-            <ProjectDialog
-              loading={loading}
-              openProject={openProject}
-              screamIdParam={screamIdParam}
-              handleClick={handleClick}
-              loadingProjects={loadingProjects}
-              projectsData={projects}
-            />
-          )}
-          {openAccount && <Account dataFinalMap={dataFinalMap} />}
-        </div>
       )}
-
-      {!openInfoPage && !openProject && !openAccount && order === 2 && (
-        <ProjectsPage projectsData={projects}></ProjectsPage>
-      )}
-      {!openInfoPage && !openProject && !openAccount && order === 3 && (
-        <div className="contentWrapper_insights">
-          <InsightsPage></InsightsPage>
-        </div>
-      )}
-
-      {!openInfoPage && openScream && <ScreamDialog />}
     </React.Fragment>
   );
 };

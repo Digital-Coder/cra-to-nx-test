@@ -36,6 +36,7 @@ import { CustomButton } from "../../atoms/CustomButtons/CustomButton";
 import ExpandButton from "../../atoms/CustomButtons/ExpandButton";
 import MyButtonStyle from "../../atoms/CustomButtons/MyButtonStyle";
 import MyButton from "../../../util/MyButton";
+import Footer from "../../molecules/Footer/Footer";
 
 const styles = {
   root: {
@@ -217,18 +218,7 @@ const InlineInformationPage = ({ classes }) => {
             handleButtonClick={handleButtonContactClick}
           />
 
-          <span className="footer">
-            <Link to="/impressum">
-              <span className="impressum"> {t("imprint")}</span>
-            </Link>
-            <Link to="/datenschutz">
-              <span className="datenschutz"> | {t("dataPrivacy")} | </span>
-            </Link>
-            <Link to="/agb">
-              <span className="agb"> {t("termsAndConditions")} </span>
-            </Link>
-          </span>
-          <span className="footercopy">{t("infopage_illustrator")}</span>
+          <Footer color="#353535" position="absolute" top="1850px" />
         </div>
       </Dialog>
     </Fragment>

@@ -36,12 +36,7 @@
       top: 23vh;
     }
   
-    .footercopyWeb {
-      top: 20vh;
-      right: 5vw;
-      position: fixed;
-      font-size: 12pt;
-    }
+   
   
     .Gib {
       font-size: 5vw;
@@ -161,10 +156,7 @@
       font-size: 10pt;
     }
   
-    .footercopyWeb {
-      top: 22vh;
-      font-size: 10pt;
-    }
+   
   
     .Gib {
       font-size: 8vw;

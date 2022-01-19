@@ -31,7 +31,7 @@ const styles = {
   },
 
   paper: {
-    //backgroundColor: "rgb(0,0,0,0.5)",
+    backgroundColor: "#f8f8f8",
     boxShadow: "none",
     overflow: "hidden",
     height: "auto",
@@ -41,6 +41,7 @@ const styles = {
   },
 
   paperWeb: {
+    backgroundColor: "#f8f8f8",
     borderRadius: "20px",
     width: "1000px",
     height: "auto",
@@ -55,73 +56,6 @@ const styles = {
     color: "black",
     zIndex: "990",
     padding: 10,
-  },
-
-  expandButton: {
-    position: "absolute",
-    left: "0%",
-    top: "0%",
-    width: "100%",
-    height: "100%",
-    borderRadius: 0,
-    zIndex: 9,
-  },
-  card: {
-    marginTop: "2.5vw",
-    top: "0em",
-    position: "relative",
-    width: "100%",
-    paddingTop: "1em",
-    backgroundColor: "white",
-    height: "auto",
-    paddingBottom: "1em",
-    borderRadius: "10px",
-    overflow: "hidden",
-  },
-
-  title: {
-    fontFamily: "Futura PT W01-Bold",
-    position: "relative",
-    height: "2em",
-    width: "100%",
-    fontSize: "28",
-    textAlign: "center",
-  },
-  subtitle: {
-    fontFamily: "Futura PT W01 Book",
-    position: "relative",
-    height: "auto",
-    width: "100%",
-    maxWidth: "500px",
-    marginLeft: "50%",
-    transform: "translateX(-50%)",
-    fontSize: "20",
-    textAlign: "center",
-  },
-  legendwrapper: {
-    color: "black",
-    zIndex: "1",
-    position: "relative",
-    width: "100%",
-
-    borderRadius: "10px",
-    top: "2vh",
-    paddingLeft: "20px",
-
-    marginBottom: "20px",
-    maxWidth: "500px",
-    marginLeft: "50%",
-    transform: "translateX(-50%)",
-  },
-  plot: {
-    position: "relative",
-    width: "100%",
-  },
-  clickblocker: {
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-    zIndex: "9",
   },
 };
 
@@ -147,11 +81,9 @@ const DistrictsDialog = ({ classes, screams }) => {
         <img src={CloseIcon} width="20px" />
       </MyButton>
 
-      <DialogContent>
-        <React.Suspense fallback={<CircularProgress size={50} thickness={2} />}>
-          <DistrictsGraph classes={classes} screams={screams} />
-        </React.Suspense>
-      </DialogContent>
+      <React.Suspense fallback={<CircularProgress size={50} thickness={2} />}>
+        <DistrictsGraph classes={classes} screams={screams} />
+      </React.Suspense>
     </Dialog>
   ) : (
     <Dialog

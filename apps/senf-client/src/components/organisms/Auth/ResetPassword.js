@@ -22,6 +22,7 @@ import Dialog from "@material-ui/core/Dialog";
 import Slide from "@material-ui/core/Slide";
 import TextField from "@material-ui/core/TextField";
 import { CustomIconButton } from "../../atoms/CustomButtons/CustomButton";
+import { SubmitButton } from "../../atoms/CustomButtons/SubmitButton";
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -293,19 +294,17 @@ class ResetPassword extends Component {
                   onChange={this.handleChange}
                 />
               </div>
-
-              <div
-                className={
-                  isAndroid ? "buttonSignWrapperAndroid" : "buttonSignWrapper"
-                }
-              >
-                <button
-                  className="buttonWide buttonSign"
-                  onClick={this.handleSubmit}
-                >
-                  Zurücksetzen
-                </button>
-              </div>
+              <SubmitButton
+                text="Zurücksetzen"
+                zIndex="9"
+                backgroundColor="white"
+                textColor="#353535"
+                position="relative"
+                top={document.body.clientWidth > 768 ? "100px" : "70px"}
+                left="0"
+                loading={loading}
+                handleButtonClick={this.handleSubmit}
+              />
 
               {loading && (
                 <CircularProgress

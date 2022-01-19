@@ -7,37 +7,38 @@ import {
   NoMoreMainContent,
   NoMoreMyContent,
   NoMoreProjectsContent,
+  NoMoreProjectRooms,
 } from "./NoMoreContent";
 import { isMobileCustom } from "../../../util/customDeviceDetect";
 
 import InfiniteScroll from "react-infinite-scroller";
 import styled from "styled-components";
 import { usePrevious } from "../../../hooks/usePrevious";
+import { ProjectCard } from "../Cards/ProjectCard";
+import { useTranslation } from "react-i18next";
+import { NoMore } from "./styles/sharedStyles";
 
-const Wrapper = styled.div`
-  height: 100vh;
-  overflow-y: scroll;
-  overflow-x: hidden;
+const NoIdeasYet = styled.div`
   position: relative;
-  width: 100%;
-  top: 0;
-  pointer-events: all;
-  animation: cardanimation 0.8s ease-in-out;
-
-  @media (min-width: 768px) {
-    width: 400px;
-    top: 110px;
-    position: relative;
-  }
+  font-size: 15pt;
+  color: #414345;
+  width: 80%;
+  margin-left: 10%;
+  text-align: center;
 `;
+
 const List = ({
+  swipeListType,
   type,
+  order,
+  handleClick,
   loading,
   dropdown,
   dataFinal,
-  dataFinalLength,
   projectsData,
 }) => {
+  const dataFinalLength = dataFinal.length;
+  const { t } = useTranslation();
   const mapBounds = useSelector((state) => state.data.mapBounds);
   const prevdataFinalLength = usePrevious({ dataFinalLength });
   const prevDropdown = usePrevious({ dropdown });
@@ -50,6 +51,7 @@ const List = ({
       (dropdown && prevDropdown && prevDropdown.dropdown !== dropdown)
     ) {
       const element = document.getElementById("List");
+
       element?.scrollTo({
         top: 0,
         left: 0,
@@ -67,23 +69,34 @@ const List = ({
     var items = [];
     if (dataFinalLength !== 0) {
       for (var i = 0; i < listItems; i++) {
-        items.push(
-          dataFinal[i]?.screamId && (
-            <IdeaCard
-              loading={loading}
-              key={dataFinal[i]?.screamId}
-              title={dataFinal[i]?.title}
-              body={dataFinal[i]?.body}
-              screamId={dataFinal[i]?.screamId}
-              likeCount={dataFinal[i]?.likeCount}
-              commentCount={dataFinal[i]?.commentCount}
-              Stadtteil={dataFinal[i]?.Stadtteil}
-              project={dataFinal[i]?.project}
-              color={dataFinal[i]?.color}
-              projectsData={projectsData}
-            />
-          )
-        );
+        if (swipeListType === "projectRoomOverview") {
+          items.push(
+            dataFinal[i]?.projectRoomId && (
+              <ProjectCard
+                key={dataFinal[i]?.projectRoomId}
+                project={dataFinal[i]}
+              />
+            )
+          );
+        } else {
+          items.push(
+            dataFinal[i]?.screamId && (
+              <IdeaCard
+                loading={loading}
+                key={dataFinal[i]?.screamId}
+                title={dataFinal[i]?.title}
+                body={dataFinal[i]?.body}
+                screamId={dataFinal[i]?.screamId}
+                likeCount={dataFinal[i]?.likeCount}
+                commentCount={dataFinal[i]?.commentCount}
+                Stadtteil={dataFinal[i]?.Stadtteil}
+                project={dataFinal[i]?.project}
+                color={dataFinal[i]?.color}
+                projectsData={projectsData}
+              />
+            )
+          );
+        }
       }
       return items;
     }
@@ -95,7 +108,6 @@ const List = ({
     } else {
       setTimeout(() => {
         setListItems(listItems + itemsPerPage);
-        //(posts.length-listItems)>10? setlistItems(listItems + 10):setlistItems(listItems+15);
       }, 100);
     }
   };
@@ -103,8 +115,9 @@ const List = ({
   return (
     !loading &&
     mapBounds && (
-      <Wrapper id="List">
+      <React.Fragment>
         <InfiniteScroll
+          id="List"
           loadMore={() => loadMore()}
           hasMore={hasMoreItems}
           // loader={<SkeletonCard dataFinalLength={dataFinalLength === 0} />}
@@ -113,7 +126,8 @@ const List = ({
           {showItems(dataFinal)}
         </InfiniteScroll>
 
-        {!hasMoreItems | (dataFinalLength === 0) ? (
+        {swipeListType === "ideas" &&
+        !hasMoreItems | (dataFinalLength === 0) ? (
           <React.Fragment>
             {type === "myIdeas" ? (
               <NoMoreMyContent dataFinalLength={dataFinalLength} />
@@ -123,13 +137,21 @@ const List = ({
               <NoMoreMainContent dataFinalLength={dataFinalLength} />
             )}
           </React.Fragment>
+        ) : !hasMoreItems | (dataFinalLength === 0) ? (
+          <NoMoreProjectRooms dataFinalLength={dataFinalLength} />
         ) : null}
-        {isMobileCustom ? (
-          <div style={{ height: "70%" }} />
-        ) : (
-          <div style={{ height: "500px" }} />
+
+        {swipeListType === "projectRoomOverview" && loading && (
+          <NoIdeasYet>{t("projectrooms_loader")}</NoIdeasYet>
         )}
-      </Wrapper>
+        {/* {swipeListType === "projectRoomOverview" &&
+          !loading &&
+          dataFinal.length === 0 && (
+            <NoIdeasYet>{t("projectrooms_loading_error")}</NoIdeasYet>
+          )} */}
+
+        <div style={isMobileCustom ? { height: "70%" } : { height: "500px" }} />
+      </React.Fragment>
     )
   );
 };

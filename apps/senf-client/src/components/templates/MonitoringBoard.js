@@ -84,8 +84,6 @@ const MonitoringBoard = () => {
   const handleClick = (order) => {
     setOrder(order);
 
-    // setScreamIdParam(null);
-
     // dispatch(closeScream());
     // dispatch(closeProject());
     // dispatch(closeAccountFunc());

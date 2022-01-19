@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { memo } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import SortingSelect from "../../atoms/Selects/SortingSelect";
 import styled from "styled-components";
@@ -9,9 +9,14 @@ import { isMobileCustom } from "../../../util/customDeviceDetect";
 import { useTranslation } from "react-i18next";
 
 //Icons
-import SearchIcon from "../../../images/icons/search.png";
+import SearchIcon from "../../../images/icons/search-black.png";
+import AddIcon from "../../../images/icons/plus_white.png";
+
+//Components
 import { setSwipePositionUp } from "../../../redux/actions/UiActions";
 import Searchbar from "../../atoms/Searchbar/Searchbar";
+import { openCreateProjectRoomFunc } from "../../../redux/actions/projectActions";
+import { stateCreateOrganizationsFunc } from "../../../redux/actions/organizationActions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,7 +31,7 @@ const Wrapper = styled.div`
   flex-flow: wrap;
   @media (min-width: 768px) {
     position: fixed;
-    top: ${(props) => (props.type === "allIdeas" ? "30px" : "100px")};
+    top: ${(props) => (props.type === "standalone" ? "30px" : "110px")};
     z-index: 99;
     width: 380px;
     padding: 10px 10px 20px 10px;
@@ -49,16 +54,6 @@ const Wrapper = styled.div`
   }
 `;
 
-const Bar = styled.div`
-  position: absolute;
-  width: 40px;
-  height: 4px;
-  border-radius: 10px;
-  margin-left: calc(47.5% - 20px);
-  background-color: white;
-  top: 10px;
-`;
-
 const Background = styled.div`
   width: 100%;
   height: 100%;
@@ -68,16 +63,26 @@ const Background = styled.div`
   pointer-events: auto;
 `;
 
-const Title = styled.h2`
-  font-family: PlayfairDisplay-Bold;
-  font-size: 22px;
-  font-weight: 100;
-  margin-left: 2.5%;
-  color: white;
-  align-self: center;
+const SearchIconButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: transparent;
+  pointer-events: auto;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: ${(props) =>
+    props.searchTerm !== "" && !props.searchOpen
+      ? "1px solid white"
+      : "none"}; ;
 `;
 
-const SearchIconButton = styled.button`
+const AddIconButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,18 +91,16 @@ const SearchIconButton = styled.button`
   border-radius: 10px;
   background-color: #f6cb2f;
   pointer-events: auto;
-  margin-left: auto;
-  margin-right: 10px;
-  border: ${(props) =>
-    props.searchTerm !== "" && !props.searchOpen
-      ? "1px solid white"
-      : "none"}; ;
+  margin-left: 5px;
+  margin-right: 0px;
 `;
 
 const Toolbar = ({
+  swipeListType,
   loading,
   type,
   handleDropdown,
+  dropdown,
   handleClickSwipe,
   dataFinalLength,
   setSearchOpen,
@@ -107,6 +110,7 @@ const Toolbar = ({
 }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   const setSearch = () => {
     setSearchOpen(!searchOpen);
@@ -115,13 +119,62 @@ const Toolbar = ({
       dispatch(setSwipePositionUp());
     }
   };
+
+  const openCreateProjectRoom = () => {
+    dispatch(openCreateProjectRoomFunc(true));
+  };
+
+  const openRequestProjectRoom = () => {
+    var link =
+      "mailto:dein@senf.koeln" + "?subject=" + escape("Projektraum-Anfrage");
+    // +
+    // "&body=" +
+    // escape(
+    //   "Projektraum-Titel:" +
+    //     "\n" +
+    //     "\n" +
+    //     "Worum geht's:" +
+    //     "\n" +
+    //     "\n" +
+    //     "Projektzeitraum:" +
+    //     "\n" +
+    //     "\n" +
+    //     "Logo + Cover-Bild:"
+    // );
+    window.location.href = link;
+  };
+
+  const openCreateOrganization = () => {
+    dispatch(stateCreateOrganizationsFunc(true));
+  };
+
   return (
     !loading && (
       <Wrapper type={type} searchOpen={searchOpen}>
-        {isMobileCustom && <Bar />}
-        <Title>
-          {dataFinalLength} {dataFinalLength === 1 ? t("idea") : t("ideas")}
-        </Title>
+        {swipeListType === "ideas" ? (
+          <SortingSelect
+            label={t("ideas")}
+            handleDropdown={handleDropdown}
+            dropdown={dropdown}
+          />
+        ) : swipeListType === "projectRoomOverview" ? (
+          <SortingSelect
+            label={t("projectRooms")}
+            handleDropdown={handleDropdown}
+            dropdown={dropdown}
+            placing="basicSorting"
+          />
+        ) : (
+          swipeListType === "organizationOverview" && (
+            <SortingSelect
+              label={t("organizations")}
+              handleDropdown={handleDropdown}
+              dropdown={dropdown}
+              placing="basicSorting"
+            />
+          )
+        )}
+
         <SearchIconButton
           onClick={setSearch}
           searchTerm={searchTerm}
@@ -134,7 +187,24 @@ const Toolbar = ({
             alt=""
           />
         </SearchIconButton>
-        <SortingSelect handleDropdown={handleDropdown} />{" "}
+        {swipeListType === "projectRoomOverview" ? (
+          <AddIconButton
+            onClick={
+              user?.organizationId?.length
+                ? openCreateProjectRoom
+                : openRequestProjectRoom
+            }
+          >
+            <img src={AddIcon} width="20px" style={{ marginLeft: "auto" }} />
+          </AddIconButton>
+        ) : (
+          swipeListType === "organizationOverview" && (
+            <AddIconButton onClick={openCreateOrganization}>
+              <img src={AddIcon} width="20px" style={{ marginLeft: "auto" }} />
+            </AddIconButton>
+          )
+        )}
+
         {isMobileCustom && <Background onClick={handleClickSwipe} />}
         {searchOpen && (
           <Searchbar

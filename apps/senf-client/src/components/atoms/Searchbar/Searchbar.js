@@ -6,11 +6,11 @@ import styled from "styled-components";
 const Input = styled.input`
   -webkit-appearance: none;
   display: block;
-  width: 100%;
+
+  width: calc(100% - 28px);
   padding: 14px 14px 12px;
   height: 26px;
-  font-family: Futura PT W01 Book;
-  font-size: 18px;
+
   font-weight: 400;
   line-height: 1.5;
   color: #353535;

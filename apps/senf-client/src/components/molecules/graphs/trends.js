@@ -23,8 +23,8 @@ const PlotlyComponent = createPlotlyComponent(Plotly);
 // let PlotlyComponent
 // import(/* webpackChunkName: "Trends.js Graph plotly" */'plotly.js/dist/plotly-cartesian.min').then(plotly=>{
 //   PlotlyComponent = createPlotlyComponent(plotly);
-  
-// }) 
+
+// })
 
 const styles = {
   root: {
@@ -78,35 +78,6 @@ const styles = {
     paddingBottom: "3em",
     borderRadius: "10px",
     overflow: "hidden",
-  },
-  title: {
-    fontFamily: "Futura PT W01-Bold",
-    position: "relative",
-    height: "1em",
-    width: "100%",
-    fontSize: "28",
-    textAlign: "center",
-  },
-  subtitle: {
-    fontFamily: "Futura PT W01 Book",
-    position: "relative",
-    height: "auto",
-    width: "100%",
-    fontSize: "20",
-    textAlign: "center",
-  },
-
-  plot: {
-    top: "5vh",
-    position: "relative",
-    width: "100%",
-    zIndex: 999,
-  },
-  clickblocker: {
-    width: "100%",
-    height: "100%",
-    position: "absolute",
-    zIndex: "9",
   },
 };
 
@@ -275,7 +246,6 @@ export class Trends extends Component {
       showlegend: false,
 
       template: "...",
-      font: { color: "#414345", family: "Futura PT W01 Book", size: 14 },
       //   autosize: true,
       //   height: 300,
       //   hovermode: false,
@@ -334,25 +304,24 @@ export class Trends extends Component {
     };
 
     const plot =
-      PlotlyComponent !== undefined  ? (
-     <PlotlyComponent
-       className={classes.plot}
-       data={data}
-       layout={layout}
-       config={config}
-     />
-   
-   ) : (
-    <div style={{display: 'flex', justifyContent: 'center'}}>
-     <CircularProgress size={50} thickness={2} />
-     </div>
-   );
+      PlotlyComponent !== undefined ? (
+        <PlotlyComponent
+          className={classes.plot}
+          data={data}
+          layout={layout}
+          config={config}
+        />
+      ) : (
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <CircularProgress size={50} thickness={2} />
+        </div>
+      );
     return (
       <div className={classes.card}>
         {/* <div className={classes.clickblocker}></div> */}
         <div className={classes.title}>Themen-Trends</div>
 
-{plot}
+        {plot}
       </div>
     );
   }

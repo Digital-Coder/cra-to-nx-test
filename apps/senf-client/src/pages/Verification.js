@@ -20,7 +20,19 @@ import LoginRegistration from "../components/organisms/Auth/LoginRegistration";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { CustomIconButton } from "../components/atoms/CustomButtons/CustomButton";
 import { useHistory } from "react-router-dom";
+import { StyledH3 } from "../styles/GlobalStyle";
+import styled from "styled-components";
+import { SubmitButton } from "../components/atoms/CustomButtons/SubmitButton";
 
+const TextWrapper = styled.div`
+  position: relative;
+  width: 80%;
+  max-width: 500px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 3vh;
+  height: 100%;
+`;
 const styles = {
   question: {
     fontSize: "14pt",
@@ -68,19 +80,28 @@ const Verification = ({ classes }) => {
             className="VerifyHeader"
             alt="Fast_geschafft_headline"
           />
+          <TextWrapper>
+            <StyledH3 textAlign="center">
+              Du bekommst in den nächsten Minuten von uns eine E-Mail. <br />{" "}
+              &#40;
+              {history.location.state && history.location.state.email}
+              , evtl. im Junk-Ordner&#41; <br />
+              <br /> Bitte öffne sie und klicke auf den Link um deinen Account
+              zu verifizieren. Danach kannst du dich anmelden!
+            </StyledH3>
+          </TextWrapper>
 
-          <div className="VerifySubHeader">
-            Du bekommst in den nächsten Minuten von uns eine E-Mail. <br />{" "}
-            &#40;
-            {history.location.state && history.location.state.email}
-            , evtl. im Junk-Ordner&#41; <br />
-            <br /> Bitte öffne sie und klicke auf den Link um deinen Account zu
-            verifizieren. Danach kannst du dich anmelden!
-          </div>
+          <SubmitButton
+            text="Zur Anmeldung"
+            backgroundColor="#353535"
+            textColor="white"
+            position="relative"
+            top="20px"
+            left="0"
+            zIndex="0"
+          />
 
-          <button className="buttonWide buttonVerify">
-            Zur Anmeldung <LoginRegistration />
-          </button>
+          <LoginRegistration />
 
           <img src={Celebrate} className="CelebrateVerify" alt="EndImage" />
 

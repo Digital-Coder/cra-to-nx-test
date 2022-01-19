@@ -6,7 +6,10 @@
   "imprint": "Impressum",
   "accept": "Akzeptieren",
   "send": "Senden",
+  "lets_go": "Los geht's",
   "next": "Weiter",
+  "back": "Zurück",
+  "save": "Speichern",
   "to": "An:",
   "details": "Details",
   "monitoring": "Monitoring",
@@ -21,16 +24,23 @@
   "withoutLocationShort": "Ohne Ort",
   "confirmLocation": "Ort bestätigen",
 
-  "newest": "neuste",
-  "hottest": "schärfste",
+  "newest": "Neuste",
+  "hottest": "Schärfste",
+  "aToZ": "A > Z",
+  "zToA": "Z > A",
 
-  "noMoreIdeas": "Keine weiteren Ideen",
+  "noMoreIdeas": "Keine weiteren Ideen im ausgewählten Kartenbereich",
+  "noMoreProjectRooms": "Keine weiteren Projekträume im ausgewählten Kartenbereich",
   "noContentIdeas": "Mit den ausgewählten Filtern findest du noch keine Ideen.",
   "noSharedIdeas": "Du hast bisher noch keine Idee geteilt. Es gibt noch so viele Ideen da draußen & du bist kreativ! Teile deine Ideen!",
   "noIdeasWithFilter": "Zu den ausgewählten Filtern hast du noch keine Ideen geteilt.",
   "noProjectIdeas": "Zu diesem Projektraum wurde bisher noch keine Idee geteilt. Sei die/der erste und teile deine Idee!",
   "idea": "Idee",
   "ideas": "Ideen",
+  "projectRoom": "Projektraum",
+  "projectRooms": "Projekträume",
+  "organization": "Organsation",
+  "organizations": "Organsationen",
   "opinion": "Was ist deine Meinung ?",
   "comment": "Kommentar",
   "comments": "Kommentare",
@@ -152,6 +162,17 @@
 
   "account_contact": "Wir freuen uns über deine Beteiligung! Gefällt dir Senf? Stört dich etwas? Melde dich gerne und sag uns, was dir auffällt!",
 
-  "projectRoom_name": "Projektraum-Name",
-  "projectRoom_description": "Beschreibungstext (max. 1000 Zeichen)"
+  "restart": "Neustarten",
+  "continue_creation": "Erstellung fortsetzen",
+  "projectRoom_title": "Projektraum-Name",
+  "projectRoom_description": "Beschreibungstext (max. 1000 Zeichen)",
+
+  "organizationTypes_all": "Alle Organisationen",
+  "organizationTypes_association": "Vereine",
+  "organizationTypes_initiatives": "Initiativen",
+  "organizationTypes_planners": "Planungsbüros",
+  "organizationTypes_politics": "Politik",
+  "organizationTypes_administration": "Stadtverwaltung",
+  "organizationTypes_press": "Presse",
+  "organizationTypes_other": "Sonstige"
 }

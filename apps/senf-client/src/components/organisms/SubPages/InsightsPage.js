@@ -20,19 +20,13 @@ import MainAnimations from "../../atoms/Backgrounds/MainAnimations";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import ExpandButton from "../../atoms/CustomButtons/ExpandButton";
+import { Wrapper } from "./styles/sharedStyles";
+import { CustomIconButton } from "../../atoms/CustomButtons/CustomButton";
+import { isMobileCustom } from "../../../util/customDeviceDetect";
+import { StyledH2 } from "../../../styles/GlobalStyle";
+import Tabs from "../../atoms/Tabs/Tabs";
+import { MenuData } from "../../../data/MenuData";
 
-const Wrapper = styled.div`
-  margin-top: 90px;
-  @media (min-width: 768px) {
-    margin-left: 200px;
-    width: 400px;
-    transition: 0.5s;
-    position: fixed;
-    top: 50px;
-    margin-top: 0px;
-    left: 0;
-  }
-`;
 const CoverWrapper = styled.div`
   margin-left: 2.5%;
   width: 95%;
@@ -52,7 +46,7 @@ const Covers = styled.div`
   position: relative;
   animation: ${(props) => props.animation};
   overflow: hidden;
-  border-radius: 20px;
+  border-radius: 25px;
   background-color: white;
   margin: 0;
   padding: 0;
@@ -61,18 +55,13 @@ const CoverImg = styled.img`
   width: 100%;
   height: 100%;
 `;
-const CoverTitle = styled.span`
-  font-size: 18px;
-  /* font-family: PlayfairDisplay-Bold; */
-  font-family: Futura PT W01-Bold;
-  color: #353535;
-  text-align: center;
+const CoverTitle = styled.div`
   width: 100%;
   position: absolute;
   top: 30px;
 `;
 
-const InsightsPage = () => {
+const InsightsPage = ({ handleClick }) => {
   const { t } = useTranslation();
   const db = firebase.firestore();
 
@@ -140,6 +129,24 @@ const InsightsPage = () => {
   };
   return (
     <Wrapper>
+      {isMobileCustom && (
+        <CustomIconButton
+          name="ArrowLeft"
+          position="relative"
+          margin="10px"
+          backgroundColor="#FFF0BC"
+          handleButtonClick={() => handleClick(2)}
+        />
+      )}
+
+      <Tabs
+        loading={false}
+        handleClick={handleClick}
+        order={1}
+        tabLabels={MenuData.map((item) => item.text).slice(3, 4)}
+        marginTop={"20px"}
+        marginBottom={"0px"}
+      />
       <MainAnimations transition="0.5s" display="block" paddingBottom="2em">
         <Keyindicators
           screams={screams}
@@ -148,24 +155,40 @@ const InsightsPage = () => {
         />
         <CoverWrapper>
           <Covers animation="coverAnimation 0.5s ease-in-out">
-            <CoverTitle>{t("topics")}</CoverTitle>
+            <CoverTitle>
+              <StyledH2 fontWeight="900" textAlign="center">
+                {t("topics")}
+              </StyledH2>
+            </CoverTitle>
             <CoverImg src={Themencover} alt="insights-topic-cover" />
             <ThemenDialog screams={screams} />
           </Covers>
 
           <Covers animation="coverAnimation 0.75s ease-in-out">
-            <CoverTitle>{t("districts")}</CoverTitle>
+            <CoverTitle>
+              <StyledH2 fontWeight="900" textAlign="center">
+                {t("districts")}
+              </StyledH2>
+            </CoverTitle>
             <CoverImg src={DistrictsCover} alt="insights-districts-cover" />
             <DistrictsDialog screams={screams} />
           </Covers>
 
           <Covers animation="coverAnimation 1.25s ease-in-out">
-            <CoverTitle>{t("agegroups")}</CoverTitle>
+            <CoverTitle>
+              <StyledH2 fontWeight="900" textAlign="center">
+                {t("agegroups")}
+              </StyledH2>
+            </CoverTitle>
             <CoverImg src={AgegroupsCover} alt="insights-agegroups-cover" />
             <AgegroupDialog screams={screams} likes={likes} />
           </Covers>
           <Covers animation="coverAnimation 1s ease-in-out">
-            <CoverTitle>{t("toolbox")}</CoverTitle>
+            <CoverTitle>
+              <StyledH2 fontWeight="900" textAlign="center">
+                {t("toolbox")}
+              </StyledH2>
+            </CoverTitle>
             <CoverImg src={KeywordsCover} alt="insights-keywords-cover" />
             <ExpandButton handleButtonClick={() => handleLink()} />
             {/* <WordcloudDialog /> */}

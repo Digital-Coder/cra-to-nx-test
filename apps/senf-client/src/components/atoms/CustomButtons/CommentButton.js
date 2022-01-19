@@ -17,10 +17,10 @@ const CommentButton = ({ handleButtonClick }) => {
   const commentButton = !user.authenticated ? (
     <CustomIconButton
       name="Chat"
-      iconWidth="80%"
+      iconWidth="23px"
       position="relative"
       margin="0"
-      left="calc(50% - 25px)"
+      left="0"
       shadow={false}
       backgroundColor={"transparent"}
       handleButtonClick={() => console.log("not logged in")}
@@ -30,10 +30,10 @@ const CommentButton = ({ handleButtonClick }) => {
   ) : (
     <CustomIconButton
       name="Chat"
-      iconWidth="80%"
+      iconWidth="23px"
       position="relative"
       margin="0"
-      left="calc(50% - 25px)"
+      left="0"
       shadow={false}
       backgroundColor={"transparent"}
       handleButtonClick={handleButtonClick}

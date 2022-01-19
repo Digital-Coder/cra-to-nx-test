@@ -1,0 +1,178 @@
+.mapboxgl-ctrl-logo {
+  pointer-events: none;
+  display: none;
+  opacity: 0;
+}
+
+#drawMapPreview .mapboxgl-ctrl {
+  display: none;
+}
+
+#drawMapWindow .mapboxgl-ctrl {
+  display: none;
+}
+
+.react-geocoder input {
+  width: calc(80% - 85px);
+  position: fixed;
+  top: 10px;
+  border-radius: 15px;
+  border: none;
+  height: 50px !important;
+  padding: 0;
+  left: 70px;
+  padding-left: 15px;
+
+  font-size: 12pt;
+  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0);
+}
+
+.react-geocoder-results {
+  position: fixed;
+  top: 80px;
+  left: 2.5vw;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 95vw;
+  box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  font-size: 12pt;
+}
+
+.react-geocoder-item {
+  border-bottom: 1px solid #d8d8d8;
+  padding: 10px;
+}
+
+.react-geocoder-item:last-child {
+  border-bottom: 1px solid white;
+  padding: 10px;
+}
+
+.geocoder-edit {
+  position: relative;
+}
+
+.geocoder-edit input {
+  width: 95%;
+  position: relative;
+  top: 2.5%;
+  border-radius: 5px;
+  border: none;
+  height: 50px !important;
+  padding: 0;
+  left: 0%;
+  padding-left: 15px;
+
+  font-size: 12pt;
+  box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0);
+
+  border: 1px solid #cecece;
+  margin-bottom: 5px;
+}
+
+.geocoder-edit .react-geocoder-results {
+  position: relative;
+  top: 10px;
+  left: 0%;
+  z-index: 1;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 95%;
+  box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 768px) {
+  .mapboxgl-ctrl-group button {
+    width: 50px !important;
+    height: 50px !important;
+    top: 0px;
+    right: 0px;
+    position: fixed;
+    z-index: 999;
+    background-color: #fed957 !important;
+    border-radius: 15px !important;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.4) !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .react-geocoder input {
+    width: 300px;
+    position: fixed;
+    top: 50px;
+    border-radius: 15px;
+    border: none;
+    height: 50px;
+    left: calc(600px + ((100vw - 600px) / 2) - 150px);
+    transform: translateX(0%);
+    font-size: 12pt;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+
+  .react-geocoder-results {
+    position: fixed;
+    top: 110px;
+    left: calc(600px + ((100vw - 600px) / 2) - 150px);
+    z-index: 1;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 300px;
+    padding-right: 10px;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+
+  /* .react-geocoder-results {
+    position: fixed;
+    top: 10vh;
+    left: 2.5vw;
+    z-index: 1;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 95vw;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .react-geocoder-item {
+    border-bottom: 1px solid #d8d8d8;
+    padding: 10px;
+  } */
+
+  .geocoder-edit {
+    position: relative;
+  }
+
+  .geocoder-edit input {
+    width: 95%;
+    position: relative;
+    top: 2.5%;
+    border-radius: 5px;
+    border: none;
+    height: 50px !important;
+    padding: 0;
+    left: 0%;
+    padding-left: 15px;
+
+    font-size: 12pt;
+    box-shadow: 0 8px 30px -12px rgba(0, 0, 0, 0);
+
+    border: 1px solid #cecece;
+    margin-bottom: 5px;
+  }
+
+  .geocoder-edit .react-geocoder-results {
+    position: relative;
+    top: 10px;
+    left: 0%;
+    z-index: 1;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    width: 95%;
+    box-shadow: 0 8px 40px -12px rgba(0, 0, 0, 0.2);
+  }
+}

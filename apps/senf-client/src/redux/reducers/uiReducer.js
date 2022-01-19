@@ -7,8 +7,9 @@ import {
   STOP_LOADING_UI,
   OPEN_SCREAM,
   CLOSE_SCREAM,
-  OPEN_PROJECT,
+  OPEN_PROJECTROOM,
   CLOSE_PROJECT,
+  OPEN_CREATE_PROJECTROOM,
   CLEAR_LOADING_ERRORS,
   OPEN_MONITORING_SCREAM,
   CLOSE_MONITORING_SCREAM,
@@ -18,6 +19,8 @@ import {
   VOTED_FALSE,
   OPEN_ACCOUNT,
   CLOSE_ACCOUNT,
+  OPEN_ORGANIZATION,
+  OPEN_CREATE_ORGANIZATION,
   SET_SWIPEPOSITION_UP,
   SET_SWIPEPOSITION_DOWN,
 } from "../types";
@@ -27,8 +30,12 @@ const initialState = {
   openScream: false,
   openMonitoringScream: false,
 
-  openProject: false,
+  openProjectRoom: false,
   openAccount: false,
+  openOrganization: false,
+  openCreateOrganization: false,
+  openCreateProjectRoom: false,
+
   errors: null,
   openInfoPage: false,
   voted: false,
@@ -89,16 +96,22 @@ export default function (state = initialState, action) {
         openMonitoringScream: false,
       };
 
-    case OPEN_PROJECT:
+    case OPEN_PROJECTROOM:
       return {
         ...state,
-        openProject: true,
+        openProjectRoom: true,
       };
 
     case CLOSE_PROJECT:
       return {
         ...state,
-        openProject: false,
+        openProjectRoom: false,
+      };
+
+    case OPEN_CREATE_PROJECTROOM:
+      return {
+        ...state,
+        openCreateProjectRoom: action.payload,
       };
 
     case OPEN_ACCOUNT:
@@ -111,6 +124,18 @@ export default function (state = initialState, action) {
       return {
         ...state,
         openAccount: false,
+      };
+
+    case OPEN_ORGANIZATION:
+      return {
+        ...state,
+        openOrganization: action.payload,
+      };
+
+    case OPEN_CREATE_ORGANIZATION:
+      return {
+        ...state,
+        openCreateOrganization: action.payload,
       };
 
     case SET_INFOPAGE_OPEN:

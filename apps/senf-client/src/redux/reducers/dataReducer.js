@@ -24,9 +24,12 @@ import {
   SUBMIT_COMMENT,
   LOADING_IDEA_DATA,
   LOADING_PROJECTS_DATA,
+  LOADING_ORGANIZATIONS_DATA,
   LOADING_MYSCREAMS_DATA,
   SET_PROJECTS,
   SET_PROJECT,
+  SET_ORGANIZATIONS,
+  SET_ORGANIZATION,
   SET_SCREAM_USER,
   SET_FULL_SCREAMS,
   SET_COOKIES,
@@ -36,6 +39,7 @@ import {
   SET_INITIAL_MAP_BOUNDS,
   SET_INITIAL_MAP_VIEWPORT,
   SET_TOPICS,
+  SET_ORGANIZATION_TYPES,
 } from "../types";
 
 const defaultTopics = [
@@ -47,16 +51,29 @@ const defaultTopics = [
   "Sport / Freizeit",
   "Sonstige",
 ];
+
+const defaultOrganizationTypes = [
+  "Vereine",
+  "Initiativen",
+  "Planungsbüros",
+  "Politik",
+  "Stadtverwaltung",
+  "Presse",
+  "Sonstige",
+];
 const initialState = {
   projects: [],
+  organizations: [],
   screams: [],
   myScreams: null,
   scream: {},
+  project: {},
   comment: {},
   like: {},
   loading: true,
   loadingIdea: false,
-  loadingProjects: false,
+  loadingProjects: true,
+  loadingOrganizations: true,
   loadingMyScreams: false,
   scream_user: {},
   full_screams: [],
@@ -67,6 +84,7 @@ const initialState = {
   initialMapBounds: null,
   mapBounds: null,
   topics: defaultTopics,
+  organizationTypes: defaultOrganizationTypes,
 };
 
 export default function (state = initialState, action) {
@@ -204,6 +222,24 @@ export default function (state = initialState, action) {
         // loadingProjectScreams: false,
       };
 
+    case LOADING_ORGANIZATIONS_DATA:
+      return {
+        ...state,
+        loadingOrganizations: true,
+      };
+
+    case SET_ORGANIZATIONS:
+      return {
+        ...state,
+        organizations: action.payload,
+        loadingOrganizations: false,
+      };
+
+    case SET_ORGANIZATION:
+      return {
+        ...state,
+        organization: action.payload,
+      };
     case SET_FULL_SCREAMS:
       return {
         ...state,
@@ -278,6 +314,47 @@ export default function (state = initialState, action) {
           return { ...state, topics: [...removedTopicArray] };
         }
       }
+
+    case SET_ORGANIZATION_TYPES:
+      const indexOfOrganizationTypes = state.organizationTypes.indexOf(
+        action.payload
+      );
+
+      if (action.payload === "all") {
+        return {
+          ...state,
+          organizationTypes: defaultOrganizationTypes,
+        };
+      } else if (state.organizationTypes.length === 7) {
+        //
+        return { ...state, organizationTypes: [action.payload] };
+      } else if (indexOfOrganizationTypes === -1) {
+        // organizationTypes does not exist, add it
+
+        return {
+          ...state,
+          organizationTypes: [...state.organizationTypes, action.payload],
+        };
+      } else {
+        // OrganizationTypes exists, remove it
+        const removedOrganizationTypesArray = state.organizationTypes.filter(
+          (item) => item !== action.payload
+        );
+        if (removedOrganizationTypesArray.length === 0) {
+          //show default if all organizationTypes removed
+          return {
+            ...state,
+            organizationTypes: defaultOrganizationTypes,
+          };
+        } else {
+          // show remaining after removal
+          return {
+            ...state,
+            organizationTypes: [...removedOrganizationTypesArray],
+          };
+        }
+      }
+
     default:
       return state;
   }

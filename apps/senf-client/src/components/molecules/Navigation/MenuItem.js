@@ -2,6 +2,7 @@
 
 import React from "react";
 import styled from "styled-components";
+import { SideBarTabs } from "../../../styles/GlobalStyle";
 import ExpandButton from "../../atoms/CustomButtons/ExpandButton";
 
 const Tab = styled.div`
@@ -35,7 +36,7 @@ export function MenuItem({
   openAccount,
 }) {
   return (
-    <Tab>
+    <SideBarTabs fontWeight={order === index && !openAccount && "900"}>
       <ExpandButton handleButtonClick={() => handleClick(index)} />
       <img
         src={
@@ -46,6 +47,6 @@ export function MenuItem({
         style={{ paddingRight: "10px" }}
       />
       {text}
-    </Tab>
+    </SideBarTabs>
   );
 }

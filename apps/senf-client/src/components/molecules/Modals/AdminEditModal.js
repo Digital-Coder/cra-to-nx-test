@@ -95,7 +95,6 @@ const AdminEditModal = ({
   const [viewport, setViewport] = useState(null);
 
   useEffect(() => {
-    console.log(scream);
     dispatch(getUserEmail(scream.userId));
     setBody(scream.body);
     setTitle(scream.title);

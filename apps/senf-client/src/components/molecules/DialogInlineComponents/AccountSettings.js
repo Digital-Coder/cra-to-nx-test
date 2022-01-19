@@ -39,6 +39,8 @@ const DeleteButton = styled.div`
   cursor: pointer;
 `;
 const AccountSettings = () => {
+  const loading = useSelector((state) => state.data.loading);
+
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -66,28 +68,32 @@ const AccountSettings = () => {
     window.location.href = link;
   };
   return (
-    <React.Fragment>
-      <Card>
-        <Content>
-          <StyledText>
-            {t("account_contact")}
-            <br />
-            <br />
-            {t("your")} Senf.koeln-Team
-            <br />
-          </StyledText>
-        </Content>
-      </Card>
+    !loading && (
+      <React.Fragment>
+        <Card>
+          <Content>
+            <StyledText>
+              {t("account_contact")}
+              <br />
+              <br />
+              {t("your")} Senf.koeln-Team
+              <br />
+            </StyledText>
+          </Content>
+        </Card>
 
-      <CustomButton
-        text={t("logout")}
-        backgroundColor="white"
-        textColor="#353535"
-        handleButtonClick={handleLogout}
-      />
+        <CustomButton
+          text={t("logout")}
+          backgroundColor="white"
+          textColor="#353535"
+          handleButtonClick={handleLogout}
+        />
 
-      <DeleteButton onClick={deleteAccount}>{t("deteleAccount")} </DeleteButton>
-    </React.Fragment>
+        <DeleteButton onClick={deleteAccount}>
+          {t("deteleAccount")}{" "}
+        </DeleteButton>
+      </React.Fragment>
+    )
   );
 };
 

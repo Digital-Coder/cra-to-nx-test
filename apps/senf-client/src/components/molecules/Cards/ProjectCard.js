@@ -4,52 +4,32 @@ import React from "react";
 
 // Redux
 import { useDispatch, useSelector } from "react-redux";
-import { openProjectFunc } from "../../../redux/actions/projectActions";
+import {
+  openCreateProjectRoomFunc,
+  openProjectRoomFunc,
+} from "../../../redux/actions/projectActions";
 import ExpandButton from "../../atoms/CustomButtons/ExpandButton";
-import AddIcon from "../../../images/icons/plus_grey.png";
-import { useTranslation } from "react-i18next";
 
 import styled from "styled-components";
+import notPublishedIcon from "../../../images/icons/notPublished.png";
+import { CustomIconButton } from "../../atoms/CustomButtons/CustomButton";
+import {
+  BodyText,
+  Card,
+  CardContent,
+  CardTitle,
+  ColorDot,
+  DistrictHeader,
+  Gradient,
+} from "./styles/sharedStyles";
+import { StyledH2, StyledText } from "../../../styles/GlobalStyle";
 
-const ProjectCardDesign = styled.div`
+const ImgWrapper = styled.div`
   position: relative;
-  display: flex;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  min-height: 100px;
-  width: 95%;
-  border-radius: 20px;
-  /* box-shadow: 0 8px 40px -12px rgba(0,0,0,0); */
-  max-height: 14em;
-  /* background-color: rgb(255,255,255,0.6); */
-
-  border-radius: 20px;
-  overflow: hidden;
-  /* background: transparent;
-    box-shadow:  9px 9px 18px #f6d254,
-                -9px -9px 18px #ffe05a; */
-
-  animation: ProjectCardAnimation 0.8s;
-
-  @keyframes ProjectCardAnimation {
-    0% {
-      opacity: 0;
-      transform: translateY(50%);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0%);
-    }
-  }
-`;
-
-const LeftWrapper = styled.div`
-  position: relative;
-  width: 120px;
-  height: 120px;
+  width: 80px;
+  height: 80px;
   background-color: white;
-  border-radius: 20px;
+  border-radius: 18px;
 
   display: flex;
   position: relative;
@@ -57,129 +37,120 @@ const LeftWrapper = styled.div`
   justify-content: flex-start;
   text-align: center;
   overflow: hidden;
+  flex-shrink: 0;
 `;
-// what about the LeftWrapper img?
-/* .leftWrapper img{
-    width: 100%;
-    margin-left: 0%;
-  } */
 
+const ImgWrapperOverlay = styled.div`
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(255, 255, 255, 0.8);
+  border-radius: 18px;
+`;
+const StyledImg = styled.img`
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+`;
+
+const FlexWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+`;
 const RightWrapper = styled.div`
   margin-left: 10px;
-  height: 120px;
-  width: 60%;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-`;
-
-const Owner = styled.div`
-  font-family: Futura PT W01 Book;
-  color: #353535;
-`;
-const Title = styled.div`
-  font-size: 18px;
-  font-family: Futura PT W01-Bold;
-  color: #353535;
-`;
-const Date = styled.div`
-  margin-top: 10px;
-  font-family: Futura PT W01 Book;
-  color: #353535;
 `;
 
 export const ProjectCard = (props) => {
   const {
-    project: { title, owner, imgUrl, project, startDate, endDate },
+    project: {
+      projectRoomId,
+      title,
+      owner,
+      imgUrl,
+      description,
+      status,
+      organizationId,
+      color,
+    },
   } = props;
+
+  const cardOrganizationId = organizationId;
+  const user = useSelector((state) => state.user);
+  const organizations = useSelector((state) => state.data.organizations);
   const dispatch = useDispatch();
-  const pushScreamId = (project) => {
-    dispatch(openProjectFunc(project));
+
+  const pushScreamId = () => {
+    dispatch(openProjectRoomFunc(projectRoomId, true));
+  };
+  const handleEdit = () => {
+    localStorage.setItem("createProjectRoomOrganizationId", organizationId);
+    localStorage.setItem("createProjectRoomId", projectRoomId);
+    localStorage.setItem("createProjectPostEdit", true);
+
+    dispatch(openCreateProjectRoomFunc(true));
   };
 
-  return (
-    <ProjectCardDesign>
-      <ExpandButton handleButtonClick={() => pushScreamId(project)} />
+  const organizationCardData = [];
 
-      <LeftWrapper>
-        <img src={imgUrl} width="100%" alt="profile" />
-      </LeftWrapper>
-      <RightWrapper>
-        <Owner> {owner} </Owner>
-        <Title>{title}</Title>
-
-        {endDate ? (
-          <Date>
-            {" "}
-            {startDate} – {endDate}{" "}
-          </Date>
-        ) : (
-          <Date>{startDate} </Date>
-        )}
-      </RightWrapper>
-    </ProjectCardDesign>
-  );
-};
-
-export const CreateProject = ({ setCreateProjectDialogIsOpen }) => {
-  const { t } = useTranslation();
-  const isOrgModerator = useSelector((state) => state.user.isOrgModerator);
-  const handle = useSelector((state) => state.user.handle);
-
-  const requestProject = () => {
-    var link =
-      "mailto:dein@senf.koeln" + "?subject=" + escape("Projektraum-Anfrage");
-    // +
-    // "&body=" +
-    // escape(
-    //   "Projektraum-Titel:" +
-    //     "\n" +
-    //     "\n" +
-    //     "Worum geht's:" +
-    //     "\n" +
-    //     "\n" +
-    //     "Projektzeitraum:" +
-    //     "\n" +
-    //     "\n" +
-    //     "Logo + Cover-Bild:"
-    // );
-    window.location.href = link;
-  };
+  if (organizations) {
+    organizations.forEach(({ organizationId, userIds }) => {
+      if (cardOrganizationId === organizationId) {
+        organizationCardData.push(userIds);
+      }
+    });
+  }
 
   return (
-    <ProjectCardDesign>
-      <ExpandButton
-        handleButtonClick={
-          !isOrgModerator ? requestProject : setCreateProjectDialogIsOpen
-        }
-      />
-      <LeftWrapper>
-        <img
-          src={AddIcon}
-          width="100%"
-          alt="profile"
-          style={{ width: "50%", marginLeft: "25%" }}
-        />
-      </LeftWrapper>
-      <RightWrapper>
-        {!isOrgModerator ? (
-          <React.Fragment>
-            <Owner> {t("projectrooms_request_overTitle")} </Owner>
-            <Title> {t("projectrooms_request_title")}</Title>
-            <Date>{t("projectrooms_request_subTitle")}</Date>
-          </React.Fragment>
-        ) : (
-          <React.Fragment>
-            <Owner>
-              {" "}
-              {t("für")} {handle}
-            </Owner>
-            <Title> {t("Projektraum erstellen")}</Title>
-            <Date>{t("projectrooms_request_subTitle")}</Date>
-          </React.Fragment>
+    <Card project={true}>
+      <CardContent>
+        {organizationCardData[0].includes(user.userId) && (
+          <CustomIconButton
+            name="Menu"
+            iconWidth="70%"
+            handleButtonClick={() => handleEdit()}
+            position="absolute"
+            left="calc(100% - 54px)"
+            margin="2px"
+            top="0px"
+            backgroundColor="transparent"
+            shadow={false}
+            zIndex="99"
+          />
         )}
-      </RightWrapper>
-    </ProjectCardDesign>
+        <ExpandButton handleButtonClick={() => pushScreamId()} />
+        <FlexWrapper>
+          <ImgWrapper>
+            {status === "archived" && (
+              <ImgWrapperOverlay>
+                <img src={notPublishedIcon} alt="UploadImageIcon" width="50%" />
+              </ImgWrapperOverlay>
+            )}
+
+            <StyledImg src={imgUrl} width="100%" alt="profile" />
+          </ImgWrapper>
+          <RightWrapper>
+            <ColorDot color={color} />
+            <DistrictHeader color={color}>
+              <h4>{owner}</h4>
+            </DistrictHeader>
+
+            <CardTitle>
+              <StyledH2 fontWeight="900">{title}</StyledH2>
+            </CardTitle>
+          </RightWrapper>
+        </FlexWrapper>
+        <BodyText>
+          <StyledText>{description} </StyledText>
+        </BodyText>
+        <Gradient />
+      </CardContent>
+    </Card>
   );
 };

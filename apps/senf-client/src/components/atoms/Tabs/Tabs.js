@@ -1,7 +1,7 @@
 /** @format */
 import React from "react";
 import styled, { keyframes } from "styled-components";
-
+import Line from "../../../images/line.png";
 const enterAnimation = keyframes`
     0% {
       opacity: 0;
@@ -19,17 +19,20 @@ const enterAnimation = keyframes`
 
 const TabWrapper = styled.div`
   position: relative;
-  display: flex;
-  justify-content: center;
+
   width: 100%;
   margin-left: 0%;
   margin-top: ${(props) => props.marginTop};
   padding-bottom: ${(props) => props.marginBottom};
 `;
-
-const Tab = styled.div`
+const FlexWrapper = styled.div`
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+`;
+const Tab = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
@@ -38,19 +41,39 @@ const Tab = styled.div`
   padding-right: 15px;
   padding-left: 15px;
   animation: ${enterAnimation} ${(props) => props.i * 0.3}s;
-  font-size: 18px;
-  color: rgb(87, 87, 87);
-  font-family: ${(props) =>
-    props.active ? "Futura PT W01-Bold" : "Futura PT W01 Book;"};
+
+  opacity: ${(props) => (props.active ? "1" : "0.6")};
+  pointer-events: all;
+`;
+const TabText = styled.h2``;
+
+const UnderLine = styled.div`
+  height: 2px;
+  width: calc(100% - 30px);
+  background-color: #353535;
+  border-radius: 15px;
+  margin-left: 15px;
 `;
 
-// const TabLine = styled.div`
-//   margin-top: 3px;
-//   height: 20px;
-//   width: 2px;
-//   background-color: ${(props) => props.lineColor};
-//   animation: ${enterAnimation} ${(props) => props.i * 0.8}s;
-// `;
+const ImgWrapper = styled.div`
+  opacity: ${(props) => (props.active ? "1" : "0")};
+  top: 70%;
+  position: absolute;
+  width: -webkit-fill-available;
+  z-index: 1;
+  height: 30px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+  animation: ${(props) => (props.active ? "ImgWrapperAnimation 0.5s" : "none")};
+
+  @keyframes ImgWrapperAnimation {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  }
+`;
 
 const Tabs = ({
   loading,
@@ -64,13 +87,22 @@ const Tabs = ({
     return (
       !loading && (
         <React.Fragment>
-          <Tab
-            i={i + 1}
-            active={order === i + 1}
-            onClick={() => handleClick(i + 1)}
-          >
-            {tabLabel}{" "}
-          </Tab>{" "}
+          {tabLabel && (
+            <Tab
+              i={i + 1}
+              active={order === i + 1}
+              onClick={() => handleClick(i + 1)}
+            >
+              <TabText>{tabLabel}</TabText>
+              <ImgWrapper active={order === i + 1}>
+                <img
+                  src={Line}
+                  style={{ width: "108% ", marginLeft: "-5%" }}
+                  height="20px"
+                />
+              </ImgWrapper>
+            </Tab>
+          )}
           {/* {i !== tabLabels.length - 1 && (
             <TabLine i={i + 1.5} lineColor={lineColor} />
           )}{" "} */}
@@ -81,7 +113,8 @@ const Tabs = ({
 
   return (
     <TabWrapper marginTop={marginTop} marginBottom={marginBottom}>
-      {tab}
+      <FlexWrapper>{tab}</FlexWrapper>
+      {/* <TabLine order={order} /> */}
     </TabWrapper>
   );
 };
