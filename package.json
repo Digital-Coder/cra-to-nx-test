@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
+    "install:apps": "npm ci && npm run install:client && npm run install:chatbox && npm run install:monitoring ",
     "install:client": "cd apps/senf-client && npm ci",
     "install:chatbox": "cd apps/senf-chatbox && npm ci",
     "install:monitoring": "cd apps/senf-monitoring && npm ci",
