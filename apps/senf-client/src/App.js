@@ -196,7 +196,7 @@ const App = () => {
   const tabletNote = isTablet ? (
     <div className="tabletLandscapeNote">{t("rotate_tablet")} </div>
   ) : null;
-  console.log("changed client");
+
   return (
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
