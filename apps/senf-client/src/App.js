@@ -196,14 +196,13 @@ const App = () => {
   const tabletNote = isTablet ? (
     <div className="tabletLandscapeNote">{t("rotate_tablet")} </div>
   ) : null;
-
+  console.log("changed client");
   return (
     <MuiThemeProvider theme={theme}>
       <Provider store={store}>
         <GlobalStyles />
         <Router>
           <Cookiebanner />
-
           {tabletNote}
           {/* {isTablet && (
             <div className="switchDevice">
@@ -211,7 +210,6 @@ const App = () => {
               Desktop-Computer. Die Tablet-Version kommt bald wieder :)
             </div>
           )} */}
-
           <div className="landscapeNote">{t("rotate_phone")}</div>
 
           <div className="container">
